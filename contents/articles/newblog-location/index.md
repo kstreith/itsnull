@@ -11,3 +11,5 @@ After reading his post, I was pretty excited. The ability to write posts in Mark
 
 Turns out there are a couple static site generators written using nodejs. *(I won't list them, I'm sure more will be created, such is the current state of the Node community)* I found one I liked called [Wintersmith](http://wintersmith.io/). And you can see, my blog is now running on GitHub pages and was generated using Wintersmith. I'm quite happy with the results and quite enjoyed writing this post in [MarkdownPad2](http://markdownpad.com). Also, enjoyed previewing my entire blog on my local machine using 
 > wintersmith preview
+
+I did not convert my old posts on Wordpress over to Wintersmith. Something for the next brave convert to Wintersmith, maybe. You can find my old posts at http://itsnull.wordpress.com/
