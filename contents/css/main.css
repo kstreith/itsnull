@@ -7,7 +7,6 @@ body {
   font-family: 'Lora', serif;
   font-size: 21px;
   line-height: 1.52;
-  background-color: #3d9ad1;
   text-rendering: optimizeLegibility;
 }
 
@@ -41,7 +40,6 @@ pre {
 
 h1 {
   font-size: 2em;
-  margin-bottom: 1em;
 }
 
 h2 {
@@ -81,6 +79,30 @@ hr {
   margin: 1.6em 0;
 }
 
+.siteTitle {
+  background-color: #3d9ad1;
+}
+
+.siteTitle h1
+{
+  font-size: 1.2em;
+  text-align: center;
+  font-weight: 700;
+}
+
+.siteTitle a, .siteTitle a:hover {
+  text-decoration: none;
+  color: #a62800;  
+}
+
+.siteTitle .description {
+  font-size: 0.7em;
+  font-style: italic;
+  text-align: center;
+  margin-top: -0.3em;
+  color: #a62800;
+}
+
 /* page header */
 
 .header {
@@ -117,7 +139,7 @@ hr {
 }
 
 body.article-detail > header h1 {
-  font-size: 2.5em;
+  font-size: 2.0em;
   font-style: italic;
   font-weight: 400;
   margin-bottom: -0.2em;
@@ -135,8 +157,6 @@ footer {
 
 footer .nav {
   text-align: center;
-  margin-top: 5em;
-  margin-bottom: 3.5em;
 }
 
 footer .nav a {

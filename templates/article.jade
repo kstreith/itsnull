@@ -1,25 +1,46 @@
+doctype html
+html(lang='en')
+  head
+    head
+      meta(charset='utf-8')
+      meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+      meta(name='viewport', content='width=device-width')
+      title
+          = page.title + " - " + locals.name
+      link(rel='alternate', href=locals.url+'/feed.xml', type='application/rss+xml', title=locals.description)
+      link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300')
+      link(rel='stylesheet', href='/css/main.css')
+  body.article-detail
+    div.siteTitle
+      div.content-wrap
+        h1
+          a(href=locals.url)= locals.name
+        p.description= locals.description
+    header.header
+      div.content-wrap
+        header
+          div.logo
+            h1=page.title
+            p.author
+              | Written by #{page.metadata.author}
+    div#content
+      div.content-wrap
+        article.article
+          section.content!= typogr(page.html).typogrify()
+    footer
+      div.content-wrap
+        footer
+          div.nav
+            a(href=contents.index.url) All Posts
+          section.copy
+            p &copy; #{ new Date().getFullYear() } #{ locals.owner } &mdash; powered by&nbsp;
+              a(href='https://github.com/jnordberg/wintersmith') Wintersmith
+              //- please leave the "powered by" if you use the design
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-extends layout
-
-block append vars
-  - bodyclass = 'article-detail'
-
-block prepend title
-  | #{ page.title + " - "}
-
-block header
-  include author
-  h1= page.title
-  p.author
-    | #{ "Written by " }
-    mixin author(page.metadata.author)
-
-block content
-  article.article
-    section.content!= typogr(page.html).typogrify()
-
-block prepend footer
-  div.nav
-    a(href=contents.index.url) « Full blog
-
-
+      ga('create', 'UA-46954011-1', 'itsnull.com');
+      ga('send', 'pageview');
