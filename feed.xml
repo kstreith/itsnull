@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>It's Null?</title>
+    <atom:link href="http://itsnull.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <link>http://itsnull.com</link>
+    <description>Phrase heard round the world</description>
+    <pubDate>Sun, 05 Jan 2014 19:00:00 -0500</pubDate>
+    <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
+    <language>en</language>
+    <item>
+      <title>Hosting my blog with GitHub and Wintersmith</title>
+      <link>http://itsnull.com/articles/newblog-location/</link>
+      <pubDate>Sun, 05 Jan 2014 19:00:00 -0500</pubDate>
+      <guid isPermaLink="true">http://itsnull.com/articles/newblog-location/</guid>
+      <author></author>
+      <description>&lt;p&gt;I’ve moved my blog to GitHub using GitHub pages and I’m using Wintersmith to generate my static site.&lt;/p&gt;
+</description>
+    </item>
+  </channel>
+</rss>
