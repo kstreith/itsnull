@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport" content="width=device-width">
+      <title>My preferred RequireJS syntax - It's Null?
+      </title>
+      <link rel="alternate" href="http://itsnull.com/feed.xml" type="application/rss+xml" title="Phrase heard round the world">
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
+      <link rel="stylesheet" href="/css/main.css">
+    </head>
+  </head>
+  <body class="article-detail">
+    <div class="siteTitle">
+      <div class="content-wrap">
+        <h1><a href="http://itsnull.com">It's Null?</a></h1>
+        <p class="description">Phrase heard round the world</p>
+      </div>
+    </div>
+    <header class="header">
+      <div class="content-wrap">
+        <header>
+          <div class="logo">
+            <h1>My preferred RequireJS syntax</h1>
+            <p class="author">Written by kstreith</p>
+          </div>
+        </header>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><p>I’ve been working with Durandal lately, which means I’m using RequireJS. Almost all of the RequireJS module definition examples will look like&nbsp;this:</p>
+<pre><code class="lang-javascript">define([<span class="string">'durandal/app'</span>, <span class="string">'durandal/system'</span>], <span class="function"><span class="keyword">function</span><span class="params">(app, system)</span> {</span>
+  app.trigger(<span class="string">'myEvent'</span>);
+  system.log(<span class="string">'myMessage'</span>);
+});</code></pre>
+<p>Let me introduce you to my preferred RequireJS syntax…
+<span class="more" /></p>
+<pre><code class="lang-javascript">define(<span class="function"><span class="keyword">function</span><span class="params">(require)</span> {</span>
+  <span class="keyword">var</span> app = require(<span class="string">'durandal/app'</span>);
+  <span class="keyword">var</span> system = require(<span class="string">'durandal/system'</span>);
+
+  app.trigger(<span class="string">'myEvent'</span>);
+  system.log(<span class="string">'myMessage'</span>);
+});</code></pre>
+<p>So, why do I prefer this syntax? I avoid the need to match up argument orders, between the dependencies array and the callback function. Or more specifically, I avoid the incomprehensible errors that would other occur when i later add, remove, re-order a dependency in one list but forget to do it in the other list. Yes, my syntax has more lines of code, but no more than you’d see in other languages that have built-in modules (e.g. import statement in Python, C#, Java, #include in C++). I don’t see this syntax mentioned enough, so I thought it worthwhile to blog about&nbsp;it.</p>
+<h3 id="warning-deep-dive-ahead">Warning: Deep Dive&nbsp;Ahead</h3>
+<hr>
+<p>Some of you may wonder how that second syntax is able to work, since RequireJS isn’t supposed to execute your callback function until all of your dependencies have been loaded. How’s it supposed to do that, if your dependencies are retrieved by calling the require function only when your callback is executed? <em>Is a time machine&nbsp;involved?</em></p>
+<p>No, this syntax is known as Sugar syntax in RequireJS parlance. What happens in the define function is that it will ask for the string version of your callback function and it then runs regular expressions against that string looking for require(‘[module name here]’) and then it simply assumes you had passed it a dependencies array <em>(e.g. the first argument to define in my first example)</em> containing those matches. On JsFiddle, I’ve created <a href="http://jsfiddle.net/M2LcB/">proof that you can ask for any function as a string</a>. And that is&nbsp;that.</p>
+</section>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <footer>
+          <div class="nav"><a href="/">All Posts</a></div>
+          <section class="copy">
+            <p>&copy; 2014 kstreith &mdash; powered by&nbsp;<a href="https://github.com/jnordberg/wintersmith">Wintersmith</a>
+            </p>
+          </section>
+        </footer>
+      </div>
+    </footer>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-46954011-1', 'itsnull.com');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
