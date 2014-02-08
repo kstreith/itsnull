@@ -5,9 +5,84 @@
     <atom:link href="http://itsnull.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <link>http://itsnull.com</link>
     <description>Phrase heard round the world</description>
-    <pubDate>Tue, 07 Jan 2014 19:00:00 -0500</pubDate>
+    <pubDate>Fri, 07 Feb 2014 19:00:00 -0500</pubDate>
     <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
     <language>en</language>
+    <item>
+      <title>It's time to start using ES5 in your javascript code, actually it's past time</title>
+      <link>http://itsnull.com/articles/start-using-es5/</link>
+      <pubDate>Fri, 07 Feb 2014 19:00:00 -0500</pubDate>
+      <guid isPermaLink="true">http://itsnull.com/articles/start-using-es5/</guid>
+      <author></author>
+      <description>&lt;p&gt;If you don’t know, ES5 is the EcmaScript5 specification, otherwise known as version 5 of the Javascript specification. Why should you use it? Because the spec has been out long enough (&lt;em&gt;since 2009&lt;/em&gt;) to be very well supported across a wide swath of browsers and browser versions.&lt;/p&gt;
+&lt;p&gt;Let’s look at some code you can write now with ES5 that you probably used third-party libraries for in the past.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;more&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Built-in Map function&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; arr = [{id: &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, name: &lt;span class=&quot;string&quot;&gt;'cat'&lt;/span&gt;}, {id: &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;, name: &lt;span class=&quot;string&quot;&gt;'dog'&lt;/span&gt;}];
+&lt;span class=&quot;comment&quot;&gt;//REPLACE THIS JQuery&lt;/span&gt;
+  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; names = $.map(arr, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(item)&lt;/span&gt; {&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; arr.name; });
+&lt;span class=&quot;comment&quot;&gt;//OR, REPLACE THIS Underscore/LoDash&lt;/span&gt;
+  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; names = _.map(arr, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(item)&lt;/span&gt; {&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; arr.name; });
+
+&lt;span class=&quot;comment&quot;&gt;//WITH&lt;/span&gt;
+  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; names = arr.map(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(item)&lt;/span&gt; {&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; arr.name; });&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Built-in Filter function&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; arr = [{id: &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, name: &lt;span class=&quot;string&quot;&gt;'cat'&lt;/span&gt;}, {id: &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;, name: &lt;span class=&quot;string&quot;&gt;'dog'&lt;/span&gt;}];
+&lt;span class=&quot;comment&quot;&gt;//REPLACE THIS JQuery&lt;/span&gt;
+  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; startsWithC = $.map(arr, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(item)&lt;/span&gt; {&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; (arr.name.indexOf(&lt;span class=&quot;string&quot;&gt;&quot;C&quot;&lt;/span&gt;) === &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) ? arr : &lt;span class=&quot;literal&quot;&gt;null&lt;/span&gt;; });
+&lt;span class=&quot;comment&quot;&gt;//OR, REPLACE THIS Underscore/LoDash&lt;/span&gt;
+  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; startsWithC = _.filter(arr, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(item)&lt;/span&gt; {&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; !!(arr.name.indexOf(&lt;span class=&quot;string&quot;&gt;&quot;C&quot;&lt;/span&gt;) === &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;); });
+
+&lt;span class=&quot;comment&quot;&gt;//WITH&lt;/span&gt;
+  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; startsWithC = arr.filter(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(item)&lt;/span&gt; {&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; !!(arr.name.indexOf(&lt;span class=&quot;string&quot;&gt;&quot;C&quot;&lt;/span&gt;) === &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;); });&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Built-in Iteration&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; arr = [&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;];
+&lt;span class=&quot;comment&quot;&gt;//REPLACE THIS JQuery&lt;/span&gt;
+  $.each(arr, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(item)&lt;/span&gt; {&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (item &amp;gt; &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;) { process(item); } });
+&lt;span class=&quot;comment&quot;&gt;//OR, REPLACE THIS Underscore/LoDash&lt;/span&gt;
+  _.each(arr, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(item)&lt;/span&gt; {&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (item &amp;gt; &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;) { process(item); } });
+
+&lt;span class=&quot;comment&quot;&gt;//WITH&lt;/span&gt;
+  arr.forEach(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(item)&lt;/span&gt; {&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (item &amp;gt; &lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;) { process(item); } });&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Or, my two personal favorites:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Function binding&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; person = {
+     likeCount: &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,
+     like: &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; {&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.like = &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.like + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; }
+  };
+&lt;span class=&quot;comment&quot;&gt;//REPLACE THIS JQuery&lt;/span&gt;
+  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; boundLike = $.proxy(person.like, person);
+&lt;span class=&quot;comment&quot;&gt;//OR, REPLACE THIS Underscore/LoDash&lt;/span&gt;
+  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; boundLike = _.bind(person.like, person);
+
+&lt;span class=&quot;comment&quot;&gt;//WITH&lt;/span&gt;
+  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; boundLike = person.like.bind(person);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Iterating the keys of an object&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//REPLACE THIS&lt;/span&gt;
+  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; observablesOnObject = [];
+  &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; key &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; myObj) {
+    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (myObj.hasOwnProperty(key)) {
+      &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (ko.isObservable(myObj[key])) {
+        observablesOnObject.push(key);
+      }
+    }
+  } 
+&lt;span class=&quot;comment&quot;&gt;//OR THIS Underscore/LoDash&lt;/span&gt;
+  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; observablesOnObject = _.filter(_.keys(myObj), &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(item)&lt;/span&gt; {&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; ko.isObservable(myObj(item)); });
+
+&lt;span class=&quot;comment&quot;&gt;//WITH&lt;/span&gt;
+  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; observablesOnObject = Object.keys(myObj).filter(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(item)&lt;/span&gt; {&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; ko.isObservable(myObj(item)); });&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, you might say, that didn’t change much. And that’s true. Those functions are so useful that can find them in quite a few JS libraries or hand-written into application code-bases. And that my friend is why those functions got added to the EcmaScript5 specification and therefore built into the language. So, now you can use these functions without adding a third-party dependency. Very helpful if you like to re-use code between projects. And if someone reads your code, they don’t have to go look up the documentation for the third-party library. Sounds good so far, right…&lt;/p&gt;
+&lt;p&gt;But… But…&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;But, I have to support an old browser&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;So, you checked the &lt;a href=&quot;http://kangax.github.io/es5-compat-table/&quot;&gt;ES5 compat table&lt;/a&gt; and noticed the browser you have to support is missing these functions &lt;em&gt;(I’m looking at you IE8)&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;We can solve that problem, go get the &lt;a href=&quot;https://github.com/es-shims/es5-shim&quot;&gt;ES5-shim library&lt;/a&gt;. For those who say, but now I have JQuery and ES5 shim. Well, that’s true. But in the future when you stop supporting that old browser, just drop ES5 shim. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;But, the ES5 function doesn’t work the same as the function in my favorite library&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Well, that’s a very keen eye or some great unit tests. Nobody says you have to stop using your favorite library, nobody says you have to stop using your favorite function. You are writing the code, not me, you have lots of options. This is just another option, pick the best option for your code.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;In closing&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;Go read the &lt;a href=&quot;http://kangax.github.io/es5-compat-table/&quot;&gt;list of newly available functions&lt;/a&gt; &lt;em&gt;(and &lt;a href=&quot;https://github.com/es-shims/es5-shim&quot;&gt;shim support&lt;/a&gt; for those supporting old browers)&lt;/em&gt; and see if any will work for you and your projects.&lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>My preferred RequireJS syntax</title>
       <link>http://itsnull.com/articles/preferred-requirejs-syntax/</link>

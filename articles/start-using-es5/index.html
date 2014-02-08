@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport" content="width=device-width">
+      <title>It's time to start using ES5 in your javascript code, actually it's past time - It's Null?
+      </title>
+      <link rel="alternate" href="http://itsnull.com/feed.xml" type="application/rss+xml" title="Phrase heard round the world">
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
+      <link rel="stylesheet" href="/css/main.css">
+    </head>
+  </head>
+  <body class="article-detail">
+    <div class="siteTitle">
+      <div class="content-wrap">
+        <h1><a href="http://itsnull.com">It's Null?</a></h1>
+        <p class="description">Phrase heard round the world</p>
+      </div>
+    </div>
+    <header class="header">
+      <div class="content-wrap">
+        <header>
+          <div class="logo">
+            <h1>It's time to start using ES5 in your javascript code, actually it's past time</h1>
+            <p class="author">Written by kstreith</p>
+          </div>
+        </header>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><p>If you don’t know, <span class="caps">ES5</span> is the EcmaScript5 specification, otherwise known as version 5 of the Javascript specification. Why should you use it? Because the spec has been out long enough (<em>since 2009</em>) to be very well supported across a wide swath of browsers and browser&nbsp;versions.</p>
+<p>Let’s look at some code you can write now with <span class="caps">ES5</span> that you probably used third-party libraries for in the&nbsp;past.</p>
+<p><span class="more" /></p>
+<p><strong>Built-in Map&nbsp;function</strong></p>
+<pre><code class="lang-javascript">  <span class="keyword">var</span> arr = [{id: <span class="number">2</span>, name: <span class="string">'cat'</span>}, {id: <span class="number">3</span>, name: <span class="string">'dog'</span>}];
+<span class="comment">//<span class="caps">REPLACE</span> THIS JQuery</span>
+  <span class="keyword">var</span> names = $.map(arr, <span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span> <span class="keyword">return</span> arr.name; });
+<span class="comment">//<span class="caps">OR</span>, REPLACE THIS Underscore/LoDash</span>
+  <span class="keyword">var</span> names = _.map(arr, <span class="function"><span class="keyword">function</span> <span class="params">(item)</span> {</span> <span class="keyword">return</span> arr.name; });
+
+<span class="comment">//<span class="caps">WITH</span></span>
+  <span class="keyword">var</span> names = arr.map(<span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span> <span class="keyword">return</span> arr.name; });</code></pre>
+<p><strong>Built-in Filter&nbsp;function</strong></p>
+<pre><code class="lang-javascript">  <span class="keyword">var</span> arr = [{id: <span class="number">2</span>, name: <span class="string">'cat'</span>}, {id: <span class="number">3</span>, name: <span class="string">'dog'</span>}];
+<span class="comment">//<span class="caps">REPLACE</span> THIS JQuery</span>
+  <span class="keyword">var</span> startsWithC = $.map(arr, <span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span> <span class="keyword">return</span> (arr.name.indexOf(<span class="string">"C"</span>) === <span class="number">0</span>) ? arr : <span class="literal">null</span>; });
+<span class="comment">//<span class="caps">OR</span>, REPLACE THIS Underscore/LoDash</span>
+  <span class="keyword">var</span> startsWithC = _.filter(arr, <span class="function"><span class="keyword">function</span> <span class="params">(item)</span> {</span> <span class="keyword">return</span> !!(arr.name.indexOf(<span class="string">"C"</span>) === <span class="number">0</span>); });
+
+<span class="comment">//<span class="caps">WITH</span></span>
+  <span class="keyword">var</span> startsWithC = arr.filter(<span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span> <span class="keyword">return</span> !!(arr.name.indexOf(<span class="string">"C"</span>) === <span class="number">0</span>); });</code></pre>
+<p><strong>Built-in&nbsp;Iteration</strong></p>
+<pre><code class="lang-javascript">  <span class="keyword">var</span> arr = [<span class="number">2</span>,<span class="number">5</span>,<span class="number">10</span>];
+<span class="comment">//<span class="caps">REPLACE</span> THIS JQuery</span>
+  $.each(arr, <span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span> <span class="keyword">if</span> (item &gt; <span class="number">5</span>) { process(item); } });
+<span class="comment">//<span class="caps">OR</span>, REPLACE THIS Underscore/LoDash</span>
+  _.each(arr, <span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span> <span class="keyword">if</span> (item &gt; <span class="number">5</span>) { process(item); } });
+
+<span class="comment">//<span class="caps">WITH</span></span>
+  arr.forEach(<span class="function"><span class="keyword">function</span> <span class="params">(item)</span> {</span> <span class="keyword">if</span> (item &gt; <span class="number">5</span>) { process(item); } });</code></pre>
+<p>Or, my two personal&nbsp;favorites:</p>
+<p><strong>Function&nbsp;binding</strong></p>
+<pre><code class="lang-javascript">  <span class="keyword">var</span> person = {
+     likeCount: <span class="number">0</span>,
+     like: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span> <span class="keyword">this</span>.like = <span class="keyword">this</span>.like + <span class="number">1</span>; }
+  };
+<span class="comment">//<span class="caps">REPLACE</span> THIS JQuery</span>
+  <span class="keyword">var</span> boundLike = $.proxy(person.like, person);
+<span class="comment">//<span class="caps">OR</span>, REPLACE THIS Underscore/LoDash</span>
+  <span class="keyword">var</span> boundLike = _.bind(person.like, person);
+
+<span class="comment">//<span class="caps">WITH</span></span>
+  <span class="keyword">var</span> boundLike = person.like.bind(person);</code></pre>
+<p><strong>Iterating the keys of an&nbsp;object</strong></p>
+<pre><code class="lang-javascript"><span class="comment">//<span class="caps">REPLACE</span> THIS</span>
+  <span class="keyword">var</span> observablesOnObject = [];
+  <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> myObj) {
+    <span class="keyword">if</span> (myObj.hasOwnProperty(key)) {
+      <span class="keyword">if</span> (ko.isObservable(myObj[key])) {
+        observablesOnObject.push(key);
+      }
+    }
+  } 
+<span class="comment">//<span class="caps">OR</span> THIS Underscore/LoDash</span>
+  <span class="keyword">var</span> observablesOnObject = _.filter(_.keys(myObj), <span class="function"><span class="keyword">function</span> <span class="params">(item)</span> {</span> <span class="keyword">return</span> ko.isObservable(myObj(item)); });
+
+<span class="comment">//<span class="caps">WITH</span></span>
+  <span class="keyword">var</span> observablesOnObject = Object.keys(myObj).filter(<span class="function"><span class="keyword">function</span> <span class="params">(item)</span> {</span> <span class="keyword">return</span> ko.isObservable(myObj(item)); });</code></pre>
+<p>Now, you might say, that didn’t change much. And that’s true. Those functions are so useful that can find them in quite a few <span class="caps">JS</span> libraries or hand-written into application code-bases. And that my friend is why those functions got added to the EcmaScript5 specification and therefore built into the language. So, now you can use these functions without adding a third-party dependency. Very helpful if you like to re-use code between projects. And if someone reads your code, they don’t have to go look up the documentation for the third-party library. Sounds good so far,&nbsp;right…</p>
+<p>But…&nbsp;But…</p>
+<p><strong>But, I have to support an old&nbsp;browser</strong></p>
+<p>So, you checked the <a href="http://kangax.github.io/es5-compat-table/"><span class="caps">ES5</span> compat table</a> and noticed the browser you have to support is missing these functions <em>(I’m looking at you <span class="caps">IE8</span>)</em>.</p>
+<p>We can solve that problem, go get the <a href="https://github.com/es-shims/es5-shim"><span class="caps">ES5</span>-shim library</a>. For those who say, but now I have JQuery and <span class="caps">ES5</span> shim. Well, that’s true. But in the future when you stop supporting that old browser, just drop ES5&nbsp;shim. </p>
+<p><strong>But, the <span class="caps">ES5</span> function doesn’t work the same as the function in my favorite&nbsp;library</strong></p>
+<p>Well, that’s a very keen eye or some great unit tests. Nobody says you have to stop using your favorite library, nobody says you have to stop using your favorite function. You are writing the code, not me, you have lots of options. This is just another option, pick the best option for your&nbsp;code.</p>
+<p><strong>In&nbsp;closing</strong> </p>
+<p>Go read the <a href="http://kangax.github.io/es5-compat-table/">list of newly available functions</a> <em>(and <a href="https://github.com/es-shims/es5-shim">shim support</a> for those supporting old browers)</em> and see if any will work for you and your&nbsp;projects.</p>
+</section>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <footer>
+          <div class="nav"><a href="/">All Posts</a></div>
+          <section class="copy">
+            <p>&copy; 2014 kstreith &mdash; powered by&nbsp;<a href="https://github.com/jnordberg/wintersmith">Wintersmith</a>
+            </p>
+          </section>
+        </footer>
+      </div>
+    </footer>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-46954011-1', 'itsnull.com');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
