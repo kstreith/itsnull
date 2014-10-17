@@ -6,12 +6,12 @@
     currentNum++;
     updateUi();
   };
-  var decrease = function () {
+  function decrease() {
     currentNum--;
     updateUi();
   } 
-  var updateUi = function () {
-    totalPaints++;
+  var updateUi = function updateUi() {
+    totalPaints = totalPaints + 1;
     console.log("logging totalPaints", totalPaints);
     $("#currentNumber").text(String(currentNum));
   }

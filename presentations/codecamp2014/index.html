@@ -19,6 +19,22 @@
 
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
+    <style>
+        .procon > h4 {
+          text-align: left;
+          margin-top: 20px; 
+        }
+        .procon > h4:first-child {
+          margin-top: 0px;
+        }
+        .procon > ul {
+          display: block;
+        }
+        div.procon {
+          width: 75%;
+          margin: 0 auto;
+        }
+    </style>
 
     <!-- If the query includes 'print-pdf', include the PDF print sheet -->
     <script>
@@ -67,11 +83,74 @@
            }
           </script>
           <h3><a onclick="onAlertClick();">Alert</a> - The Debugging Dark Ages</h3>
-          <pre><code data-trim contenteditable>
+          <pre><code>
 function onAlertClick() {
   alert('alert text was clicked');
 }
           </code></pre>          
+          <ul>
+            <li>Available everywhere.</li>
+            <li>But, it's visible to the user and interrupts execution</li>
+          </ul>
+        </section>
+        <section>
+          <script>
+           var clickCount = 0;
+           window.onLogClick = function onAlertClick() {
+              clickCount++;
+              console.log('log text was clicked ' + clickCount);
+           }
+          </script>
+          <h3><a onclick="onLogClick();">console.log</a> - Alert the Developers!</h3>
+          <pre><code data-trim contenteditable>
+var clickCount = 0;
+function onLogClick() {
+  clickCount++;
+  console.log('log text was clicked ' + clickCount);
+}
+          </code></pre>          
+          <ul>
+            <li>A better alert, is logged to developer console and doesn't interrupt execution.</li>
+            <li>But, beware IE8/9. Calling console.log will throw an exception unless developer tools have been opened.</li>
+            <li>To fix IE8/9, include <a href="https://github.com/paulmillr/console-polyfill">https://github.com/paulmillr/console-polyfill</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3>JS Debuggers - Now that's Power</h3>
+          <ul>
+            <li>Breakpoints</li>
+            <li>Step into and step out</li>
+            <li>Call stack</li>
+            <li>Watch window</li>
+            <li>Conditional breakpoints - so you can skip past the boring stuff.</li>
+            <li>Logpoints/Tracepoints - like putting console.log into code at runtime or code you didn't write.</li>
+            <li>Stop when an uncaught exception escapes.</li>
+            <li>Stop at the exact point an exception is thrown. Really useful for catching:
+            <pre><code>
+try {
+// some code here...
+}
+catch () {} </code></pre></li>
+          </ul>
+        </section>
+        <section>
+          <h3>JS Debuggers - More powerful breakpoints</h3>
+          <ul>
+            <li>Conditional breakpoints - so you can skip past the boring stuff.</li>
+            <li>Logpoints/Tracepoints - like putting console.log into code at runtime or code you didn't write.</li>
+          </ul>
+        </section>
+        <section>
+          <h3>JS Debuggers - Exceptions</h3>
+          <ul>
+            <li>Stop when an uncaught exception escapes.</li>
+            <li>Stop at the exact point an exception is thrown. Really useful for catching:
+            <pre><code>
+try {
+// some code here...
+}
+catch () {} </code></pre></li>
+          </ul>
         </section>
         <section>
           <h3>Empty Slide</h3>
