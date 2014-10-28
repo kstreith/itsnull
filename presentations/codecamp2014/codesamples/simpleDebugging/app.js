@@ -1,7 +1,7 @@
 (function () {
   "use strict";
   var currentNum = 0;
-  var totalPaints = 0;
+  var totalClicks = 0;
   var increase = function () {
     currentNum++;
     updateUi();
@@ -11,9 +11,14 @@
     updateUi();
   } 
   var updateUi = function updateUi() {
-    totalPaints = totalPaints + 1;
-    console.log("logging totalPaints", totalPaints);
+    totalClicks = totalClicks + 1;
+    console.log("logging totalClicks", totalClicks);
     $("#currentNumber").text(String(currentNum));
+    var color = "green";
+    if (currentNum % 10 < 5 && currentNum % 10 > 0) {
+      color = "white";
+    }
+    $("#currentNumber").css("background-color", color);
   }
   $(function () {
     $("#increase").on("click", increase);

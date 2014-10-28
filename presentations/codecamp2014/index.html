@@ -59,9 +59,20 @@
         <section>
           <h2>Debugging Javascript In The Browser</h1>
           <h3>Raleigh Code Camp 2014</h3>
+          <h3>Follow along at:</h3>
+          <p><a href="http://itsnull.com/presentations/codecamp2014/">http://itsnull.com/presentations/codecamp2014/</a></p>
           <p>
             <small>Created by <a href="http://itsnull.com">Kip Streithorst</a> / <a href="http://twitter.com/itsnull">@itsnull</a></small>
           </p>
+        </section>
+        <section>
+          <h3>Goal</h3>
+          <ul>
+            <li>Show you debugging tips for IE8+, Chrome and Firefox unless slide mentions otherwise.</li>
+            <li>Spend a bunch of time showing you debugging tricks and less time looking at this presentation.</li>
+            <li>Get you excited to continue your learning after this session</li>
+            <li>Leave you with a useful tool to consult after this session. <i>Click the link in the slide title to view any code sample for that slide.</i></li>
+          </ul>
         </section>
         <section>
           <h3>Types of Js Errors</h3>
@@ -116,16 +127,38 @@ function onLogClick() {
           </ul>
         </section>
         <section>
-          <h3>JS Debuggers - Now that's Power</h3>
+          <h3><a href="codesamples/simpledebugging/" target="debug">JS Debuggers</a> - Now that's Power</h3>
           <ul>
             <li>Breakpoints</li>
             <li>Step into and step out</li>
-            <li>Call stack</li>
-            <li>Watch window</li>
-            <li>Conditional breakpoints - so you can skip past the boring stuff.</li>
-            <li>Logpoints/Tracepoints - like putting console.log into code at runtime or code you didn't write.</li>
+            <li>Call stack. <i>For IE8, you'll want to use named function expressions or function declarations for a cleaner call stack</i></li>
+            <li>Watch window, both variables and expressions.</li>
+            <li>Mouse over variable. <i>Works in IE9+, Chrome and Firefox</i></li>
+            <li>Mouse over expression. <i>Works in IE9+ and Chrome</i></li>
+          </ul>
+        </section>
+        <section>
+          <h3><a href="codesamples/simpledebugging/" target="debug">JS Debuggers</a> - Break On Demand?</h3>
+          <ul>
+            <li>Conditional breakpoints - debugger should only stop at breakpoint when JS expression is true.</li>
+            <li>debugger; statement - when this statement is run, browser will stop and enter debugger.</li>
+            <li>Both are very useful for allowing you to skip past the boring stuff on your given breakpoint.</li>
+          </ul>
+        </section>
+        <section>
+          <h3><a href="codesamples/simpledebugging/" target="debug">JS Debuggers</a> - Logpoint/Tracepoint</h3>
+          <ul>
+            <li>Remember conditional breakpoints? Remember console.log?</li>
+            <li>Use console.log as the conditonal expression for a breakpoint. It returns falsey so debugger never stops, but it always runs your console.log statement.</li>
+            <li>Really useful to add console.log to third-party code, like jquery, Angular, Knockout, etc.</li>
+            <li>Also really useful for debugging recursive code or complicated event handling like mouse in.</li>
+          </ul>
+        </section>        
+        <section>
+          <h3><a href="codesamples/exceptionsanddebugger/" target="exceptions">JS Debuggers</a> - Exceptions</h3>
+          <ul>
             <li>Stop when an uncaught exception escapes.</li>
-            <li>Stop at the exact point an exception is thrown. Really useful for catching:
+            <li>Stop at the exact point an exception is thrown. <i>Works in IE11, Chrome, Firefox. IE8-10, it will stop but you might be missing frames in the call stack.</i>. Really useful for catching:
             <pre><code>
 try {
 // some code here...
@@ -134,22 +167,9 @@ catch () {} </code></pre></li>
           </ul>
         </section>
         <section>
-          <h3>JS Debuggers - More powerful breakpoints</h3>
+          <h3>Console - the swiss army knife</h3>
           <ul>
-            <li>Conditional breakpoints - so you can skip past the boring stuff.</li>
-            <li>Logpoints/Tracepoints - like putting console.log into code at runtime or code you didn't write.</li>
-          </ul>
-        </section>
-        <section>
-          <h3>JS Debuggers - Exceptions</h3>
-          <ul>
-            <li>Stop when an uncaught exception escapes.</li>
-            <li>Stop at the exact point an exception is thrown. Really useful for catching:
-            <pre><code>
-try {
-// some code here...
-}
-catch () {} </code></pre></li>
+            <li></li>
           </ul>
         </section>
         <section>
