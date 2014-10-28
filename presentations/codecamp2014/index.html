@@ -169,13 +169,37 @@ catch () {} </code></pre></li>
         <section>
           <h3>Console - the swiss army knife</h3>
           <ul>
-            <li></li>
+            <li>The "Console" tab of the developer tools.</li>
+            <li>Remember, the default for a JS variable is a global variable.</li>
+            <li>And the JS vm is initialized per-page.</li>
+            <li>Everything you type in the console runs in the JS vm for the page, which means it has access to everything in the page. <i>IE11, Chrome work with sub-frames on a page.</i></li>
+            <li>So, the possibilities are limited by your imagination <i>and closures</i>.</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Console - More details</h3>
+          <ul>
+            <li>Retains history of previously entered JS, use up and down arrow.</li>
+            <li>Supports copy/paste and multiple lines. <i>IE has single-line and multi-line mode, Chrome and Firefox you must paste multiple line code into console.</i></li>
+            <li>Intellisense completion using 'tab'. <i>Works in IE11, Chrome and Firefox</i></li>
+            <li>Expand values of object and arrays directly in console. <i>Works in IE11, Chrome and Firefox</i></li>
+            <li>Interacts with "Elements" tab of developer tools using $0, $1 variables.<i>Works in IE11, Chrome and Firefox</i></li>
+          </ul>
+        </section>
+        <section>
+          <h3>Console - My Imagination</h3>
+          <ul>
+            <li>Learn JS or a new library.</li>
+            <li>Test something out in console first before I switch back to editor</li>
+            <li>Figure out where to attach event handlers.</li>
+            <li>Test my REST endpoints.</li>
           </ul>
         </section>
         <section>
           <h3>Empty Slide</h3>
-          <p>
-          </p>
+          <ul>
+            <li></li>
+          </ul>
         </section>
         <section>
           <h2>Now back to debugging!</h1>
