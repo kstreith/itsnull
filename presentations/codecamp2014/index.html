@@ -196,6 +196,47 @@ catch () {} </code></pre></li>
           </ul>
         </section>
         <section>
+          <h3>Debugger and Console - Best Friends</h3>
+          <ul>
+            <li>All the power of the console when stopped in the debugger</li>
+            <li>Console will have access to all variables in current frame of call stack, can also modify those variables.</li>
+            <li>So, now if you stop the debugger in a closure you can access those variables.</li>
+            <li>JSON.stringify can be very useful in this context, especially JSON.stringify(obj, null, 2) to pretty-print variables into the console.</li>
+          </ul>
+        </section>
+        <section>
+          <h3>More console examples - Angular debugging</h3>
+          <ul>
+            <li>Retrieve scope for a given element using ng.element(<DOMNode>).scope()</li>
+            <li>Very easy way to tell if scope is what you thought it was.</li>
+            <li>Values in scope can be updated, but scope.$apply() must be called before UI will update.</li>
+            <li>Can retrieve a service/factory using angular.element(<DOMNode>).injector().get('FactoryName')</li>
+          </ul>
+        </section>
+        <section>
+          <h3>More console examples - Knockout debugging</h3>
+          <ul>
+            <li>ko.dataFor($0) - access and update observables</li>
+            <li>Observable subscribe with debugger; statement</li>
+            <li>ko.contextFor($0) to walk parent context</li>
+          </ul>
+        </section>
+        <section>
+          <h3>More console examples - Ember debugging</h3>
+          <ul>
+            <li>Ember.View.views['ember' + emberId]</li>
+            <li>Update UI from console</li>
+            <li>Ember.View.views['ember479'].get('controller')</li>
+            <li>Subscribe with debugger; statement</li>
+          </ul>
+        </section>
+        <section>
+          <h3>More console examples - RequireJS debugging</h3>
+          <ul>
+            <li>require('moduleName') to get access to module</li>
+          </ul>
+        </section>
+        <section>
           <h3>Empty Slide</h3>
           <ul>
             <li></li>

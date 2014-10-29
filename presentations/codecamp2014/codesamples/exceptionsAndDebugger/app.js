@@ -1,24 +1,21 @@
-(function () {
-  "use strict";
-  window.stopDebuggerOnLog = true;
-  function logit() {
-    if (stopDebuggerOnLog) {
-      debugger;
-    }
+stopDebuggerOnLog = true;
+function logit() {
+  if (stopDebuggerOnLog) {
+    debugger;
   }
-  $(function () {
-    $("#throwBtn").on("click", function throwException () {
-      window.missing_api.doit();
-    });
-    $("#doNotThrowBtn").on("click", function doNotThrow() {
-      try {
-        window.i_know_this_is_api.doit();
-      } catch (e) {
-        logit();
-      }    
-    }); 
-    $("#debuggerBtn").on("click", function () {
-      stopDebuggerOnLog = !stopDebuggerOnLog;
-    });
+}
+$(function () {
+  $("#throwBtn").on("click", function throwException () {
+    window.missing_api.doit();
   });
-}());
+  $("#doNotThrowBtn").on("click", function doNotThrow() {
+    try {
+      window.i_know_this_is_api.doit();
+    } catch (e) {
+      logit();
+    }    
+  }); 
+  $("#debuggerBtn").on("click", function () {
+    stopDebuggerOnLog = !stopDebuggerOnLog;
+  });
+});
