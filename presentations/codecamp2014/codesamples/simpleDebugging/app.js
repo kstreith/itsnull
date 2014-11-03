@@ -1,6 +1,6 @@
-currentNum = 1;
-totalClicks = 0;
-increase = function () {
+var currentNum = 1;
+var totalClicks = 0;
+var increase = function () {
   currentNum++;
   updateUi();
 };
@@ -16,7 +16,7 @@ var updateUi = function updateUi() {
   if (currentNum % 10 < 5 && currentNum % 10 > 0) {
     color = "white";
   }
-  $("#currentNumber").css("background-color", color);
+  $("#stripe").css("background-color", color);
 }
 $(function () {
   $("#increase").on("click", increase);

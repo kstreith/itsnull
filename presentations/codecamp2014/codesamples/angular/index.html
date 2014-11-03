@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="pure-min.css">
   <style>
      .content { padding: 10px; }
-     .title { font-size: 1.5em; font-weight: bold; padding-bottom: 15px; } 
+     .title { font-size: 1.2em; font-weight: bold; padding-bottom: 15px; } 
      .section { padding-bottom: 10px; }
-     .columnDisplay { border-style: solid; border-width: 1px; border-color: black; margin-top: 5px; width: 30px; }
-     .columnPixel { height: 1px; }
+     .columnPixel { height: 20px; width: 1px; display: inline-block; }
+     .currentNum { width: 30px; display: inline-block; }
+     #stripe { height: 20px; border-style: solid; border-width: 1px; border-color:black; display: inline-block; font-size: 0; }
   </style>
 </head>
 <body>
@@ -18,19 +20,17 @@
         <div class="title">Angular Debugger Sample</div>
         <div class="app" ng-app="SampleApp" ng-controller="SampleController">
           <div class="section">
-            <label>Current Value:</label> <span ng-style="{'background-color':color}">{{currentNum}}</span>
+            <label>Current Value:</label> <span class="currentNum">{{currentNum}}</span>
+          <div id="stripe">
+            <div class="columnPixel" ng-repeat="val in values track by val.id" ng-style="{'background-color':val.color}"></div>
+          </div>
           </div>
           <button ng-click="increase()" ng-disabled="currentNum === 100" type="button" class="pure-button">Increase</button>
           <button ng-click="decrease()" ng-disabled="currentNum === 1" type="button" class="pure-button">Decrease</button>
-          <div class="columnDisplay">
-            <div class="columnPixel" ng-repeat="val in values track by val.id" ng-style="{'background-color':val.color}"></div>
-          </div>
-
         </div>
       </div>
     </div>
   </div>
-  <script src="jquery-1.11.1.min.js"></script>
   <script src="angular.js"></script>
   <script src="app.js"></script>
 </body>

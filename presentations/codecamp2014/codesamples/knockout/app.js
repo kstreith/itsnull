@@ -18,7 +18,7 @@ window.app = window.app || {};
     self.color(app.ColorService.determine(self.currentNum()));
     var newArray = [];
     for (var i = 1; i <= self.currentNum(); ++i) {
-      newArray.push(app.ColorService.determine(i));
+      newArray.push({color: ko.observable(app.ColorService.determine(i))});
     }
     self.values(newArray);
   }
@@ -42,5 +42,5 @@ window.app = window.app || {};
         return color;
      }
   };
-  ko.applyBindings(new app.SampleViewModel(), $("#SampleViewModel").get(0));
+  ko.applyBindings(new app.SampleViewModel(), document.getElementById("SampleViewModel"));
 }());

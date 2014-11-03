@@ -11,29 +11,35 @@
      .columnPixel { height: 20px; width: 1px; display: inline-block; }
      .currentNum { width: 30px; display: inline-block; }
      #stripe { height: 20px; border-style: solid; border-width: 1px; border-color:black; display: inline-block; font-size: 0; }
-     .white { background-color: white; }
      .green { background-color: green; }
+     .white { background-color: white; }
   </style>
 </head>
 <body>
+  <script type="text/x-handlebars" data-template-name="base">
   <div class="pure-g">
     <div class="pure-u-1">
       <div class="content">
-        <div class="title">Knockout Debugger Sample</div>
-        <div class="app" id="SampleViewModel">
+        <div class="title">Ember Debugger Sample</div>
+        <div class="app">
           <div class="section">
-            <label>Current Value:</label> <span class="currentNum" data-bind="text: currentNum"></span>
-            <div id="stripe" data-bind="foreach: values">
-              <div class="columnPixel" data-bind="css: color"></div>
+            <label>Current Value:</label> <span class="currentNum">{{currentNum}}</span>
+            <div id="stripe">
+              {{#each color in values}}
+              <div {{bind-attr class=":columnPixel color"}}></div>
+              {{/each}}
             </div>
           </div>
-          <button data-bind="click: increase, disable: disableIncrease" type="button" class="pure-button">Increase</button>
-          <button data-bind="click: decrease, disable: disableDecrease" type="button" class="pure-button">Decrease</button>
+          <button {{action "increase"}} {{bind-attr disabled=disableIncrease}} type="button" class="pure-button">Increase</button>
+          <button {{action "decrease"}} {{bind-attr disabled=disableDecrease}} type="button" class="pure-button">Decrease</button>
         </div>
       </div>
     </div>
   </div>
-  <script src="knockout-3.2.0.debug.js"></script>
+  </script>
+  <script src="jquery-1.11.1.min.js"></script>
+  <script src="handlebars-v1.3.0.js"></script>
+  <script src="ember.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
