@@ -1,11 +1,11 @@
 window.stopDebuggerOnLog = false;
 $(function () {
   $("#throwBtn").on("click", function throwException () {
-    window.missing_api.doit();
+    prseInt('12', 10);
   });
   $("#doNotThrowBtn").on("click", function doNotThrow() {
     try {
-      window.i_know_this_is_api.doit();
+      prseInt('12', 10);
       $("#doNotThrowBtn").css("background-color", "blue");
     } catch (e) {
       if (stopDebuggerOnLog) {

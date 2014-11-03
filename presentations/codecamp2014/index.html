@@ -68,23 +68,10 @@
         <section>
           <h3>Goal</h3>
           <ul>
-            <li>Show you debugging tips for IE8+, Chrome and Firefox. Won't show browser specific tips or tips that require an browser extension.</li>
-            <li>Spend a bunch of time showing you debugging tricks and less time looking at this presentation.</li>
-            <li>Get you excited to continue your learning after this session</li>
-            <li>Leave you with a useful tool to consult after this session. <i>Click the link in the slide title to view any code sample for that slide.</i></li>
-          </ul>
-        </section>
-        <section>
-          <h3>Types of Js Errors</h3>
-          <ul>
-            <li>Syntax Error - either check for errors in the browser or use a code analyzer:
-              <ul>
-                <li><a href="http://www.jshint.com/">JsHint</a></li>
-                <li><a href="http://www.jslint.com/">JsLint</a></li>
-                <li><a href="http://eslint.org/">EsLint</a></li>
-              </ul>
-            </li>
-            <li>Everything else - where this presentation is focused</li>
+            <li>Show cross-browser tips back to IE8</li>
+            <li>Debug 6 code samples in 4 browsers</li>
+            <li>Presentation == Resource<ul>
+              <li>Click on slide titles for code samples</li></ul></li>
           </ul>
         </section>
         <section>
@@ -131,79 +118,59 @@ function onLogClick() {
           <ul>
             <li>Breakpoints</li>
             <li>Step into and step out</li>
-            <li>Call stack. <i>For IE8, you'll want to use named function expressions or function declarations for a cleaner call stack</i></li>
+            <li>Call stack.</li>
             <li>Watch window, both variables and expressions.</li>
-            <li>Mouse over variable. <i>Works in IE9+, Chrome and Firefox</i></li>
-            <li>Mouse over expression. <i>Works in IE9+ and Chrome</i></li>
+            <li>Mouse over variable and expressions.</li>
           </ul>
         </section>
         <section>
           <h3><a href="codesamples/simpledebugging/" target="debug">JS Debuggers</a> - Break On Demand?</h3>
           <ul>
-            <li>Conditional breakpoints - debugger should only stop at breakpoint when JS expression is true.</li>
-            <li>debugger; statement - when this statement is run, browser will stop and enter debugger.</li>
-            <li>Both are very useful for allowing you to skip past the boring stuff on your given breakpoint.</li>
+            <li>Wish you didn't stop at breakpoint <strong>every single time?</strong></li>
+            <li>Add condition to a breakpoint</li>
+            <li>Use debugger; statement</li>
           </ul>
         </section>
         <section>
           <h3><a href="codesamples/simpledebugging/" target="debug">JS Debuggers</a> - Logpoint/Tracepoint</h3>
           <ul>
-            <li>Remember conditional breakpoints? Remember console.log?</li>
-            <li>Use console.log as the conditonal expression for a breakpoint. It returns falsey so debugger never stops, but it always runs your console.log statement.</li>
-            <li>Really useful to add console.log to third-party code, like jquery, Angular, Knockout, etc.</li>
-            <li>Also really useful for debugging recursive code or complicated event handling like mouse in.</li>
+            <li>Want to use console.log but don't want to update source and reload the page?</li>
+            <li>Wish third-party code had console.log?</li> 
+            <li>Have timing dependent code like ajax or event handling?</li>
+            <li>Use a breakpoint with a condition of console.log</li>
           </ul>
         </section>        
         <section>
           <h3><a href="codesamples/exceptionsanddebugger/" target="exceptions">JS Debuggers</a> - Exceptions</h3>
           <ul>
-            <li>Stop when an uncaught exception escapes.</li>
-            <li>Stop at the exact point an exception is thrown. <i>Works in IE11, Chrome, Firefox. IE8-10, it will stop but you might be missing frames in the call stack.</i>. Really useful for catching:
+            <li>How do you find this? 
             <pre><code>
 try {
-// some code here...
+ prseInt('5', 10);
+ // code to update ui
 }
 catch () {} </code></pre></li>
+            <li>Can tell debugger to stop on line exception is thrown even if it's caught in IE11, Chrome, Firefox</li>
+            <li>Or debugger can ignore exceptions or only stop for uncaught exceptions in IE8+, Chrome, Firefox</li>
           </ul>
         </section>
         <section>
-          <h3>Console - the swiss army knife</h3>
+          <h3><a href="codesamples/console" target="console">Console</a> - the swiss army knife</h3>
           <ul>
             <li>The "Console" tab of the developer tools.</li>
-            <li>Remember, the default for a JS variable is a global variable.</li>
-            <li>And the JS vm is initialized per-page.</li>
-            <li>Everything you type in the console runs in the JS vm for the page, which means it has access to everything in the page. <i>IE11, Chrome work with sub-frames on a page.</i></li>
-            <li>So, the possibilities are limited by your imagination <i>and closures</i>.</li>
+            <li>Access and modify any global JS variables and functions including DOM</li>
+            <li>When debugger is stopped, access and modify any JS variables in the current frame</li>
+            <li>Interact with "Elements" tab of developer tools using $0, $1</li>
           </ul>
         </section>
         <section>
-          <h3>Console - More details</h3>
+          <h3>Let's debug some frameworks using Console</h3>
           <ul>
-            <li>Retains history of previously entered JS, use up and down arrow.</li>
-            <li>Supports copy/paste and multiple lines. <i>IE has single-line and multi-line mode, Chrome and Firefox you must paste multiple line code into console.</i></li>
-            <li>Intellisense completion using 'tab'. <i>Works in IE11, Chrome and Firefox</i></li>
-            <li>Expand values of object and arrays directly in console. <i>Works in IE11, Chrome and Firefox</i></li>
-            <li>Interacts with "Elements" tab of developer tools using $0, $1 variables.<i>Works in IE11, Chrome and Firefox</i></li>
+            <li>The same application written in <a href="codesamples/angular" target="angular">Angular</a>, <a href="codesamples/knockout" target="knockout">Knockout</a> and <a href="codesamples/ember" target="ember">Ember</a></li>
+            <li>Let's use a different browser for each framework</li>
           </ul>
         </section>
-        <section>
-          <h3><a href="codesamples/console" target="console">Console</a> - Let's play</h3>
-          <ul>
-            <li>Learn JS or a new library.</li>
-            <li>Test something out in console first before I switch back to editor</li>
-            <li>Figure out where to attach event handlers.</li>
-            <li>Test my REST endpoints. <i>Combines nicely with "Network" tab of developer tools in IE9+ and Chrome</i></li>
-          </ul>
-        </section>
-        <section>
-          <h3>Debugger and Console - Best Friends</h3>
-          <ul>
-            <li>All the power of the console when stopped in the debugger</li>
-            <li>Console will have access to all variables in current frame of call stack, can also modify those variables.</li>
-            <li>So, now if you stop the debugger in a closure you can access those variables.</li>
-            <li>JSON.stringify can be very useful in this context, especially JSON.stringify(obj, null, 2) to pretty-print variables into the console.</li>
-          </ul>
-        </section>
+        <!--
         <section>
           <h3><a href="codesamples/angular" target="angular">Debugging Angular</a> using Console</h3>
           <ul>
@@ -229,7 +196,7 @@ catch () {} </code></pre></li>
             <li>Ember.View.views['ember479'].get('controller')</li>
             <li>Subscribe with debugger; statement</li>
           </ul>
-        </section>
+        </section>-->
         <section>
           <h3>Further Resources - 1 of 2</h3>
           <ul>
@@ -245,7 +212,7 @@ catch () {} </code></pre></li>
         <section>
           <h2>The END</h2>
           <ul>
-            <li>Presentation - <a href="http://itsnull.com/presentations/codecamp2014/">http://itsnull.com/presentations/codecamp2014/</a>.
+            <li>Presentation: <a href="http://itsnull.com/presentations/codecamp2014/">http://itsnull.com/presentations/codecamp2014/</a>.
             <li>Click the link in slide titles for sample code</li>
           </ul>
           <p>

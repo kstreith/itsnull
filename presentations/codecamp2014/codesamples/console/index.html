@@ -12,6 +12,8 @@
      .sample { padding-bottom: 10px; }
      .section { padding-bottom: 10px; }
      select { width: 200px; }
+     .notes { padding: 10px; margin-top: 100px; margin-left: 10px; margin-right: 10px; background-color: #eee; }
+     .notes .title { padding-bottom: 0px; }
   </style>
 </head>
 <body>
@@ -133,24 +135,16 @@ $($0).select2();
 $("#testSelect").select2();
 </code><pre>
         </div>
-
-<!--`
-        <div class="sample">
-          <div class="sampletitle">Basic performance timing</div>
-          <div class="sampledesc">Try typing the following into the console or use copy/paste.</div>
-          <pre><code class="javascript">
-t0 = window.performance.now();
-arr = [];
-for (var i = 0; i < 100000; ++i) { arr.push(i); }
-console.log("time is " + String(window.performance.now() - t0));
-t0 = window.performance.now();
-arr = [];
-arr.length = 100000;
-for (var i = 0; i < 100000; ++i) { arr[i] = i; }
-console.log("time is " + String(window.performance.now() - t0));
-</code><pre>
-        </div> -->
-
+      </div>
+      <div class="notes">
+        <div class="title">Notes</div>
+        <ul>
+          <li>Console retains history of previously entered JS, use up and down arrow.</li>
+          <li>Console supports copy/paste and multiple lines. IE has single-line and multi-line mode, Chrome and Firefox you can use Shift+Enter or paste multiple line code into console from another editor.</li>
+          <li>Intellisense completion using 'tab'. <i>Works in IE11, Chrome and Firefox</i></li>
+          <li>Expand values of object and arrays directly in console. <i>Works in IE11, Chrome and Firefox</i></li>
+          <li>For pages with frames, IE11 and Chrome console allow you to select the frame.</li>
+        </ul>
       </div>
     </div>
   </div>
