@@ -30,6 +30,37 @@ JSON.stringify(obj, null, 2);
 </code><pre>
         </div>
         <div class="sample">
+          <div class="sampletitle">Test Restful API</div>
+          <div class="sampledesc">Try typing the following into the console or use copy/paste. Look at network tab of Developer tools for more details on the request and response.</div>
+          <pre><code class="javascript">$.getJSON("student/2.json");
+$.ajax({url: "student/2.json", type: "GET"});
+$.ajax({url: "student/2.json", type: "POST", data: {firstname: "Joe", lastname: "Doe" } });
+</code><pre>
+        </div>
+        <div class="sample">
+          <div class="sampletitle">Learn DOM events</div>
+          <div class="sampledesc">Try typing the following into the console or use copy/paste.
+            <form id="sample-form" class="pure-form pure-form-aligned">
+              <div class="pure-control-group">
+                <label for="Name">Name</label><input name="Name" id="Name" type="text" />
+              </div>
+              <div class="pure-control-group">
+                <label for="Age">Age</label><input name="Age" id="Age" type="text" />
+              </div>
+              <div class="pure-controls">
+                <button class="pure-button pure-button-primary" type="button">Submit</button>
+              </div>
+            </form>
+          </div>
+          <pre><code class="javascript">
+//Learn delegate events
+$("#sample-form").on("blur", "input", function () { console.log("blur " + this.name); });
+//Learn about timing differences on key events
+$("#Age").on("keyup", function () { console.log("keydown"); });
+$("#Age").on("keypress", function () { console.log("keypress"); });
+</code><pre>
+        </div>
+        <div class="sample">
           <div class="sampletitle">Try out a library</div>
           <div class="sampledesc">Select2.js is already in the same folder as this HTML file, but hasn't be added to this page. Let's add it to the page and style this drop-down.
 <div>
@@ -102,14 +133,24 @@ $($0).select2();
 $("#testSelect").select2();
 </code><pre>
         </div>
+
+<!--`
         <div class="sample">
-          <div class="sampletitle">Test Restful API</div>
+          <div class="sampletitle">Basic performance timing</div>
           <div class="sampledesc">Try typing the following into the console or use copy/paste.</div>
-          <pre><code class="javascript">$.getJSON("student/2.json");
-$.ajax({url: "student/2.json", type: "GET"});
-$.ajax({url: "student/2.json", type: "POST", data: {firstname: "Joe", lastname: "Doe" } });
+          <pre><code class="javascript">
+t0 = window.performance.now();
+arr = [];
+for (var i = 0; i < 100000; ++i) { arr.push(i); }
+console.log("time is " + String(window.performance.now() - t0));
+t0 = window.performance.now();
+arr = [];
+arr.length = 100000;
+for (var i = 0; i < 100000; ++i) { arr[i] = i; }
+console.log("time is " + String(window.performance.now() - t0));
 </code><pre>
-        </div>
+        </div> -->
+
       </div>
     </div>
   </div>
