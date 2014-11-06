@@ -69,7 +69,7 @@
           <h3>Goal</h3>
           <ul>
             <li>Show cross-browser tips back to IE8</li>
-            <li>Debug 6 code samples in 4 browsers</li>
+            <li>Debug 7 code samples in 4 browsers</li>
             <li>Presentation == Resource<ul>
               <li>Click on slide titles for code samples</li></ul></li>
           </ul>
@@ -126,7 +126,7 @@ function onLogClick() {
         <section>
           <h3><a href="codesamples/simpledebugging/" target="debug">JS Debuggers</a> - Break On Demand?</h3>
           <ul>
-            <li>Wish you didn't stop at breakpoint <strong>every single time?</strong></li>
+            <li>Wish you didn't stop at the breakpoint <strong>every single time?</strong></li>
             <li>Add condition to a breakpoint</li>
             <li>Use debugger; statement</li>
           </ul>
@@ -150,7 +150,7 @@ try {
  // code to update ui
 }
 catch () {} </code></pre></li>
-            <li>Can tell debugger to stop on line exception is thrown even if it's caught in IE11, Chrome, Firefox</li>
+            <li>Can tell debugger to stop on the line exception is thrown even if it's caught in IE11, Chrome, Firefox</li>
             <li>Or debugger can ignore exceptions or only stop for uncaught exceptions in IE8+, Chrome, Firefox</li>
           </ul>
         </section>
@@ -168,6 +168,13 @@ catch () {} </code></pre></li>
           <ul>
             <li>The same application written in <a href="codesamples/angular" target="angular">Angular</a>, <a href="codesamples/knockout" target="knockout">Knockout</a> and <a href="codesamples/ember" target="ember">Ember</a></li>
             <li>Let's use a different browser for each framework</li>
+          </ul>
+        </section>
+        <section>
+          <h3><a href="codesamples/async" target="async">Async debugging</a> and <a href="codesamples/async" target="async">property modification</a> debugging</h3>
+          <ul>
+            <li>Want to know what called setTimeout, setInterval or started the ajax request? Use IE11 and Chrome which provide call stacks before the async point.</li>
+            <li>Have a property that is changing but don't know what is changing it? Use Object.defineProperty along with debugger; statement to find the code that is updating the property</li>
           </ul>
         </section>
         <section>
