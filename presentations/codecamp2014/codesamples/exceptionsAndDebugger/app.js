@@ -1,4 +1,3 @@
-window.stopDebuggerOnLog = false;
 $(function () {
   $("#throwBtn").on("click", function throwException () {
     prseInt('12', 10);
@@ -7,13 +6,6 @@ $(function () {
     try {
       prseInt('12', 10);
       $("#doNotThrowBtn").css("background-color", "blue");
-    } catch (e) {
-      if (stopDebuggerOnLog) {
-        debugger;
-      }
-    }    
+    } catch (e) {}
   }); 
-  $("#debuggerBtn").on("click", function () {
-    stopDebuggerOnLog = !stopDebuggerOnLog;
-  });
 });
