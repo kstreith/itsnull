@@ -42,26 +42,23 @@ $.ajax({url: "student/2.json", type: "POST", data: {firstname: "Joe", lastname: 
 </code></pre>
         </div>
         <div class="sample">
-          <div class="sampletitle">Learn DOM events</div>
+          <div class="sampletitle">Learn DOM and events</div>
           <div class="sampledesc">Try typing the following into the console or use copy/paste.
-            <form id="sample-form" class="pure-form pure-form-aligned">
-              <div class="pure-control-group">
-                <label for="Name">Name</label><input name="Name" id="Name" type="text" />
-              </div>
-              <div class="pure-control-group">
-                <label for="Age">Age</label><input name="Age" id="Age" type="text" />
-              </div>
-              <div class="pure-controls">
-                <button class="pure-button pure-button-primary" type="button">Submit</button>
-              </div>
-            </form>
+            <div style="width: 200px; height: 50px; background-color: blue">
+            </div>
           </div>
           <pre><code class="javascript">
-//Learn delegate events
-$("#sample-form").on("blur", "input", function () { console.log("blur " + this.name); });
-//Learn about timing differences on key events
-$("#Age").on("keyup", function () { console.log("keydown"); });
-$("#Age").on("keypress", function () { console.log("keypress"); });
+//Right-click on blue box and select "Inspect element"
+//Go back to developer console and enter $0
+//We can interact with elements selected on Elements tab in Console using $0, 1
+//Change the color of the box
+$0.style.color = "green";
+//We can see how mouse move events work over the box and where we are scolled in the page
+$($0).on("mousemove", function (evt) { console.log('pageX ' + evt.pageX + ' pageY ' + evt.pageY); });
+//So, you can see pageX and pageY are based upon 0,0 being the top-left of the unscrolled page.
+//If you put the mouse over the box and then use the wheel on the mouse you'll notice the event doesn't trigger even though you are over a different part of the box, let's try and find that event
+$("body").on("scroll", function () { console.log("scroll body"); });
+$(window).on("scroll", function () { console.log("scroll window"); });
 </code></pre>
         </div>
         <div class="sample">
@@ -145,6 +142,7 @@ $("#testSelect").select2();
           <li>Console supports copy/paste and multiple lines. IE has single-line and multi-line mode, Chrome and Firefox you can use Shift+Enter or paste multiple line code into console from another editor.</li>
           <li>Intellisense completion using 'tab'. <i>Works in IE11, Chrome and Firefox</i></li>
           <li>Expand values of object and arrays directly in console. <i>Works in IE11, Chrome and Firefox</i></li>
+          <li>If you select a DOM node in the "Elements/Source" tab it will be available in the console as $0. The last thing selected in that tab will be $0, the second to last thing will be $1 and so on. Another way to select an element is to right-click in the browser and select the "Inspect Element" menu item.<i>Works in IE11, Chrome and Firefox</i></li>
           <li>For pages with frames, IE11 and Chrome console allow you to select the frame.</li>
         </ul>
       </div>
