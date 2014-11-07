@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Angular Debugging Sample</title>
   <link rel="stylesheet" href="pure-min.css">
   <style>
      .content { padding: 10px; }
@@ -19,7 +20,7 @@
   <div class="pure-g">
     <div class="pure-u-1">
       <div class="content">
-        <div class="title">Angular Debugger Sample</div>
+        <div class="title">Angular Debugging Sample</div>
         <div class="app" ng-app="SampleApp" ng-controller="SampleController">
           <div class="section">
             <label>Current Value:</label> <span class="currentNum">{{currentNum}}</span>
@@ -43,11 +44,11 @@
           <li>Right-click to inspect the page title element and then type <i>angular.element($0).scope()</i>. Notice that undefined is returned, meaning the page title is outside of Angular and therefore isn't controlled by Angular.</li>
           <li>Back to the candy stripe bug, if you look at the source code, app.js, on line 20, 24 you'll see we call syncWithNumber after updating currentNum. This updates the data for the candy stripe. We didn't call that from the console, so try that now, <i>s.syncWithNumber(); s.$apply(); </i></li>
           <li>Let's see if we can clean that code up by subscribing to currentNum and when it changes automatically calling syncWithNumber. So, let's try subscribing to currentNum, <i>s.$watch('currentNum', function () { console.log('currentNum changed to ' + s.currentNum); });</i>. Confirm the subscription works by clicking on the buttons and watching the console.</li>
-          <li>Now, we add subscription that calls syncWithNumber, <i>s.$watch('currentNum', s.syncWithNumber);</i></li>
+          <li>Now, we can add a subscription that calls syncWithNumber, <i>s.$watch('currentNum', s.syncWithNumber);</i></li>
           <li>Let's test updating currentNum and see if UI and candy stripe update, <i>s.currentNum = 10; s.$apply();</i></li>
           <li>So, now we could take our subscription that we tested and update our source code in app.js</li>
           <li>But, let's try accessing Angular services. In this app we have a ColorService that when given a number will return a color. This is useful for unit testing and for allowing users to select between services to change the candy stripe. Let's see if we can interact with this service from the console.</li>
-          <li>To access the Color Service, we need access to Angular Dependency Injection system. So, right-click and inspect the current number of buttons and then type the following in the console, <i>cs = angular.element($0).injector().get('ColorService');</i></li>
+          <li>To access the Color Service, we need access to Angular Dependency Injection system. So, right-click and inspect the current number or buttons and then type the following in the console, <i>cs = angular.element($0).injector().get('ColorService');</i></li>
           <li>Now, let's test the Color Service using <i>cs.determine(5)</i> and <i>cs.determine(10);</i></li>
           <li>And that's the end of debugging Angular using the Console</li>
         </ul>
