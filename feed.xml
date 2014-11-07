@@ -5,9 +5,18 @@
     <atom:link href="http://itsnull.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <link>http://itsnull.com</link>
     <description>Phrase heard round the world</description>
-    <pubDate>Fri, 07 Feb 2014 19:00:00 -0500</pubDate>
+    <pubDate>Thu, 06 Nov 2014 19:00:00 -0500</pubDate>
     <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
     <language>en</language>
+    <item>
+      <title>Raleigh Code Camp 2014</title>
+      <link>http://itsnull.com/articles/codecamp2014/</link>
+      <pubDate>Thu, 06 Nov 2014 19:00:00 -0500</pubDate>
+      <guid isPermaLink="true">http://itsnull.com/articles/codecamp2014/</guid>
+      <author></author>
+      <description>&lt;p&gt;I’m doing a presentation on Debugging Javascript In the Browser at &lt;a href=&quot;http://codecamp.org/Raleigh&quot;&gt;Raleigh Code Camp&lt;/a&gt;, 11/8/2014. You can &lt;a href=&quot;http://itsnull.com/presentations/codecamp2014/#/&quot;&gt;view the slides&lt;/a&gt; or find the &lt;a href=&quot;https://github.com/kstreith/itsnull/tree/gh-pages/presentations/codecamp2014/codesamples&quot;&gt;source on Github&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>It's time to start using ES5 in your javascript code, actually it's past time</title>
       <link>http://itsnull.com/articles/start-using-es5/</link>
@@ -111,6 +120,15 @@
 </description>
     </item>
     <item>
+      <title>Old Blog still on wordpress.com</title>
+      <link>http://itsnull.com/articles/oldblog-location/</link>
+      <pubDate>Mon, 06 Jan 2014 19:00:00 -0500</pubDate>
+      <guid isPermaLink="true">http://itsnull.com/articles/oldblog-location/</guid>
+      <author></author>
+      <description>&lt;p&gt;If you are looking for one of my older blog entries, those can still be found on &lt;a href=&quot;http://itsnull.wordpress.com/&quot;&gt;http://itsnull.wordpress.com/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    <item>
       <title>From Wordpress to Wintersmith</title>
       <link>http://itsnull.com/articles/newblog-location/</link>
       <pubDate>Mon, 06 Jan 2014 19:00:00 -0500</pubDate>
@@ -124,15 +142,6 @@
 &lt;p&gt;wintersmith preview&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I did not convert my old posts on Wordpress over to Wintersmith. Something for the next brave convert to Wintersmith, maybe. You can find my old posts at &lt;a href=&quot;http://itsnull.wordpress.com/&quot;&gt;http://itsnull.wordpress.com/&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    <item>
-      <title>Old Blog still on wordpress.com</title>
-      <link>http://itsnull.com/articles/oldblog-location/</link>
-      <pubDate>Mon, 06 Jan 2014 19:00:00 -0500</pubDate>
-      <guid isPermaLink="true">http://itsnull.com/articles/oldblog-location/</guid>
-      <author></author>
-      <description>&lt;p&gt;If you are looking for one of my older blog entries, those can still be found on &lt;a href=&quot;http://itsnull.wordpress.com/&quot;&gt;http://itsnull.wordpress.com/&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
   </channel>
