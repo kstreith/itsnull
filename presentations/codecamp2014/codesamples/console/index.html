@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Developer Console Examples</title>
   <link rel="stylesheet" href="pure-min.css">
   <link rel="stylesheet" href="default.min.css">
   <style>
@@ -21,7 +22,7 @@
   <div class="pure-g">
     <div class="pure-u-1">
       <div class="content">
-        <div class="title">Console Examples</div>
+        <div class="title">Developer Console Examples</div>
         <div class="sample">
           <div class="sampletitle">Learn JS</div>
           <div class="sampledesc">Try typing the following into the console or use copy/paste.</div>
@@ -30,7 +31,7 @@
 0 === ""
 obj = { firstname: 'John', lastname: 'Doe', age: 22 };
 JSON.stringify(obj, null, 2);
-</code><pre>
+</code></pre>
         </div>
         <div class="sample">
           <div class="sampletitle">Test Restful API</div>
@@ -38,7 +39,7 @@ JSON.stringify(obj, null, 2);
           <pre><code class="javascript">$.getJSON("student/2.json");
 $.ajax({url: "student/2.json", type: "GET"});
 $.ajax({url: "student/2.json", type: "POST", data: {firstname: "Joe", lastname: "Doe" } });
-</code><pre>
+</code></pre>
         </div>
         <div class="sample">
           <div class="sampletitle">Learn DOM events</div>
@@ -61,7 +62,7 @@ $("#sample-form").on("blur", "input", function () { console.log("blur " + this.n
 //Learn about timing differences on key events
 $("#Age").on("keyup", function () { console.log("keydown"); });
 $("#Age").on("keypress", function () { console.log("keypress"); });
-</code><pre>
+</code></pre>
         </div>
         <div class="sample">
           <div class="sampletitle">Try out a library</div>
@@ -134,7 +135,7 @@ document.head.appendChild(l);
 $($0).select2();
 //Or
 $("#testSelect").select2();
-</code><pre>
+</code></pre>
         </div>
       </div>
       <div class="notes">
