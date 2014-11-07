@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Knockout Debugging Sample</title>
   <link rel="stylesheet" href="pure-min.css">
   <style>
      .content { padding: 10px; }
@@ -21,7 +22,7 @@
   <div class="pure-g">
     <div class="pure-u-1">
       <div class="content">
-        <div class="title">Knockout Debugger Sample</div>
+        <div class="title">Knockout Debugging Sample</div>
         <div class="app" id="SampleViewModel">
           <div class="section">
             <label>Current Value:</label> <span class="currentNum" data-bind="text: currentNum"></span>
@@ -45,7 +46,7 @@
           <li>Right-click to inspect the page title element and then type <i>ko.dataFor($0)</i>. Notice that undefined is returned, meaning the page title is outside of Knockout and therefore isn't controlled by Knockout.</li>
           <li>Back to the candy stripe bug, if you look at the source code, app.js, on line 28, 33 you'll see we call syncWithNumber after updating currentNum. This updates the data for the candy stripe. We didn't call that from the console, so try that now, <i>vm.syncWithNumber();</i></li>
           <li>Let's see if we can clean that code up by subscribing to currentNum and when it changes automatically calling syncWithNumber. So, let's try subscribing to currentNum, <i>vm.currentNum.subscribe(function () { console.log('currentNum changed to ' + vm.currentNum()); });</i>. Confirm the subscription works by clicking on the buttons and watching the console.</li>
-          <li>Now, we add subscription that calls syncWithNumber, <i>vm.currentNum.subscribe(vm.syncWithNumber, vm);</i></li>
+          <li>Now, we can add a subscription that calls syncWithNumber, <i>vm.currentNum.subscribe(vm.syncWithNumber, vm);</i></li>
           <li>Let's test updating currentNum and see if UI and candy stripe update, <i>vm.currentNum(10);</i></li>
           <li>So, now we could take our subscription that we tested and update our source code in app.js</li>
           <li>But, let's try accessing a service. In this app we have a ColorService that when given a number will return a color. This is useful for unit testing and for allowing users to select between services to change the candy stripe. Let's see if we can interact with this service from the console.</li>
