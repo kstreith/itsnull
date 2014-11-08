@@ -68,9 +68,10 @@
         <section>
           <h3>Goal</h3>
           <ul>
-            <li>Show cross-browser debugging tips back to IE8</li>
+            <li>Demonstrate debugging power of browser developer tools (F12)</li>
             <li>Debug 7 code samples in 4 browsers</li>
-            <li>Presentation == Resource<ul>
+            <li>Why 4 browsers instead of 1? Bugs are everywhere</li>
+            <li>Presentation == Resource (<a href="http://itsnull.com/">http://itsnull.com/</a>)<ul>
               <li>Click on slide titles for code samples</li></ul></li>
           </ul>
         </section>
@@ -89,6 +90,7 @@ function onAlertClick() {
           <ul>
             <li>Available everywhere.</li>
             <li>But, it's visible to the user and interrupts execution</li>
+            <li>Still useful for phone and tablets</li>
           </ul>
         </section>
         <section>
@@ -141,9 +143,18 @@ function onLogClick() {
           </ul>
         </section>        
         <section>
-          <h3><a href="codesamples/exceptionsAndDebugger/" target="exceptions">JS Debuggers</a> - Exceptions</h3>
+          <h3><a href="codesamples/exceptionsAndDebugger/" target="exceptions">JS Debuggers</a> - Typos are Exceptional</h3>
           <ul>
-            <li>How do you find this? 
+            <li>Have missing scripts?
+            <li>Or typos?</li> 
+            <li>Look for uncaught exceptions</li>
+            <li>Debugger can stop for uncaught exceptions in IE8+, Chrome, Firefox or you can ignore them.</li>
+          </ul>
+        </section>
+        <section>
+          <h3><a href="codesamples/exceptionsAndDebugger/" target="exceptions">JS Debuggers</a> - Caught Exceptions</h3>
+          <ul>
+            <li>How do you find this typo? 
             <pre><code>
 try {
  prseInt('5', 10);
@@ -151,13 +162,13 @@ try {
 }
 catch () {} </code></pre></li>
             <li>Can tell debugger to stop on the line exception is thrown even if it's caught in IE11, Chrome, Firefox</li>
-            <li>Or debugger can ignore exceptions or only stop for uncaught exceptions in IE8+, Chrome, Firefox</li>
           </ul>
         </section>
         <section>
           <h3><a href="codesamples/console" target="console">Console</a> - the swiss army knife</h3>
           <ul>
             <li>The "Console" tab of the developer tools.</li>
+            <li>Write it as you run it</li>
             <li>Access and modify any global JS variables and functions including DOM</li>
             <li>When debugger is stopped, access and modify any JS variables in the current frame</li>
             <li>Interact with "Elements" tab of developer tools using $0, $1</li>
@@ -171,12 +182,21 @@ catch () {} </code></pre></li>
           </ul>
         </section>
         <section>
-          <h3><a href="codesamples/async" target="async">Async debugging</a> and <a href="codesamples/async" target="async">property modification</a> debugging</h3>
+          <h3><a href="codesamples/async" target="async">Asynchronous</a> debugging</h3>
           <ul>
-            <li>Want to know what called setTimeout, setInterval or started the ajax request? Use IE11 and Chrome which provide call stacks before the async point.</li>
-            <li>Have a property that is changing but don't know what is changing it? Use Object.defineProperty along with debugger; statement to find the code that is updating the property</li>
+            <li>Have a useless callstack?</li>
+            <li>It's probably ajax, setTimeout or setInterval, e.g. something asynchronous</li>
+            <li>Use IE11 and Chrome which provide call stacks before the async point</li>
           </ul>
         </section>
+        <section>
+          <h3><a href="codesamples/async" target="async">Property modification</a> debugging</h3>
+          <ul>
+            <li>Have a property that is changing but don't know what is changing it?</li>
+            <li>Use Object.defineProperty along with debugger; statement to find the code that is updating the property</li>
+            <li>Works in all ES5 browsers, e.g. IE9+</li>
+          </ul>
+        </section>        
         <section>
           <h3>Out of Time</h3>
           <ul>
