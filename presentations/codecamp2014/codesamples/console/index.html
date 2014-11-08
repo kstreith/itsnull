@@ -15,6 +15,7 @@
      select { width: 200px; }
      .notes { padding: 10px; margin-top: 100px; margin-left: 10px; margin-right: 10px; background-color: #eee; }
      .notes .title { padding-bottom: 0px; }
+     #testSelect { width: 200px }
      ::-ms-clear { display: none; }
   </style>
 </head>
@@ -44,7 +45,7 @@ $.ajax({url: "student/2.json", type: "POST", data: {firstname: "Joe", lastname: 
         <div class="sample">
           <div class="sampletitle">Learn DOM and events</div>
           <div class="sampledesc">Try typing the following into the console or use copy/paste.
-            <div style="width: 200px; height: 50px; background-color: blue">
+            <div style="width: 200px; height: 150px; background-color: blue">
             </div>
           </div>
           <pre><code class="javascript">
@@ -52,7 +53,7 @@ $.ajax({url: "student/2.json", type: "POST", data: {firstname: "Joe", lastname: 
 //Go back to developer console and enter $0
 //We can interact with elements selected on Elements tab in Console using $0, 1
 //Change the color of the box
-$0.style.color = "green";
+$0.style.backgroundColor = "green";
 //We can see how mouse move events work over the box and where we are scolled in the page
 $($0).on("mousemove", function (evt) { console.log('pageX ' + evt.pageX + ' pageY ' + evt.pageY); });
 //So, you can see pageX and pageY are based upon 0,0 being the top-left of the unscrolled page.
@@ -65,7 +66,7 @@ $(window).on("scroll", function () { console.log("scroll window"); });
           <div class="sampletitle">Try out a library</div>
           <div class="sampledesc">Select2.js is already in the same folder as this HTML file, but hasn't be added to this page. Let's add it to the page and style this drop-down.
 <div>
-<select id="testselect">
+<select id="testselect" style="width: 200px">
 	<option value="AL">Alabama</option>
 	<option value="AK">Alaska</option>
 	<option value="AZ">Arizona</option>

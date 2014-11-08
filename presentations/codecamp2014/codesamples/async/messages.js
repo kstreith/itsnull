@@ -15,11 +15,11 @@ var App = App || {};
     $("#msgContainer").append($msg);
   }
   App.Messages.ClearType = function (type) {
-         var selector = ".msg";
-         var cls = getClass(type);
-         if (cls) {
-           selector += "." + cls;
-         }
-         $(selector).remove();
+     var selector = ".msg";
+     var cls = getClass(type);
+     if (cls) {
+       selector += "." + cls;
+     }
+     $(selector).remove();
   }
 }());
