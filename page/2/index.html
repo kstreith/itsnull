@@ -21,11 +21,17 @@
       <div class="content-wrap">
         <article class="article intro">
           <header>
-            <p class="date"><span>07. January 2014</span></p>
-            <h2><a href="/articles/oldblog-location/">Old Blog still on wordpress.com</a></h2>
+            <p class="date"><span>08. January 2014</span></p>
+            <h2><a href="/articles/preferred-requirejs-syntax/">My preferred RequireJS syntax</a></h2>
           </header>
-          <section class="content"><p>If you are looking for one of my older blog entries, those can still be found on <a href="http://itsnull.wordpress.com/">http://itsnull.wordpress.com/</a></p>
+          <section class="content"><p>I’ve been working with Durandal lately, which means I’m using RequireJS. Almost all of the RequireJS module definition examples will look like&nbsp;this:</p>
+<pre><code class="lang-javascript">define([<span class="string">'durandal/app'</span>, <span class="string">'durandal/system'</span>], <span class="function"><span class="keyword">function</span><span class="params">(app, system)</span> {</span>
+  app.trigger(<span class="string">'myEvent'</span>);
+  system.log(<span class="string">'myMessage'</span>);
+});</code></pre>
+<p>Let me introduce you to my preferred RequireJS&nbsp;syntax…
 
+            <p class="more"><a href="/articles/preferred-requirejs-syntax/">more</a></p>
           </section>
         </article>
         <article class="article intro">
@@ -36,6 +42,15 @@
           <section class="content"><p>I’ve always wanted to be able to write my blog entries in Markdown, instead of using the Wordpress editor. What can I say, I really like Markdown. I had considered writing my own small blog engine that converted Markdown to <span class="caps">HTML</span>. But then there goes any free time I might have had. Plus, I would have to find a hosting provider. So, there my blog was stuck on Wordpress. Or so, I thought until I read a post by Phil Haack about <a href="http://haacked.com/archive/2013/12/02/dr-jekyll-and-mr-haack/">converting his blog</a> to run on GitHub&nbsp;pages.</p>
 <p>
             <p class="more"><a href="/articles/newblog-location/">more</a></p>
+          </section>
+        </article>
+        <article class="article intro">
+          <header>
+            <p class="date"><span>07. January 2014</span></p>
+            <h2><a href="/articles/oldblog-location/">Old Blog still on wordpress.com</a></h2>
+          </header>
+          <section class="content"><p>If you are looking for one of my older blog entries, those can still be found on <a href="http://itsnull.wordpress.com/">http://itsnull.wordpress.com/</a></p>
+
           </section>
         </article>
       </div>

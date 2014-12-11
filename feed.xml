@@ -5,9 +5,34 @@
     <atom:link href="http://itsnull.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <link>http://itsnull.com</link>
     <description>Phrase heard round the world</description>
-    <pubDate>Thu, 06 Nov 2014 19:00:00 -0500</pubDate>
+    <pubDate>Wed, 10 Dec 2014 19:00:00 -0500</pubDate>
     <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
     <language>en</language>
+    <item>
+      <title>Visual Studio Tips - TRINUG Lightning Talk</title>
+      <link>http://itsnull.com/articles/vstips-trinug2014/</link>
+      <pubDate>Wed, 10 Dec 2014 19:00:00 -0500</pubDate>
+      <guid isPermaLink="true">http://itsnull.com/articles/vstips-trinug2014/</guid>
+      <author></author>
+      <description>&lt;p&gt;Went to the &lt;a href=&quot;http://www.trinug.org/&quot;&gt;TRINUG&lt;/a&gt; Potluck and Lightning Talks Meetup last night. Lots of awesome presentations! I did a short lightning talk about some tips for Visual Studio. I covered 3 tips in 5 minutes, which is pretty quick. So, I wanted to discuss them again in long form here.&lt;/p&gt;
+&lt;h1 id=&quot;ctrl-vs-2013-and-later&quot;&gt;Ctrl+, VS 2013 and later&lt;/h1&gt;
+&lt;p&gt;If you are using Visual Studio 2013 or later, you should be using the Ctrl+, keyboard shortcut. What it allows you to do is quickly open a file from the solution using just your keyboard. You don’t have to mouse over to Solution Explorer and inevitably forget what folder that file was in. And it’s very fast to use. I use it all the time and recommend you give it a try. I have a short video below showing me use it.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://itsnull.com/images/ctrl-comma.gif&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt; This shortcut works in earlier versions of Visual Studio, but is much more cumbersome to use. You can read about all of the &lt;a href=&quot;http://blogs.msdn.com/b/mvpawardprogram/archive/2013/10/22/visual-studio-2013-navigate-to-improvements.aspx&quot;&gt;nice improvements made in VS 2013&lt;/a&gt;, which is why I can now recommend using this shortcut. If you have Resharper installed you might notice a conflict since both use that key sequence, so you’ll have to be sure and pick the Visual Studio capability.&lt;/p&gt;
+&lt;h1 id=&quot;tracepoints&quot;&gt;Tracepoints&lt;/h1&gt;
+&lt;p&gt;Breakpoints are great, right? Until they aren’t. What I mean by that is they are great for inspecting the state of your application but it also means you have to hard stop your application and then resume once you’re done checking application state.&lt;/p&gt;
+&lt;p&gt;Well, in turns out you don’t have to hard stop the application, you can turn your breakpoint into a tracepoint. This allows you print a message to the Debug Output window (e.g. use the Output window and select “Debug” from the dropdown) and continue on without stopping the breakpoint. Tracepoints have been in Visual Studio since 2005 and are supported across a variety of languages and application types. I have a short video below demonstrating it.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://itsnull.com/images/tracepoint.gif&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;More details on this feature on &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/vstudio/232dxah7%28v=vs.100%29.aspx&quot;&gt;MSDN&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&quot;finding-caught-exceptions&quot;&gt;Finding caught exceptions&lt;/h1&gt;
+&lt;p&gt;Ever suspect an exception is being thrown but you can’t seem to find it? For instance, you suspect a SqlException is being thrown and you also suspect another developer on your team put a catch clause somewhere and forgot to log the exception. We’ll since that other developer put that catch clause in there, good luck finding that exception. Or, maybe you can find it.&lt;/p&gt;
+&lt;p&gt;If you go the Debug Output window (e.g. use the Output window and select “Debug” from the dropdown) you can right-click and enable “Exception messages”. This will then print a message when an exception is thrown. This will help confirm your suspicions but other than that it isn’t very useful.&lt;/p&gt;
+&lt;p&gt;What is useful, is that you can go the Exceptions dialog (e.g. Debug\Exceptions… in the Visual studio menu) and then check the “Thrown” checkbox in that dialog for the exception(s) you are interested in. Once the “Thrown” checkbox is checked, the Visual Studio debugger will now stop at the point an exception is thrown, even if later the exception is caught somewhere else. And so now you can find that hidden SqlException. This feature has been in the Visual Studio debugger since 2003.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://itsnull.com/images/exceptions.gif&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;More details on this feature on &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/d14azbfh.aspx&quot;&gt;MSDN&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;And lastly, all of the code in the videos you see above is part of the TRINUG Web App that was built during the 2014 series of Hands On labs about MVC. So, many thanks to the numerous people who worked on those presentations and the code for the app. You can find the code and labs on &lt;a href=&quot;https://github.com/robzelt/IntroMvcDemo&quot;&gt;GitHub&lt;/a&gt;. &lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>Raleigh Code Camp 2014</title>
       <link>http://itsnull.com/articles/codecamp2014/</link>
@@ -120,15 +145,6 @@
 </description>
     </item>
     <item>
-      <title>Old Blog still on wordpress.com</title>
-      <link>http://itsnull.com/articles/oldblog-location/</link>
-      <pubDate>Mon, 06 Jan 2014 19:00:00 -0500</pubDate>
-      <guid isPermaLink="true">http://itsnull.com/articles/oldblog-location/</guid>
-      <author></author>
-      <description>&lt;p&gt;If you are looking for one of my older blog entries, those can still be found on &lt;a href=&quot;http://itsnull.wordpress.com/&quot;&gt;http://itsnull.wordpress.com/&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    <item>
       <title>From Wordpress to Wintersmith</title>
       <link>http://itsnull.com/articles/newblog-location/</link>
       <pubDate>Mon, 06 Jan 2014 19:00:00 -0500</pubDate>
@@ -142,6 +158,15 @@
 &lt;p&gt;wintersmith preview&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I did not convert my old posts on Wordpress over to Wintersmith. Something for the next brave convert to Wintersmith, maybe. You can find my old posts at &lt;a href=&quot;http://itsnull.wordpress.com/&quot;&gt;http://itsnull.wordpress.com/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Old Blog still on wordpress.com</title>
+      <link>http://itsnull.com/articles/oldblog-location/</link>
+      <pubDate>Mon, 06 Jan 2014 19:00:00 -0500</pubDate>
+      <guid isPermaLink="true">http://itsnull.com/articles/oldblog-location/</guid>
+      <author></author>
+      <description>&lt;p&gt;If you are looking for one of my older blog entries, those can still be found on &lt;a href=&quot;http://itsnull.wordpress.com/&quot;&gt;http://itsnull.wordpress.com/&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
   </channel>
