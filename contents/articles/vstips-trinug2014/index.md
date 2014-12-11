@@ -7,6 +7,8 @@ template: article.jade
 
 Went to the [TRINUG](http://www.trinug.org/) Potluck and Lightning Talks Meetup last night. Lots of awesome presentations! I did a short lightning talk about some tips for Visual Studio. I covered 3 tips in 5 minutes, which is pretty quick. So, I wanted to discuss them again in long form here.
 
+<span class="more"></span>
+
 # Ctrl+, VS 2013 and later #
 
 If you are using Visual Studio 2013 or later, you should be using the Ctrl+, keyboard shortcut. What it allows you to do is quickly open a file from the solution using just your keyboard. You don't have to mouse over to Solution Explorer and inevitably forget what folder that file was in. And it's very fast to use. I use it all the time and recommend you give it a try. I have a short video below showing me use it.
