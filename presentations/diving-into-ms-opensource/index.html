@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Diving Into Microsoft Open-Source</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Kip Streithorst">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <style>
+        .procon > h4 {
+          text-align: left;
+          margin-top: 20px; 
+        }
+        .procon > h4:first-child {
+          margin-top: 0px;
+        }
+        .procon > ul {
+          display: block;
+        }
+        div.procon {
+          width: 75%;
+          margin: 0 auto;
+        }
+    </style>
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h2>Diving Into Microsoft Open Source</h1>
+          <h3>July 2015</h3>
+          <h3>Follow along at:</h3>
+          <p><a href="http://itsnull.com/presentations/diving-into-ms-opensource/">http://itsnull.com/presentations/diving-into-ms-opensource/</a></p>
+          <p>
+            <small>Created by <a href="http://itsnull.com">Kip Streithorst</a> / <a href="http://twitter.com/itsnull">@itsnull</a></small>
+          </p>
+        </section>        
+        <section>
+          <h3>What code has Microsoft open sourced? <small>(This is probably already out-dated)</small></h3>
+          <ul>
+            <li>MVC4, MVC5, Beta MVC6, Web API v1, Web API v2, Beta Web API v3 - Apache2 License</li>
+            <li>EF6, Beta EF 7 - Apache2 License</li>
+            <li>C# and VB.net compiler (e.g. Roslyn) - Apache2 License</li>
+            <li>Beta .NET Core - (runs on Windows, Mac, Linux) - includes JIT and GC code - MIT license</li>
+            <li>Azure SDK, Open XML SDK, WCF Client Libraries, etc...</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Ok, now what?</h3>
+          <ul>
+            <li>Learn from it, remember the behavior is in the code, <b>not the documentation</b>, plus reading code is <b>good for you</b></li>
+            <li>Contribute to it - bug reports, suggestions or code fixes</li>
+            <li>Or maybe just debug with it, debugging is easier with source</li>
+            <li>Licensed under OSI compliant licenses</li>
+            <li>Projects managed by <a href="http://www.dotnetfoundation.org/">DOT Net Foundation</a> - separate 501(c)(6) entity</li>            
+          </ul>
+        </section>
+        <section>
+          <h3>Where can I find it?</h3>
+          <ul>
+            <li>MVC4-5, Web API v1-2 - <a href="https://aspnetwebstack.codeplex.com/">https://aspnetwebstack.codeplex.com/</a></li>
+            <li>EF6 - <a href="https://entityframework.codeplex.com/">https://entityframework.codeplex.com/</a></li>
+            <li>MVC6, Web API v3, EF7 - <a href="https://github.com/aspnet/home">https://github.com/aspnet/home</a></li>
+            <li>C# and VB.NET Compiler (Roslyn) - <a href="https://github.com/dotnet/roslyn">https://github.com/dotnet/roslyn</a></li>
+            <li>.NET Core -  <a href="https://github.com/dotnet/core">https://github.com/dotnet/core</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3>How can I read the source code</h3>
+          <ul>
+            <li>Browse it on-line at github (for older versions browse on codeplex)</li>
+            <li>Or copy locally using Git. Install <a href="https://windows.github.com/">GitHub for Windows</a>
+               <ul>
+                 <li>Click the <i>Clone In Desktop button</i> on the github website</li>
+                 <li>Or install <a href="https://visualstudio.github.com/">GitHub extension</a> for VS 2015, then click the <i>Open in VS button</i> on the github website</li>
+                 <li>For codeplex, browse to source and click the clone button to get the URL to use with 'git clone' command</li>
+               </ul> 
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>How do I debug with it?</h3>
+          <ul>
+            <li>First download it, then build it, then update your project to use your built version of the library. No, really.....</li>
+            <li><center>OR</center></li>
+            <li>Point your Visual Studio install at symbol servers</li>
+            <li>The first time you run your app after enabling this, it will be VERY VERY VERY SLOW (20 min+) to start, it has to download lots of debug symbols (.pdbs) and source code</li>
+            <li>Proceed with caution, as VS will warn you, only add trusted servers to the list of symbol servers</li>
+          </ul>
+        </section>        
+        <section>
+          <h3>Debug into .NET Framework</h3>
+          <ul>
+            <li>.NET 4.5.0, 4.5.1, 4.6 can be debugged using <a href="http://referencesource.microsoft.com">http://referencesource.microsoft.com/</a>. You can also download all source for these versions.</li>
+            <li>This code is not strictly open-source, it is NOT on github, it is under a different MS-RSL license</li>
+            <li>Follow instructions at <a href="http://referencesource.microsoft.com">http://referencesource.microsoft.com/setup.html</a> for enabling stepping into .NET 4.5.X, 4.6 code</li>
+            <li>These instructions don't help for the Beta .NET Core, but that is still beta, so it's still a moving target</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Debug into MVC, Web API, EF</h3>
+          <ul>
+            <li>MS is not hosting the symbols and source for these libraries on a *.microsoft.com domain. They are instead using <a href="http://symbolsource.org">symbolsource.org</a>, see <a href="http://aspnetwebstack.codeplex.com/wikipage?title=Debug%20Official%20Symbols%20and%20Source">documentation on codeplex for confirmation</a>.</li>
+            <li><a href="http://symbolsource.org">SymbolSource.org</a> hosts symbols and source for a number of published nuget packages, so you can debug those as well and has symbols for nightly builds as well</li>
+            <li>Follow instructions at <a href="http://www.symbolsource.org/Public/Wiki/Using">http://www.symbolsource.org/Public/Wiki/Using</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>The END</h2>
+          <ul>
+            <li>So, your mission is to clone at least one project</li>
+            <li>And go read some source code, it's good for you.</li>
+            <li>No seriously, read some source code, it's good for you</li>
+            <li>Presentation: <a href="http://itsnull.com/presentations/diving-into-ms-opensource/">http://itsnull.com/presentations/diving-into-ms-opensource/</a>.
+          </ul>
+          <p>
+            <small><a href="http://itsnull.com">Kip Streithorst</a> / <a href="http://twitter.com/itsnull">@itsnull</a></small>
+          </p>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        touch: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46954011-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>
