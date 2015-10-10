@@ -59,9 +59,9 @@
         <section>
           <h3><a target="_blank" href="https://msdn.microsoft.com/en-us/library/hh156499.aspx">C# Features</a></h3>
           <ul>
-			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/dn986595.aspx">Null Conditional Access (?.)</a></li>
-			<li><a target="_blank" ="https://msdn.microsoft.com/en-us/library/dn961160.aspx">String Interpolation ($"")</a></li>
-			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/dn986596.aspx">nameof Operator (nameof)</a></li>
+			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/dn986595.aspx">Null Conditional Access, ?.</a></li>
+			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/dn961160.aspx">String Interpolation , $""</a></li>
+			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/dn986596.aspx">nameof Operator</a></li>
 			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/0yd65esw.aspx">Exception Filters</a></li>
 			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/bb384062.aspx">Index Initializers</a></li>
 			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/bb384054.aspx">Auto property enhancements</a></li>
@@ -164,7 +164,93 @@ using System;
   }
 </code></pre>	
 		</section>
-						
+        <section>
+          <h3>Null Conditional Access, ?.</h3>
+		  <ul>
+		  <li><i>?.</i> can be used instead of <i>.</i> and returns nullable version of right-hand side if left-hand side is null.</li>
+		  <li><i>?[]</i> can be used instead of <i>[]</i> and returns nullable version of right-hand side if left-hand side is null.</li>
+		  <li>Prevents NullPointerExceptions from being thrown.</li></ul>
+<pre><code class="cs">//C# 6
+void TestMethod(Customer person) {
+  string name = person?.FirstName;
+  int? age = person?.Age; //Age is int
+  bool? inUs = person?.Address?.IsInUS(); //IsInUs() method returns bool
+  string recentOrder = person?.Orders?[0]?.OrderId;
+  //throws IndexOutOfRangeException if Orders is non-null but empty
+}
+</code></pre>		  
+		</section>
+        <section>
+          <h3>Null Conditional Access, ?. - Why</h3>
+		  <ul>
+		  <li>In <b>C# 5</b>, you have to write <i>if statement</i> or <i>ternary (?:)</i> to check for nulls. <i>?.</i> and <i>?[]</i> replace those in <b>C# 6</b>.</li>
+		  <li>Code is now easier to read, also works well with null coalescing operator <i>(??)</i>.</li>
+		  <li>Fewer exceptions, with less code, who doesn't like that?</li>
+<pre><code class="cs">//C# 6
+var zip = person?.Address?.ZipCode ?? "Unknown Zip";
+</code></pre>		  
+<pre><code class="cs">//C# 5
+var zip = "Unknown Zip";
+if (person != null &&
+    person.Address != null &&
+    person.Address.ZipCode != null) {
+  zip = person.Address.ZipCode;
+}
+</code></pre>		  
+		  <li>DEMO</li>
+		  </ul>
+		</section>
+        <section>
+          <h3>nameof operator</h3>
+		  <p>Returns a string, which is the unqualified name of a variable, type or member.</p>
+<pre><code class="cs">//C# 6
+void TestMethod(Customer person) {
+  nameof(person); // returns "person" - variable
+  nameof(person.Address.ZipCode); // returns "ZipCode" - member
+  nameof(System.DateTime); //returns "DateTime" - type
+  nameof(System.Collections.Generic.List&lt;int&gt;); //returns "List" - type
+}
+</code></pre>		  
+		</section>
+        <section>
+          <h3>nameof operator - Why?</h3>
+		  <ul>
+		  <li>In <b>C# 5</b>, you would have to manually type the string, which means it can <b>become out-of-date</b>. With nameof operator, a <b>compile error occurs if the variable, type or member is renamed</b>.</li>
+		  <li>Useful with <i>ArgumentNullException</i> and <i>ArgumentException</i>.</li>
+		  <li>Useful with XAML, WPF implementations of <i>INotifyPropertyChanged</i> interface.</li>
+		  <li>DEMO</li>
+		  </ul>
+		</section>
+        <section>
+          <h3>String Interpolation, $""</h3>
+		  <p>
+		  In-line template strings, use $"" instead of "" where <i>{expression}</i> is replaced with the <i>ToString</i> representation of the expression.</p>
+<pre><code class="cs">//C# 6
+void Format(string name, DateTime startDate, double salary) {
+  var tag = $"{name}, hired {startDate:D}";
+  var wage = $"Paid: {salary:c}";
+  var desc = $"Is {(startDate.Year < 2010 ? "pre" : "post")} reorg";
+}
+</code></pre>		  
+<pre><code class="cs">//C# 5
+void Format(string name, DateTime startDate, double salary) {
+  var tag = String.Format("{0}, hired {1:D}", name, startDate);
+  var wage = String.Format("Paid: {0:c}", salary);
+  var desc = String.Format("Is {0} reorg",
+    (startDate.Year < 2010 ? "pre" : "post"));
+}
+</code></pre>		  
+		</section>		
+        <section>
+          <h3>String Interpolation, $"" - Why?</h3>
+		  <ul>
+		  <li>More concise that <i>String.Format</i>, but exactly equivalent. Supports format specifiers and alignment syntax.</li>
+		  <li>No need to worry about mis-matching {0} and arguments to String.Format.</li>
+		  <li>Still have intellisense for expressions and compile-time errors if variables are renamed.</li>
+		  <li>Can be assigned to System.IFormattable and System.FormattableString if you want to use culture specific rendering of the template (e.g. globalization).</li>
+		  <li>DEMO</li>
+		  </ul>
+		</section>
 		
 			</div>
 
