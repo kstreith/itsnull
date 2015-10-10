@@ -70,7 +70,65 @@
 			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/0yd65esw.aspx">async/await support in catch/finally</a></li>		  
           </ul>
         </section>
-
+        <section>
+          <h3>Index Initializers</h3>
+			<p> new TestObj { [index] = value, [index2] = value2 } </p>
+<pre><code class="cs">//C# 6
+var numbers = new Dictionary&lt;int, string&gt; { 
+    [7] = "seven", 
+    [13] = "thirteen" 
+};</code></pre>
+<pre><code class="cs">//C# 5
+var numbers = new Dictionary&lt;int, string&gt; { 
+    {7, "seven"}
+    {13, "thirteen"}
+};</code></pre>
+        </section>
+        <section>
+          <h3>Index Initializers - Why?</h3>
+		  <ul>
+			<li>In C# 5, class must have <b>Add method</b> and <b>implemented IEnumerable</b> to initialize it using <i>{index, value}</i> syntax.</li>
+			<li>In C# 6, using index initializer syntax, <i>[index] = value</i>, class
+			only needs <b>an indexer method, no base class or interface required.</b></li>
+		  </ul>
+		</section>
+        <section>
+          <h3>Exception Filters</h3>
+			<p>Add <i>when (expression)</i> to end of a catch clause. Exception is caught only if expression is true.</p>
+<pre><code class="cs">//C #6
+try {
+  //...
+} catch (ArgumentException e) when (e.ParamName == "shoppingCart") {
+  abortSale();
+}</code></pre>
+<pre><code class="cs">//C# 5
+try {
+  //...
+} catch (ArgumentException e)
+  if (e.ParamName == "shoppingCart") 
+	abortSale();
+  throw;
+}</code></pre>
+        </section>
+        <section>
+          <h3>Exception Filters - Why?</h3>
+		  <ul>
+			<li>In C# 5, for equivalent behavior, you had to check your condition and if not true, you had to re-throw the exception. This pollutes the exception stack trace, it will now immediately reference the line of your <i>throw;</i></li> statement.</li>
+			<li>In C# 6, if the catch expression is false, nothing about the exception stack trace is affected.</li>
+		  </ul>
+		</section>
+        <section>
+          <h3>Exception Filters - Why? (Continued)</h3>
+		  <ul>
+			<li>In C# 6, the catch expression can have side-effects and can always return false. This allows exception logging without affecting the exception stack trace.</li>
+<pre><code class="cs">//C #6
+try {
+  //...
+} catch (Exception e) when (LogException(e)) {}</code></pre>			
+		  </ul>
+		</section>
+						
+		
 			</div>
 
 		</div>
