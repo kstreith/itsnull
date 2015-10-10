@@ -95,7 +95,7 @@ var numbers = new Dictionary&lt;int, string&gt; {
         <section>
           <h3>Exception Filters</h3>
 			<p>Add <i>when (expression)</i> to end of a catch clause. Exception is caught only if expression is true.</p>
-<pre><code class="cs">//C #6
+<pre><code class="cs">//C# 6
 try {
   //...
 } catch (ArgumentException e) when (e.ParamName == "shoppingCart") {
@@ -121,11 +121,48 @@ try {
           <h3>Exception Filters - Why? (Continued)</h3>
 		  <ul>
 			<li>In C# 6, the catch expression can have side-effects and can always return false. This allows exception logging without affecting the exception stack trace.</li>
-<pre><code class="cs">//C #6
+<pre><code class="cs">//C# 6
 try {
   //...
 } catch (Exception e) when (LogException(e)) {}</code></pre>			
 		  </ul>
+		</section>
+        <section>
+          <h3>Async/Await in catch/finally</h3>
+		  <ul>
+			<li>In C# 5, <i>await</i> could only be used in body of <i>try</i>, a <b>compile error</b> would result if <i>await</i> was used in body of <i>catch</i> or <i>finally</i>.</li>
+			<li>In C# 6, <i>await</i> can now be used in <i>try</i>, <i>catch</i> and <i>finally</i> blocks.</li>
+			<li><b>Why?</b> Makes it much easier to support asynchronous error handling and logging.</li>
+		  </ul>
+		</section>
+        <section>
+          <h3>using static directive</h3>
+		  <ul>
+		  <li>In C# 5, <i>using</i> directive <b>only imports a namespace</b>.</li>
+		  <li>In C# 6, the new <i>using static</i> directive <b>imports static members of specified type</b>. This includes <b>enumeration values</b>.</li>
+		  <li><b>Why?</b> The same benefit of <i>using</i> directive to shorten commonly typed namespaces can now be applied to static members of types with <i>using static</i> directive.</li>
+		  </ul>
+		</section>
+        <section>
+          <h3>using static directive (Example)</h3>
+		  </ul><pre><code class="cs">//C# 6
+using static System.Console;
+using static System.ConsoleColor; //enumeration
+using static System.Math;
+// ...
+  void Calculate(double value) {
+    ForegroundColor = Blue;
+    WriteLine("Result is " + Sqrt(value));
+  }
+</code></pre>						
+<pre><code class="cs">//C# 5
+using System;
+// ...
+  void Calculate(double value) {
+    Console.ForegroundColor = ConsoleColor.Blue;
+    Console.WriteLine("Result is " + Math.Sqrt(value));
+  }
+</code></pre>	
 		</section>
 						
 		
