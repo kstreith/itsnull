@@ -183,19 +183,19 @@ void TestMethod(Customer person) {
         <section>
           <h3>Null Conditional Access, ?. - Why</h3>
 		  <ul>
-		  <li>In <b>C# 5</b>, you have to write <i>if statement</i> or <i>ternary (?:)</i> to check for nulls. <i>?.</i> and <i>?[]</i> replace those in <b>C# 6</b>.</li>
-		  <li>Code is now easier to read, also works well with null coalescing operator <i>(??)</i>.</li>
+		  <li><i>?.</i> and <i>?[]</i> are compiled to use temporary variables making them thread-safe as well.</li>
+		  <li>Can be used to invoke delegates, e.g. <i>PropertyChanged</i></li>
 		  <li>Fewer exceptions, with less code, who doesn't like that?</li>
 <pre><code class="cs">//C# 6
 var zip = person?.Address?.ZipCode ?? "Unknown Zip";
 </code></pre>		  
 <pre><code class="cs">//C# 5
 var zip = "Unknown Zip";
-if (person != null &&
-    person.Address != null &&
-    person.Address.ZipCode != null) {
-  zip = person.Address.ZipCode;
-}
+var tempPerson = person;
+if (tempPerson != null)
+  var tempAddress = person.Address;
+  if (tempAddress != null)
+    zip = tempAddress.ZipCode;
 </code></pre>		  
 		  <li>DEMO</li>
 		  </ul>
@@ -251,6 +251,100 @@ void Format(string name, DateTime startDate, double salary) {
 		  <li>DEMO</li>
 		  </ul>
 		</section>
+        <section>
+          <h3>Expression Bodied Methods</h3>
+		  <ul>
+		  <li>Lambda syntax <i>=></i> to declare methods, read-only properties, and read-only indexers.</li>
+		  <li><b>Why?</b> Simple methods are expressed simply. Changeset/Commit will stand out when methods transition from simple to complex.</li>
+		  </ul>
+		</section>
+        <section>
+          <h3>Expression Bodied Methods Examples</h3>
+		  <p>Can be used for methods that immediately return a value.</p>
+<pre><code class="cs">//C# 6
+double ConvertCtoF(double temp) => temp * 2 + 30;
+</code></pre>		  		
+<pre><code class="cs">//C# 5
+double ConvertCtoF(double temp)
+{
+  return temp * 2 + 30;
+}
+</code></pre>	
+		</section>	  		
+        <section>
+          <h3>Expression Bodied Methods Examples</h3>
+		  <p>Can be used for single line void methods.</p>
+<pre><code class="cs">//C# 6
+void Log() => Console.WriteLine(First + " " + Last);
+</code></pre>		  		
+<pre><code class="cs">//C# 5
+void Log()
+{
+  Console.WriteLine(First + " " + Last);
+}
+</code></pre>	
+		</section>	  		
+        <section>
+          <h3>Expression Bodied Methods Examples</h3>
+		  <p>Can be used for read-only computed properties.</p>
+<pre><code class="cs">//C# 6
+string FullName => First + " " + Last;
+</code></pre>		  		
+<pre><code class="cs">//C# 5
+string FullName
+{
+  get
+  {
+    return First + " " + Last;
+  }
+}
+</code></pre>	
+		</section>	  		
+        <section>
+          <h3>Expression Bodied Methods Examples</h3>
+		  <p>Can be used for read-only indexers.</p>
+<pre><code class="cs">//C# 6
+Customer this[long id] => store.LookupCustomer(id);
+</code></pre>		  		
+<pre><code class="cs">//C# 5
+Customer this[long id]
+{
+  get
+  {
+    return store.LookupCustomer(id);
+  }
+}
+</code></pre>	
+		</section>	  		
+        <section>
+          <h3>Auto Property Enhancements</h3>
+		  <h4>Read-only property</h4>
+		  <ul>
+		  <li>Auto properties can now be read-only.</li>
+		  <li>Read-only property can only be set in constructor, initializer.</li>
+		  <li>In C#5, auto property with <i>private set;</i> could be updated in any class method.</li>
+		  <li><b>Why?</b> Useful for creating immutable types.</li>
+		  </ul>
+<pre><code class="cs">//C# 6
+public string FullName { get; };
+</code></pre>		  		
+<pre><code class="cs">//C# 5
+public string FullName { get; private set; };
+</code></pre>		  		
+		</section>	  		
+        <section>
+          <h3>Auto Property Enhancements</h3>
+		  <h4>Initialization</h4>
+		  <ul>
+		  <li>Can initialize auto properties like fields now, not possible in C# 5</li>
+		  <li><b>Why?</b> Don't need to write constructor just to initialize values of auto properties.</li>
+		  </ul>
+<pre><code class="cs">//C# 6
+public List&lt;Address&gt; Addresses { get; set; } = new List&lt;Address&gt;();
+//works for read-only properties as well
+public DateTime Created { get; } = DateTime.UtcNow;
+</code></pre>		  		
+		</section>	  		
 		
 			</div>
 
