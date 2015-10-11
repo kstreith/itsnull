@@ -40,6 +40,8 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
+			
+<!--  ==================== Opening Material =================== -->										
 		<section>
 		  <h2>Learn C# 6 - By Example</h1>
 		  <h3>October 2015</h3>
@@ -50,26 +52,118 @@
 		  </p>
 		</section>
         <section>
-          <h3>Goal</h3>
+          <h3>C# 6 High-Level</h3>
           <ul>
-            <li>Discuss C# 6</li>
-            <li>Demo - Convert C# 5 code to use C# 6 features</li>
+            <li>Enables more concise code.</li>
+            <li>Enables code that is easier to maintain.</li>
+            <li>Brings immutable types on par with mutable types.</li>
+            <li>Visual Studio 2015.</li>
+			<li>99% syntax change, can be targeted all the way back to .NET Framework 4.</li>
           </ul>
         </section>
         <section>
           <h3><a target="_blank" href="https://msdn.microsoft.com/en-us/library/hh156499.aspx">C# Features</a></h3>
+		  <p><small>Click on links for MSDN documentation</small></p>
           <ul>
-			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/dn986595.aspx">Null Conditional Access, ?.</a></li>
-			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/dn961160.aspx">String Interpolation , $""</a></li>
-			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/dn986596.aspx">nameof Operator</a></li>
-			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/0yd65esw.aspx">Exception Filters</a></li>
-			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/bb384062.aspx">Index Initializers</a></li>
-			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/bb384054.aspx">Auto property enhancements</a></li>
-			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/ms173114.aspx">Expression Bodied Methods</a></li>
 			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/sf0df423.aspx">using static</a></li>
-			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/0yd65esw.aspx">async/await support in catch/finally</a></li>		  
+			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/0yd65esw.aspx">Exception Filters</a></li>
+			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/0yd65esw.aspx">async/await support in catch/finally</a></li>		  			
+			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/bb384062.aspx">Index Initializers</a></li>
+			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/dn986595.aspx">Null Conditional Access, ?.</a></li>
+			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/dn986596.aspx">nameof Operator</a></li>			
+			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/dn961160.aspx">String Interpolation , $""</a></li>
+			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/ms173114.aspx">Expression Bodied Methods</a></li>
+			<li><a target="_blank" href="https://msdn.microsoft.com/en-us/library/bb384054.aspx">Auto property enhancements</a></li>						
           </ul>
         </section>
+				
+<!--  ==================== using static =================== -->		
+        <section>
+          <h3>using static directive</h3>
+		  <ul>
+		  <li><i>using</i> directive <b> imports a namespace</b>.</li>
+		  <li>New <i>using static</i> directive <b>imports static members of specified type</b>.</li>
+		  <li><i>using static</i> can also import <b>enum values</b>.</li>
+		  <li><b>Why?</b> The same benefit of <i>using</i> to shorten namespaces, but now for static members of types and enums.</li>
+		  </ul>
+		</section>
+        <section>
+          <h3>using static directive (Example)</h3>
+		  </ul><pre><code class="cs">//C# 6
+using static System.Console;
+using static System.ConsoleColor; //enumeration
+using static System.Math;
+void Calculate(double value) {
+  ForegroundColor = Blue;
+  WriteLine("Result is " + Sqrt(value));
+}
+</code></pre>						
+<pre><code class="cs">//C# 5
+using System;
+void Calculate(double value) {
+  Console.ForegroundColor = ConsoleColor.Blue;
+  Console.WriteLine("Result is " + Math.Sqrt(value));
+}
+</code></pre>	
+		</section>
+		
+<!--  ==================== Exception Filters =================== -->
+        <section>
+          <h3>Exception Filters</h3>
+			<p>Add <i>when (expression)</i> to end of a catch clause. Exception is caught only if expression is true.</p>
+<pre><code class="cs">//C# 6
+try {
+  //...
+} catch (ArgumentException e) when (e.ParamName == "creditCard") {
+  abortSale();
+}</code></pre>
+<pre><code class="cs">//C# 5
+try {
+  //...
+} catch (ArgumentException e)
+  if (e.ParamName == "creditCard") 
+    abortSale();
+  else
+    throw;
+}</code></pre>
+        </section>
+        <section>
+          <h3>Exception Filters - Why?</h3>
+		  <ul>
+			<li>In C# 5, for equivalent behavior, you have to re-throw which <b>alters the stack trace</b>.</li>
+			<li>If the catch expression is <b>false, the stack trace is unaffected.</b></li>
+		  </ul>
+		</section>
+        <section>
+          <h3>Exception Filters - Why? (Cont.)</h3>
+		  <ul>
+			<li>The <b>catch expression can have side-effects</b>. Expression can 
+			work with exception without affecting the stack trace.</li>
+		  </ul>
+<pre><code class="cs">//C# 6
+try {
+  //...
+} catch (Exception e) when (LogException(e)) {}</code></pre>			
+<pre><code class="cs">//C# 5
+try {
+  //...
+} catch (Exception e) {
+  LogException(e);
+  throw;
+}</code></pre>			
+		</section>
+
+<!--  ==================== async/await =================== -->
+        <section>
+          <h3>Async/Await in catch/finally</h3>
+		  <ul>
+			<li>In C# 5, <i>await</i> was <b>not permitted</b> inside <i>catch</i> or <i>finally</i>. C# Team wasn't sure it could be implemented.</li>
+			<li>In C# 6, <i>await</i> now <b>works inside <i>catch</i> and <i>finally</i>.</b></li>
+			<li><b>Why?</b> Turns out it could be implemented. Can now asynchronously handle errors, e.g. logging.</li>
+		  </ul>
+		</section>
+		
+<!--  ==================== Index Initializers =================== -->		
         <section>
           <h3>Index Initializers</h3>
 			<p> new TestObj { [index] = value, [index2] = value2 } </p>
@@ -87,89 +181,19 @@ var numbers = new Dictionary&lt;int, string&gt; {
         <section>
           <h3>Index Initializers - Why?</h3>
 		  <ul>
-			<li>In C# 5, class must have <b>Add method</b> and <b>implemented IEnumerable</b> to initialize it using <i>{index, value}</i> syntax.</li>
-			<li>In C# 6, using index initializer syntax, <i>[index] = value</i>, class
-			only needs <b>an indexer method, no base class or interface required.</b></li>
+			<li>To initialize using <i>{index, value}</i> syntax, class must have an <b>Add method</b> and <b>implement IEnumerable</b>.</li>
+			<li>To initialize using <i>[index] = value</i> syntax, class
+			only needs <b>an indexer method, nothing else.</b></li>
 		  </ul>
 		</section>
-        <section>
-          <h3>Exception Filters</h3>
-			<p>Add <i>when (expression)</i> to end of a catch clause. Exception is caught only if expression is true.</p>
-<pre><code class="cs">//C# 6
-try {
-  //...
-} catch (ArgumentException e) when (e.ParamName == "shoppingCart") {
-  abortSale();
-}</code></pre>
-<pre><code class="cs">//C# 5
-try {
-  //...
-} catch (ArgumentException e)
-  if (e.ParamName == "shoppingCart") 
-	abortSale();
-  throw;
-}</code></pre>
-        </section>
-        <section>
-          <h3>Exception Filters - Why?</h3>
-		  <ul>
-			<li>In C# 5, for equivalent behavior, you had to check your condition and if not true, you had to re-throw the exception. This pollutes the exception stack trace, it will now immediately reference the line of your <i>throw;</i></li> statement.</li>
-			<li>In C# 6, if the catch expression is false, nothing about the exception stack trace is affected.</li>
-		  </ul>
-		</section>
-        <section>
-          <h3>Exception Filters - Why? (Continued)</h3>
-		  <ul>
-			<li>In C# 6, the catch expression can have side-effects and can always return false. This allows exception logging without affecting the exception stack trace.</li>
-<pre><code class="cs">//C# 6
-try {
-  //...
-} catch (Exception e) when (LogException(e)) {}</code></pre>			
-		  </ul>
-		</section>
-        <section>
-          <h3>Async/Await in catch/finally</h3>
-		  <ul>
-			<li>In C# 5, <i>await</i> could only be used in body of <i>try</i>, a <b>compile error</b> would result if <i>await</i> was used in body of <i>catch</i> or <i>finally</i>.</li>
-			<li>In C# 6, <i>await</i> can now be used in <i>try</i>, <i>catch</i> and <i>finally</i> blocks.</li>
-			<li><b>Why?</b> Makes it much easier to support asynchronous error handling and logging.</li>
-		  </ul>
-		</section>
-        <section>
-          <h3>using static directive</h3>
-		  <ul>
-		  <li>In C# 5, <i>using</i> directive <b>only imports a namespace</b>.</li>
-		  <li>In C# 6, the new <i>using static</i> directive <b>imports static members of specified type</b>. This includes <b>enumeration values</b>.</li>
-		  <li><b>Why?</b> The same benefit of <i>using</i> directive to shorten commonly typed namespaces can now be applied to static members of types with <i>using static</i> directive.</li>
-		  </ul>
-		</section>
-        <section>
-          <h3>using static directive (Example)</h3>
-		  </ul><pre><code class="cs">//C# 6
-using static System.Console;
-using static System.ConsoleColor; //enumeration
-using static System.Math;
-// ...
-  void Calculate(double value) {
-    ForegroundColor = Blue;
-    WriteLine("Result is " + Sqrt(value));
-  }
-</code></pre>						
-<pre><code class="cs">//C# 5
-using System;
-// ...
-  void Calculate(double value) {
-    Console.ForegroundColor = ConsoleColor.Blue;
-    Console.WriteLine("Result is " + Math.Sqrt(value));
-  }
-</code></pre>	
-		</section>
+		
+<!--  ==================== Null Conditional Access =================== -->				
         <section>
           <h3>Null Conditional Access, ?.</h3>
 		  <ul>
-		  <li><i>?.</i> can be used instead of <i>.</i> and returns nullable version of right-hand side if left-hand side is null.</li>
-		  <li><i>?[]</i> can be used instead of <i>[]</i> and returns nullable version of right-hand side if left-hand side is null.</li>
-		  <li>Prevents NullPointerExceptions from being thrown.</li></ul>
+		  <li>Replace <i>.</i> with <i>?.</i> and null is returned, instead of throwing NullPointerException.</li>
+		  <li>Replace <i>[]</i> with <i>?[]</i> and null is returned, instead of throwing NullPointerException.</li>
+		  </ul>
 <pre><code class="cs">//C# 6
 void TestMethod(Customer person) {
   string name = person?.FirstName;
@@ -200,6 +224,9 @@ if (tempPerson != null)
 		  <li>DEMO</li>
 		  </ul>
 		</section>
+		
+		
+<!--  ==================== nameof operator =================== -->				
         <section>
           <h3>nameof operator</h3>
 		  <p>Returns a string, which is the unqualified name of a variable, type or member.</p>
@@ -215,16 +242,19 @@ void TestMethod(Customer person) {
         <section>
           <h3>nameof operator - Why?</h3>
 		  <ul>
-		  <li>In <b>C# 5</b>, you would have to manually type the string, which means it can <b>become out-of-date</b>. With nameof operator, a <b>compile error occurs if the variable, type or member is renamed</b>.</li>
-		  <li>Useful with <i>ArgumentNullException</i> and <i>ArgumentException</i>.</li>
+		  <li>In <b>C# 5</b>, you would have to manually type the string, which means it can <b>become out-of-date</b>.</li>
+		  <li>With nameof operator, a <b>compile error occurs if the variable, type or member is renamed</b>.</li>
+		  <li>Useful with <i>ArgumentNullException</i>.</li>
 		  <li>Useful with XAML, WPF implementations of <i>INotifyPropertyChanged</i> interface.</li>
 		  <li>DEMO</li>
 		  </ul>
 		</section>
+				
+<!--  ==================== String Interpolation =================== -->						
         <section>
           <h3>String Interpolation, $""</h3>
 		  <p>
-		  In-line template strings, use $"" instead of "" where <i>{expression}</i> is replaced with the <i>ToString</i> representation of the expression.</p>
+		  In-line template strings, use $"" instead of "" where <i>{expression}</i> is replaced with the <i>ToString</i> representation.</p>
 <pre><code class="cs">//C# 6
 void Format(string name, DateTime startDate, double salary) {
   var tag = $"{name}, hired {startDate:D}";
@@ -242,25 +272,41 @@ void Format(string name, DateTime startDate, double salary) {
 </code></pre>		  
 		</section>		
         <section>
+          <h3>String Interpolation, $""</h3>
+		  <h4>Globalization</h4>
+		  <ul>
+		  <li>Can assign to System.FormattableString if you want to render for specific culture (e.g. globalization).</li>
+		  <li>System.FormattableString requires .NET 4.6 runtime.</li>
+		  </ul>
+<pre><code class="cs">//C# 6
+static string Format(DateTime day) {
+  System.FormattableString temp = $"Modified {day:d}";
+  return temp.ToString(CultureInfo.GetCultureInfo("de-DE"));
+}
+Format(new DateTime(2012, 3, 15)); //returns "15.03.2012"
+</code></pre>
+		</section>
+        <section>
           <h3>String Interpolation, $"" - Why?</h3>
 		  <ul>
 		  <li>More concise that <i>String.Format</i>, but exactly equivalent. Supports format specifiers and alignment syntax.</li>
 		  <li>No need to worry about mis-matching {0} and arguments to String.Format.</li>
 		  <li>Still have intellisense for expressions and compile-time errors if variables are renamed.</li>
-		  <li>Can be assigned to System.IFormattable and System.FormattableString if you want to use culture specific rendering of the template (e.g. globalization).</li>
 		  <li>DEMO</li>
 		  </ul>
 		</section>
+		
+<!--  ==================== Expression Bodied Methods =================== -->								
         <section>
           <h3>Expression Bodied Methods</h3>
 		  <ul>
 		  <li>Lambda syntax <i>=></i> to declare methods, read-only properties, and read-only indexers.</li>
-		  <li><b>Why?</b> Simple methods are expressed simply. Changeset/Commit will stand out when methods transition from simple to complex.</li>
+		  <li><b>Why?</b> Simple methods are expressed simply.</li>
 		  </ul>
 		</section>
         <section>
-          <h3>Expression Bodied Methods Examples</h3>
-		  <p>Can be used for methods that immediately return a value.</p>
+          <h3>Expression Bodied Methods</h3>
+		  <p>Example: Method that immediately returns a value.</p>
 <pre><code class="cs">//C# 6
 double ConvertCtoF(double temp) => temp * 2 + 30;
 </code></pre>		  		
@@ -272,8 +318,8 @@ double ConvertCtoF(double temp)
 </code></pre>	
 		</section>	  		
         <section>
-          <h3>Expression Bodied Methods Examples</h3>
-		  <p>Can be used for single line void methods.</p>
+          <h3>Expression Bodied Methods</h3>
+		  <p>Example: Single line void method.</p>
 <pre><code class="cs">//C# 6
 void Log() => Console.WriteLine(First + " " + Last);
 </code></pre>		  		
@@ -285,8 +331,8 @@ void Log()
 </code></pre>	
 		</section>	  		
         <section>
-          <h3>Expression Bodied Methods Examples</h3>
-		  <p>Can be used for read-only computed properties.</p>
+          <h3>Expression Bodied Methods</h3>
+		  <p>Example: Read-only computed property.</p>
 <pre><code class="cs">//C# 6
 string FullName => First + " " + Last;
 </code></pre>		  		
@@ -301,8 +347,8 @@ string FullName
 </code></pre>	
 		</section>	  		
         <section>
-          <h3>Expression Bodied Methods Examples</h3>
-		  <p>Can be used for read-only indexers.</p>
+          <h3>Expression Bodied Methods</h3>
+		  <p>Example: Read-only indexer.</p>
 <pre><code class="cs">//C# 6
 Customer this[long id] => store.LookupCustomer(id);
 </code></pre>		  		
@@ -321,8 +367,8 @@ Customer this[long id]
 		  <h4>Read-only property</h4>
 		  <ul>
 		  <li>Auto properties can now be read-only.</li>
-		  <li>Read-only property can only be set in constructor, initializer.</li>
-		  <li>In C#5, auto property with <i>private set;</i> could be updated in any class method.</li>
+		  <li>Read-only property <b>can only be set in constructor</b>.</li>
+		  <li>Auto property with <i>private set;</i> can be <b>updated in any class method</b>.</li>
 		  <li><b>Why?</b> Useful for creating immutable types.</li>
 		  </ul>
 <pre><code class="cs">//C# 6
@@ -332,18 +378,53 @@ public string FullName { get; };
 public string FullName { get; private set; };
 </code></pre>		  		
 		</section>	  		
+		
+		
+<!--  ==================== Auto Property Enhancements =================== -->										
         <section>
           <h3>Auto Property Enhancements</h3>
 		  <h4>Initialization</h4>
 		  <ul>
-		  <li>Can initialize auto properties like fields now, not possible in C# 5</li>
-		  <li><b>Why?</b> Don't need to write constructor just to initialize values of auto properties.</li>
+		  <li>Can initialize auto properties like fields now.</li>
+		  <li><b>Why?</b> Same benefits of field initializers. For simple classes, can avoid writing constructor.</li>
 		  </ul>
 <pre><code class="cs">//C# 6
 public List&lt;Address&gt; Addresses { get; set; } = new List&lt;Address&gt;();
 //works for read-only properties as well
 public DateTime Created { get; } = DateTime.UtcNow;
 </code></pre>		  		
+		</section>	  	
+
+
+<!--  ==================== Closing Material =================== -->										
+        <section>
+          <h3>Immutable Type Example</h3>
+		  <ul>
+		  <li>Immutable types eliminate side effects and can simplify multi-threaded programming.</li>
+		  <li>In C# 5, it was verbose to write immutable types, putting them at a disadvantage.</li>
+		  <li>In C# 6, immutable types are on par with mutable types.</li>
+		  <li>DEMO</li>
+		  </ul>
+		</section>	  		
+        <section>
+          <h3>My top 5 new features</h3>
+		  <ol>
+		    <li>Null conditionals, ?. and ?[]</li>
+		    <li>String interpolation</li>
+		    <li>Expression bodied methods</li>
+		    <li>nameof operator</li>
+		    <li>Exception filters</li>
+		  </ol>
+		</section>	  		
+        <section>
+          <h3>Thanks</h3>
+		  <ul>
+		    <li>Kip Streithorst</li>
+			<li>Sample Code: FIX</li>
+			<li>Twitter: <a href="http://twitter.com/itsnull">@itsnull</a></li>
+			<li>Blog: <a href="http://itsnull.com/">http://itsnull.com/</a></li>
+			<li>Presentation: <a href="http://itsnull.com/presentations/csharp6/">http://itsnull.com/presentations/csharp6/</a>
+		  </ul>
 		</section>	  		
 		
 			</div>
