@@ -5,9 +5,52 @@
     <atom:link href="http://itsnull.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <link>http://itsnull.com</link>
     <description>Phrase heard round the world</description>
-    <pubDate>Wed, 10 Dec 2014 19:00:00 -0500</pubDate>
+    <pubDate>Thu, 15 Oct 2015 20:00:00 -0400</pubDate>
     <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
     <language>en</language>
+    <item>
+      <title>Some of my 2015 presentations</title>
+      <link>http://itsnull.com/articles/2015presentations/</link>
+      <pubDate>Thu, 15 Oct 2015 20:00:00 -0400</pubDate>
+      <guid isPermaLink="true">http://itsnull.com/articles/2015presentations/</guid>
+      <author></author>
+      <description>&lt;p&gt;I’ve done 3 presentations for &lt;a href=&quot;http://www.trinug.org/&quot;&gt;TRINUG&lt;/a&gt; earlier in 2015. Now, I’ll finally get around to posting links to those presentations. Better late then never…&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Debugging Javascript In The Browser&lt;ul&gt;
+&lt;li&gt;Slides: &lt;a href=&quot;http://itsnull.com/presentations/debuggingjs/&quot;&gt;http://itsnull.com/presentations/debuggingjs/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Code: &lt;a href=&quot;https://github.com/kstreith/js-debugging-samples&quot;&gt;https://github.com/kstreith/js-debugging-samples&lt;/a&gt; This is broken JS code with hints on the page about what is broken. Useful for practicing your debugging skills.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Diving Into Microsoft Open source&lt;ul&gt;
+&lt;li&gt;Slides: &lt;a href=&quot;http://itsnull.com/presentations/diving-into-ms-opensource/&quot;&gt;http://itsnull.com/presentations/diving-into-ms-opensource/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Code: Download the open-source Microsoft code (see slides for links) and read it, seriously reading source code is good for you.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Learning JS Presentation&lt;ul&gt;
+&lt;li&gt;Slides: No slides for this. Presentation was about learning JS by reading existing open-source JS code&lt;/li&gt;
+&lt;li&gt;Code: &lt;a href=&quot;https://github.com/kstreith/learning-js&quot;&gt;https://github.com/kstreith/learning-js&lt;/a&gt; Repository has some sample pages using small javascript libraries along with guidance on how to start learning.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hope these resources help.&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Learn C# 6 - By Example</title>
+      <link>http://itsnull.com/articles/learn-csharp6/</link>
+      <pubDate>Thu, 15 Oct 2015 20:00:00 -0400</pubDate>
+      <guid isPermaLink="true">http://itsnull.com/articles/learn-csharp6/</guid>
+      <author></author>
+      <description>&lt;p&gt;I’m presenting at Code Camp 2015. Pretty excited, it’s my second year presenting. I’ll be talking about the new C# features, along with some demos.&lt;/p&gt;
+&lt;p&gt;You can find my slides and demo code on-line:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Slides: &lt;a href=&quot;http://itsnull.com/presentations/csharp6/#/&quot;&gt;http://itsnull.com/presentations/csharp6/#/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Sample Code: &lt;a href=&quot;https://github.com/kstreith/csharp6&quot;&gt;https://github.com/kstreith/csharp6&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Feel free to use these presentations and code to get your team at work up to speed on C# 6.&lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>Visual Studio Tips - TRINUG Lightning Talk</title>
       <link>http://itsnull.com/articles/vstips-trinug2014/</link>

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Debugging Javascript In The Browser</title>
+
+    <meta name="description" content="Debugging Javascript In The Browser">
+    <meta name="author" content="Kip Streithorst">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <style>
+        .procon > h4 {
+          text-align: left;
+          margin-top: 20px; 
+        }
+        .procon > h4:first-child {
+          margin-top: 0px;
+        }
+        .procon > ul {
+          display: block;
+        }
+        div.procon {
+          width: 75%;
+          margin: 0 auto;
+        }
+    </style>
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h2>Debugging Javascript In The Browser</h1>
+          <h3>Raleigh Code Camp 2014</h3>
+          <h3>Follow along at:</h3>
+          <p><a href="http://itsnull.com/presentations/codecamp2014/">http://itsnull.com/presentations/codecamp2014/</a></p>
+          <p>
+            <small>Created by <a href="http://itsnull.com">Kip Streithorst</a> / <a href="http://twitter.com/itsnull">@itsnull</a></small>
+          </p>
+        </section>
+        <section>
+          <h3>Goal</h3>
+          <ul>
+            <li>Demonstrate debugging power of browser developer tools (F12)</li>
+            <li>Debug 7 code samples in 4 browsers</li>
+            <li>Why 4 browsers instead of 1? Bugs are everywhere</li>
+            <li>Presentation == Resource (<a href="http://itsnull.com/">http://itsnull.com/</a>)<ul>
+              <li>Click on slide titles for code samples</li></ul></li>
+          </ul>
+        </section>
+        <section>
+          <script>
+           window.onAlertClick = function onAlertClick() {
+              alert('alert text was clicked');
+           }
+          </script>
+          <h3><a onclick="onAlertClick();">Alert</a> - The Debugging Dark Ages</h3>
+          <pre><code>
+function onAlertClick() {
+  alert('alert text was clicked');
+}
+          </code></pre>          
+          <ul>
+            <li>Available everywhere.</li>
+            <li>But, it's visible to the user and interrupts execution</li>
+            <li>Still useful for phone and tablets</li>
+          </ul>
+        </section>
+        <section>
+          <script>
+           var clickCount = 0;
+           window.onLogClick = function onAlertClick() {
+              clickCount++;
+              console.log('log text was clicked ' + clickCount);
+           }
+          </script>
+          <h3><a onclick="onLogClick();">console.log</a> - Alert the Developers!</h3>
+          <pre><code data-trim contenteditable>
+var clickCount = 0;
+function onLogClick() {
+  clickCount++;
+  console.log('log text was clicked ' + clickCount);
+}
+          </code></pre>          
+          <ul>
+            <li>A better alert, is logged to developer console and doesn't interrupt execution.</li>
+            <li>But, beware IE8/9. Calling console.log will throw an exception unless developer tools have been opened.</li>
+            <li>To fix IE8/9, include <a href="https://github.com/paulmillr/console-polyfill">https://github.com/paulmillr/console-polyfill</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3><a href="codesamples/simpleDebugging/" target="debug">JS Debuggers</a> - Now that's Power</h3>
+          <ul>
+            <li>Breakpoints</li>
+            <li>Step into and step out</li>
+            <li>Call stack.</li>
+            <li>Watch window, both variables and expressions.</li>
+            <li>Mouse over variable and expressions.</li>
+          </ul>
+        </section>
+        <section>
+          <h3><a href="codesamples/simpleDebugging/" target="debug">JS Debuggers</a> - Break On Demand?</h3>
+          <ul>
+            <li>Wish you didn't stop at the breakpoint <strong>every single time?</strong></li>
+            <li>Add condition to a breakpoint</li>
+            <li>Use debugger; statement</li>
+          </ul>
+        </section>
+        <section>
+          <h3><a href="codesamples/simpleDebugging/" target="debug">JS Debuggers</a> - Logpoint/Tracepoint</h3>
+          <ul>
+            <li>Want to use console.log but don't want to update source and reload the page?</li>
+            <li>Wish third-party code had console.log?</li> 
+            <li>Have timing dependent code like ajax or event handling?</li>
+            <li>Use a breakpoint with a condition of console.log</li>
+          </ul>
+        </section>        
+        <section>
+          <h3><a href="codesamples/exceptionsAndDebugger/" target="exceptions">JS Debuggers</a> - Typos are Exceptional</h3>
+          <ul>
+            <li>Have missing scripts?
+            <li>Or typos?</li> 
+            <li>Look for uncaught exceptions</li>
+            <li>Debugger can stop for uncaught exceptions in IE8+, Chrome, Firefox or you can ignore them.</li>
+          </ul>
+        </section>
+        <section>
+          <h3><a href="codesamples/exceptionsAndDebugger/" target="exceptions">JS Debuggers</a> - Caught Exceptions</h3>
+          <ul>
+            <li>How do you find this typo? 
+            <pre><code>
+try {
+ prseInt('5', 10);
+ // code to update ui
+}
+catch () {} </code></pre></li>
+            <li>Can tell debugger to stop on the line exception is thrown even if it's caught in IE11, Chrome, Firefox</li>
+          </ul>
+        </section>
+        <section>
+          <h3><a href="codesamples/console" target="console">Console</a> - the swiss army knife</h3>
+          <ul>
+            <li>The "Console" tab of the developer tools.</li>
+            <li>Write it as you run it</li>
+            <li>Access and modify any global JS variables and functions including DOM</li>
+            <li>When debugger is stopped, access and modify any JS variables in the current frame</li>
+            <li>Interact with "Elements" tab of developer tools using $0, $1</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Let's debug some frameworks using Console</h3>
+          <ul>
+            <li>The same application written in <a href="codesamples/angular" target="angular">Angular</a>, <a href="codesamples/knockout" target="knockout">Knockout</a> and <a href="codesamples/ember" target="ember">Ember</a></li>
+            <li>Let's use a different browser for each framework</li>
+          </ul>
+        </section>
+        <section>
+          <h3><a href="codesamples/async" target="async">Asynchronous</a> debugging</h3>
+          <ul>
+            <li>Have a useless callstack?</li>
+            <li>It's probably ajax, setTimeout or setInterval, e.g. something asynchronous</li>
+            <li>Use IE11 and Chrome which provide call stacks before the async point</li>
+          </ul>
+        </section>
+        <section>
+          <h3><a href="codesamples/async" target="async">Property modification</a> debugging</h3>
+          <ul>
+            <li>Have a property that is changing but don't know what is changing it?</li>
+            <li>Use Object.defineProperty along with debugger; statement to find the code that is updating the property</li>
+            <li>Works in all ES5 browsers, e.g. IE9+</li>
+          </ul>
+        </section>        
+        <section>
+          <h3>Out of Time</h3>
+          <ul>
+            <li>Debug minified JS using sourcemaps in IE11, Chrome, Firefox</li>
+            <li>Performance profiling available in IE8+, Chrome, Firefox</li>
+            <li>DOM Breakpoints that show JS that caused change in IE11 and Chrome</li>
+            <li>Memory profiling in IE11 and Chrome</li>
+            <li>Remote debugging techniques for tablets and phones, read this <a href="http://developer.telerik.com/featured/a-concise-guide-to-remote-debugging-on-ios-android-and-windows-phone/">article</a></li>
+            <li>View attached event handlers for DOM elements in IE11, Chrome, Firefox</li>
+            <li>Add event breakpoints in IE11, Chrome</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Resources</h3>
+          <ul>
+            <li>Console methods: <a href="https://developer.chrome.com/devtools/docs/console-api">Chrome</a>, <a href="http://msdn.microsoft.com/en-us/library/ie/hh772183(v=vs.85).aspx">IE11</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Console">Firefox</a></li>
+            <li>Developer Tools Documentation: <a href="https://developer.chrome.com/devtools">Chrome</a>, <a href="http://msdn.microsoft.com/en-us/library/ie/bg182326(v=vs.85).aspx">IE11</a>, <a href="https://developer.mozilla.org/en-US/docs/Tools">Firefox</a></li>
+            <li><a href="http://juliepagano.com/blog/2014/05/18/javascript-debugging-for-beginners/">Javascript Debugging For Beginners</a></li>
+            <li><a href="http://amasad.me/2014/03/09/lesser-known-javascript-debugging-techniques/">Lesser-Known JavaScript Debugging Techniques</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>The END</h2>
+          <ul>
+            <li>Presentation: <a href="http://itsnull.com/presentations/codecamp2014/">http://itsnull.com/presentations/codecamp2014/</a>.
+            <li>Click the link in slide titles for sample code</li>
+          </ul>
+          <p>
+            <small><a href="http://itsnull.com">Kip Streithorst</a> / <a href="http://twitter.com/itsnull">@itsnull</a></small>
+          </p>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        touch: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46954011-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>
