@@ -46,6 +46,7 @@
 		  <h2>Learn C# 6 - By Example</h1>
 		  <h3>October 2015</h3>
 		  <h3>Follow along at:</h3>
+		  <p><a href="http://itsnull.com/">http://itsnull.com/</a></p>
 		  <p><a href="http://itsnull.com/presentations/csharp6/">http://itsnull.com/presentations/csharp6/</a></p>
 		  <p>
 			<small>Created by <a href="http://itsnull.com">Kip Streithorst</a> / <a href="http://twitter.com/itsnull">@itsnull</a></small>
@@ -54,11 +55,11 @@
         <section>
           <h3>C# 6 High-Level</h3>
           <ul>
-            <li>Enables more concise code.</li>
-            <li>Enables code that is easier to maintain.</li>
-            <li>Brings immutable types on par with mutable types.</li>
             <li>Visual Studio 2015.</li>
 			<li>99% syntax change, can be targeted all the way back to .NET Framework 4.</li>
+            <li>More concise code, easier to maintain code.</li>
+            <li>Nice improvements for small objects, e.g. Data Transfer Objects (DTOs)</li>
+            <li>Improved syntax for immutable types.</li>
           </ul>
         </section>
         <section>
@@ -124,7 +125,7 @@ try {
   if (e.ParamName == "creditCard") 
     abortSale();
   else
-    throw;
+    throw; //re-throw changes stack-trace
 }</code></pre>
         </section>
         <section>
@@ -157,10 +158,21 @@ try {
         <section>
           <h3>Async/Await in catch/finally</h3>
 		  <ul>
-			<li>In C# 5, <i>await</i> was <b>not permitted</b> inside <i>catch</i> or <i>finally</i>. C# Team wasn't sure it could be implemented.</li>
-			<li>In C# 6, <i>await</i> now <b>works inside <i>catch</i> and <i>finally</i>.</b></li>
-			<li><b>Why?</b> Turns out it could be implemented. Can now asynchronously handle errors, e.g. logging.</li>
+			<li>C# 5 added async/await keywords but they were forbidden in catch or finally blocks.</li>
+			<li>C# 6 fixes that oversight.</li>
+			<li><b>Why?</b> If your happy path is async why shouldn't your error path be async?</li>
 		  </ul>
+<pre><code class="cs">//C# 6
+async Task ProcessData() {
+  try {
+    await UpdateRecord();
+  } catch (Exception e) {
+    await LogException(e); //compile error in C# 5, now works
+  } finally {
+    await NotifySubscribers(); //compile error in C# 5, now works
+  }
+}
+</code></pre>		  
 		</section>
 		
 <!--  ==================== Index Initializers =================== -->		
@@ -171,18 +183,22 @@ try {
 var numbers = new Dictionary&lt;int, string&gt; { 
     [7] = "seven", 
     [13] = "thirteen" 
-};</code></pre>
+};
+numbers[8] = "eight";
+</code></pre>
 <pre><code class="cs">//C# 5
 var numbers = new Dictionary&lt;int, string&gt; { 
     {7, "seven"}
     {13, "thirteen"}
-};</code></pre>
+};
+numbers[8] = "eight";
+</code></pre>
         </section>
         <section>
           <h3>Index Initializers - Why?</h3>
 		  <ul>
-			<li>To initialize using <i>{index, value}</i> syntax, class must have an <b>Add method</b> and <b>implement IEnumerable</b>.</li>
-			<li>To initialize using <i>[index] = value</i> syntax, class
+			<li>To initialize in <b>C# 5</b> e.g. <i>{index, value}</i> syntax, class must have an <b>Add method</b> and <b>implement IEnumerable</b>.</li>
+			<li>To initialize using in <b>C# 6</b> e.g. <i>[index] = value</i> syntax, class
 			only needs <b>an indexer method, nothing else.</b></li>
 		  </ul>
 		</section>
@@ -196,7 +212,8 @@ var numbers = new Dictionary&lt;int, string&gt; {
 		  </ul>
 <pre><code class="cs">//C# 6
 void TestMethod(Customer person) {
-  string name = person?.FirstName;
+  string name = person.FirstName; //might throw NullPointerException
+  string name2 = person?.FirstName;
   int? age = person?.Age; //Age is int
   bool? inUs = person?.Address?.IsInUS(); //IsInUs() method returns bool
   string recentOrder = person?.Orders?[0]?.OrderId;
@@ -207,8 +224,8 @@ void TestMethod(Customer person) {
         <section>
           <h3>Null Conditional Access, ?. - Why</h3>
 		  <ul>
-		  <li><i>?.</i> and <i>?[]</i> are compiled to use temporary variables making them thread-safe as well.</li>
 		  <li>Can be used to invoke delegates, e.g. <i>PropertyChanged</i></li>
+		  <li><i>?.</i> and <i>?[]</i> are compiled to use temporary variables making them thread-safe as well.</li>
 		  <li>Fewer exceptions, with less code, who doesn't like that?</li>
 <pre><code class="cs">//C# 6
 var zip = person?.Address?.ZipCode ?? "Unknown Zip";
@@ -217,9 +234,9 @@ var zip = person?.Address?.ZipCode ?? "Unknown Zip";
 var zip = "Unknown Zip";
 var tempPerson = person;
 if (tempPerson != null)
-  var tempAddress = person.Address;
+  var tempAddress = tempPerson.Address;
   if (tempAddress != null)
-    zip = tempAddress.ZipCode;
+    zip = tempAddress.ZipCode ?? "Unknown Zip";
 </code></pre>		  
 		  <li>DEMO</li>
 		  </ul>
@@ -232,20 +249,21 @@ if (tempPerson != null)
 		  <p>Returns a string, which is the unqualified name of a variable, type or member.</p>
 <pre><code class="cs">//C# 6
 void TestMethod(Customer person) {
-  nameof(person); // returns "person" - variable
-  nameof(person.Address.ZipCode); // returns "ZipCode" - member
-  nameof(System.DateTime); //returns "DateTime" - type
-  nameof(System.Collections.Generic.List&lt;int&gt;); //returns "List" - type
+  nameof(person); // variable - returns "person" - variable
+  nameof(person.Address.ZipCode); // member - returns "ZipCode"
+  nameof(System.DateTime); // type - returns "DateTime"
+  nameof(System.Collections.Generic.List&lt;int&gt;); // type - returns "List"
 }
 </code></pre>		  
 		</section>
         <section>
           <h3>nameof operator - Why?</h3>
 		  <ul>
-		  <li>In <b>C# 5</b>, you would have to manually type the string, which means it can <b>become out-of-date</b>.</li>
-		  <li>With nameof operator, a <b>compile error occurs if the variable, type or member is renamed</b>.</li>
 		  <li>Useful with <i>ArgumentNullException</i>.</li>
 		  <li>Useful with XAML, WPF implementations of <i>INotifyPropertyChanged</i> interface.</li>
+		  <li>In <b>C# 5</b>, you would have to manually type the string, which means it can <b>become out-of-date</b>.</li>
+		  <li>With nameof operator, a <b>compile error occurs if the variable, type or member is renamed</b>.</li>
+		  <li>Efficient, done by compiler, no reflection occurs.</li>		  
 		  <li>DEMO</li>
 		  </ul>
 		</section>
@@ -257,16 +275,16 @@ void TestMethod(Customer person) {
 		  In-line template strings, use $"" instead of "" where <i>{expression}</i> is replaced with the <i>ToString</i> representation.</p>
 <pre><code class="cs">//C# 6
 void Format(string name, DateTime startDate, double salary) {
-  var tag = $"{name}, hired {startDate:D}";
-  var wage = $"Paid: {salary:c}";
-  var desc = $"Is {(startDate.Year < 2010 ? "pre" : "post")} reorg";
+  string tag = $"{name}, hired {startDate:D}";
+  string wage = $"Paid: {salary:c}";
+  string desc = $"Is {(startDate.Year < 2010 ? "pre" : "post")} reorg";
 }
 </code></pre>		  
 <pre><code class="cs">//C# 5
 void Format(string name, DateTime startDate, double salary) {
-  var tag = String.Format("{0}, hired {1:D}", name, startDate);
-  var wage = String.Format("Paid: {0:c}", salary);
-  var desc = String.Format("Is {0} reorg",
+  string tag = String.Format("{0}, hired {1:D}", name, startDate);
+  string wage = String.Format("Paid: {0:c}", salary);
+  string desc = String.Format("Is {0} reorg",
     (startDate.Year < 2010 ? "pre" : "post"));
 }
 </code></pre>		  
@@ -275,7 +293,7 @@ void Format(string name, DateTime startDate, double salary) {
           <h3>String Interpolation, $""</h3>
 		  <h4>Globalization</h4>
 		  <ul>
-		  <li>Can assign to System.FormattableString if you want to render for specific culture (e.g. globalization).</li>
+		  <li>Can assign to System.FormattableString if you want to render for specific country culture (e.g. globalization).</li>
 		  <li>System.FormattableString requires .NET 4.6 runtime.</li>
 		  </ul>
 <pre><code class="cs">//C# 6
@@ -306,14 +324,30 @@ Format(new DateTime(2012, 3, 15)); //returns "15.03.2012"
 		</section>
         <section>
           <h3>Expression Bodied Methods</h3>
+		  <p>Example: Read-only computed property.</p>
+<pre><code class="cs">//C# 6
+string FullName => First + " " + Last;
+</code></pre>		  		
+<pre><code class="cs">//C# 5
+string FullName
+{
+  get
+  {
+    return First + " " + Last;
+  }
+}
+</code></pre>	
+		</section>	  				
+        <section>
+          <h3>Expression Bodied Methods</h3>
 		  <p>Example: Method that immediately returns a value.</p>
 <pre><code class="cs">//C# 6
-double ConvertCtoF(double temp) => temp * 2 + 30;
+double ConvertCtoF(double temp) => (temp * 9/5) + 32;
 </code></pre>		  		
 <pre><code class="cs">//C# 5
 double ConvertCtoF(double temp)
 {
-  return temp * 2 + 30;
+  return (temp * 9/5) + 32;
 }
 </code></pre>	
 		</section>	  		
@@ -327,22 +361,6 @@ void Log() => Console.WriteLine(First + " " + Last);
 void Log()
 {
   Console.WriteLine(First + " " + Last);
-}
-</code></pre>	
-		</section>	  		
-        <section>
-          <h3>Expression Bodied Methods</h3>
-		  <p>Example: Read-only computed property.</p>
-<pre><code class="cs">//C# 6
-string FullName => First + " " + Last;
-</code></pre>		  		
-<pre><code class="cs">//C# 5
-string FullName
-{
-  get
-  {
-    return First + " " + Last;
-  }
 }
 </code></pre>	
 		</section>	  		
@@ -372,10 +390,12 @@ Customer this[long id]
 		  <li><b>Why?</b> Useful for creating immutable types.</li>
 		  </ul>
 <pre><code class="cs">//C# 6
-public string FullName { get; };
+public string FullName { get; }; //read-only
+public string FirstName { get; set; }; //read-write
 </code></pre>		  		
 <pre><code class="cs">//C# 5
-public string FullName { get; private set; };
+public string FullName { get; private set; }; //read-only
+public string FirstName { get; set; }; //read-write
 </code></pre>		  		
 		</section>	  		
 		
@@ -386,6 +406,7 @@ public string FullName { get; private set; };
 		  <h4>Initialization</h4>
 		  <ul>
 		  <li>Can initialize auto properties like fields now.</li>
+		  <li>Initializer runs when instance created before constructor is run.</li>
 		  <li><b>Why?</b> Same benefits of field initializers. For simple classes, can avoid writing constructor.</li>
 		  </ul>
 <pre><code class="cs">//C# 6
@@ -398,16 +419,7 @@ public DateTime Created { get; } = DateTime.UtcNow;
 
 <!--  ==================== Closing Material =================== -->										
         <section>
-          <h3>Immutable Type Example</h3>
-		  <ul>
-		  <li>Immutable types eliminate side effects and can simplify multi-threaded programming.</li>
-		  <li>In C# 5, it was verbose to write immutable types, putting them at a disadvantage.</li>
-		  <li>In C# 6, immutable types are on par with mutable types.</li>
-		  <li>DEMO</li>
-		  </ul>
-		</section>	  		
-        <section>
-          <h3>My top 5 new features</h3>
+          <h3>My top 5 new features with one last DEMO</h3>
 		  <ol>
 		    <li>Null conditionals, ?. and ?[]</li>
 		    <li>String interpolation</li>
@@ -417,13 +429,13 @@ public DateTime Created { get; } = DateTime.UtcNow;
 		  </ol>
 		</section>	  		
         <section>
-          <h3>Thanks</h3>
+          <h3>Thanks, Any Questions?</h3>
 		  <ul>
 		    <li>Kip Streithorst</li>
-			<li>Sample Code: FIX</li>
-			<li>Twitter: <a href="http://twitter.com/itsnull">@itsnull</a></li>
-			<li>Blog: <a href="http://itsnull.com/">http://itsnull.com/</a></li>
-			<li>Presentation: <a href="http://itsnull.com/presentations/csharp6/">http://itsnull.com/presentations/csharp6/</a>
+			<li>Sample Code: <a target="_blank" href="https://github.com/kstreith/csharp6">https://github.com/kstreith/csharp6</a></li>
+			<li>Twitter: <a target="_blank" href="http://twitter.com/itsnull">@itsnull</a></li>
+			<li>Blog: <a target="_blank" href="http://itsnull.com/">http://itsnull.com/</a></li>
+			<li>Presentation: <a target="_blank" href="http://itsnull.com/presentations/csharp6/">http://itsnull.com/presentations/csharp6/</a>
 		  </ul>
 		</section>	  		
 		
