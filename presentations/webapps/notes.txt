@@ -86,8 +86,22 @@ Can you go too far with javascript? Maybe/Maybe not
 	In an app that isn't progressive, all the page start JS has to finish executing before the user can use the page.
 	In a progressive app, as pieces of the page start JS finishes executing those parts of the page are turned on and can interacted with.
 
-
-
+Normal concerns amplified
+-------------------------
+Concurrency/Data storage
+  No longer required to touch db on every click
+  Client-side can assume back-end calls succeeded, update UI, and only deal with errors when they happen.
+  For low concurrency scenarios, e.g. favorite one of my posts, no need to pull latest data from db, assume browser has the latest
+  Detecting concurrency problems and prevent overwrites or perform automatic merges
+  Ignore concurrency problems and last write wins
+  During updates, server can use web sockets to push updates to all connected interested clients (e.g. chat)
+  Updates can now happen without clicks (auto save every X minutes/seconds)
+  What happens when the ajax fails because user login timed-out? Does user see that message?
+  Can store data other places than the server, e.g. HTML5 local storage
+    store in local storage, talk to server later
+	only ever store in local storage, e.g. user preferences, always keep this tab open
+	cache things in local storage
+  Application can be made to work offline, service workers
 	
 JS Architectures
 ----------------
@@ -111,8 +125,11 @@ Full separation (e.g. traditional thick client development techniques)
   Dependency Injection 
   Factories, Singletons
   
+Traditional OOP vs Functional vs Mixins
+  Emulate traditional OOP
+  Embrace prototypical inheritance, use mixins
   Functional programming with immutable data structures
-  
+
 Async handling
   Callbacks
   Promises
@@ -145,7 +162,9 @@ HTML Architectures
 Responsive design
 Responsive images
 
-Other stuff
------------
-Doesn't always have to be client driving communication with server
-Web sockets provides two-way communication - so server can initiate messages
+Frameworks
+----------
+Do I need one?
+  Which one?
+
+Build your own
