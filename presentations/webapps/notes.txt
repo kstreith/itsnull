@@ -1,0 +1,151 @@
+Front-end & Back-end coupling
+-----------------------------
+
+Original Web App - Every action (click) goes back to the server, processed on server and new entire HTML page is returned. Users computer is a thin client.
+"Modern" web app - Javascript required, some/most of the heavy lifting is done client-side. Users computer is a thick client.
+
+Architectures
+
+  SPA - single page app
+     all HTML/JS/CSS for all pages is sent on first request to server, everything after that, only data is sent bw/ client&server using javascript
+	 think gmail, google docs, google maps
+
+  There are mixes of these
+  Per screen - just HTML/JS/CSS relevant to screen of app you are interacting with is sent down. data is sent bw/ client&server using javascript.
+  
+  Important differences
+     - what happens to send initial page load down to client from server?
+	      - render html, including js/css tags
+		  - talk to db to put data into returned page?
+		      Original Web - yes always, your back-end is "probably" coupled to your front-end.
+			  "Modern" App - probably not, no talking to db to get data.
+			    Once JS is executing in the front-end, it makes AJAX requests to your back-end to get data from db.
+				Now, your front-end is not as coupled to your back-end.
+				Similiar to iOS/Android/Networked Desktop App - data isn't baked into the app, only UI and code for UI.
+				Once app starts executing it makes requests over the network/filesystem to get data and then renders said data into the UI.
+				
+	PROS & CONS
+	-----------
+	- Original Web app
+	    client can be anything, no JS required, it only needs to understand HTML/CSS. Search Engine, screen reader can parse this, also low powered devices (e.g. thin clients).
+		for your code (e.g. business logic, validation) you control the execution environment, it's your server.
+		your code is executing in a hostile environment, unknown hardware & unknown support of javascript with the user's ability to read/modify/copy your javascript.
+		
+	- Modern Web app
+	    client has a powerful device, computer, laptop, tablet, smart phone, let's use it.
+		more places to fail, search engine may not understand, screen reader may not understand, javascript might throw run-time exceptions and app fails on users browser, but you aren't aware of it.
+		can send only data back and forth - can improve performance instead of data and surrounding markup (HTML) and styling (CSS).
+		architecture is similiar to other apps (iOS/Android) - so can write back-end API once and re-use it between web app, iOS, Android app, or re-use back-end when you re-write front-end in a few years.
+		the user can see the page, scroll it, navigate to another page quicker, because they aren't waiting on db calls to complete before they get any HTML back from the server.
+		
+	Can still mix these concepts for performance reasons, internationalization reasons, wider platform support, one is NOT better than another in all cases.
+	Can this delegation between client/server be decided dynamically? Sure
+	  This is isomorphic javascript or universal javascript, run javascript both on the server and in the browser.
+	  You can then dynamically decide what executes where, e.g. fetch data from the db.
+	
+Can you still have coupling bw/ front-end/back-end even in a modern web app? Sure
+  Just technology coupling, everything is in MVC project, so upgrading assemblies, .NET version affects front-end and back-end.
+  Models - shared models to represent data in UI and data that is sent to/from back-end
+  Validation - have server-side validation generate client-side JS that does validation.
+  Is this coupling good/bad?
+    Good, if you are only ever going to have one client for your back-end (e.g. web app) you can ensure things like model/validation are only expressed once and re-used everywhere.
+	Bad, you are making it hard to update one without the other, potentially even in minor ways.
+	This can be pronounced when you want to update the front-end (likely a few years down the road) but don't want to update your back-end which is now re-usable.
+	
+Can you use ensure front-end & back-end completely decoupled? Yes
+  They only have to agree on a HTTP API interface.
+  You can use .NET for back-end API and static HTML served from nodejs for front-end.
+  Or you can simply create separate .NET projects for each.
+  They should be hosted on the same domain though to avoid cross-domain restrictions, just because they are on the same domain doesn't mean they have to be on the same physical/virtual server.
+  You can ensure this separation by building a mocked back-end (a fake implementation of your API).
+  You may have to duplicate everything though, models, validation, etc and ensure they stay in sync with each other.
+    You can go the hyper-media route (e.g. the back-end is completely self describing, it describes it models, their fields, their relationships and potentially their validations, in which base the front-end can dynamically parse this information)
+
+Can you go too far with javascript? Maybe/Maybe not
+  You have a common page layout, e.g.
+    <div class="form-group">
+	  <label for="FirstName">First Name: </label>
+	  <div>
+	    <input class="input-ctrl" type="text" id="FirstName" name="FirstName" />
+		<div class="error-msg hidden"></div> 
+	  </div>
+	</div>
+	
+	You don't want to copy/paste that 50+ times in your application because when you decide to change something about that pattern, you have to update 50+ instances in your app and ideally test all updated instances.
+	You want to create a common widget/helper for that. If you are using a heavy client-side framework (e.g. Angular, Ember, Aurelia) you solve this code re-use problem using javascript that gets executed in the users browser.
+	So, now to display a form with 10 inputs, you have to execute your widget's JS 10 times in the users browser and the user has to wait until that JS is done before they can interact with your form.
+	Maybe that's good, maybe it's bad. But you have a server-side framework, you could do that work on the server and the send the results to the browser such that no extra JS needs to be executed to solve your code re-use issue.
+
+  The app loading spinner or mysterious flash or pause because you can't scroll.
+    In some heavy client-side frameworks (Angular, Aurelia) nothing in the page is rendered until the framework has bootstrapped and then starts executing your JS which then renders your associated views/templates.
+	Those frameworks have some methods to mitigate this effect, only binding those frameworks to portions of the page or other techniques.
+	You can also opt to fix this with JS frameworks that provide both client and server-side rendering options (Meteor, React, Ember with Fast Boot).
+	Or you can opt for developing your app in a progressive load scenario with frameworks that support this (Knockout, JQuery).
+	Get your initial page to display with JS disabled with only required interaction working, e.g. maybe just navigation.
+	Advanced interaction is progressively enabled as JS executes in your application.
+	In an app that isn't progressive, all the page start JS has to finish executing before the user can use the page.
+	In a progressive app, as pieces of the page start JS finishes executing those parts of the page are turned on and can interacted with.
+
+
+
+	
+JS Architectures
+----------------
+Script management
+  one big script vs. many scripts
+  Dependencies between scripts
+  Order dependencies between scripts
+  JS default for a variable is to create a global variable, attempts to mitigate that.
+  ES6 modules, other js module systems (RequireJS, SystemJS, WebPack, Browserify, etc...)
+  IIFE with "js namespaces"
+  
+View & Non-view code separation
+  View code has dependency on HTML, specifically DOM
+  Non-view code to work without dependency on HTML, DOM
+  Permits unit-testing of non-view code using vanilla JS unit testing framework
+  Similiar to reasons to do this for XAML/WPF apps.
+  
+Full separation (e.g. traditional thick client development techniques)
+  MVC, MVVM
+  Services
+  Dependency Injection 
+  Factories, Singletons
+  
+  Functional programming with immutable data structures
+  
+Async handling
+  Callbacks
+  Promises
+  Async/Await - coming to javascript maybe?
+  
+A better language
+  ES6 Transpilers - use ES6 now but compile down to older JS supported by current/older browsers
+  Typescript - add optional static typing
+  CoffeeScript, ClojureScript
+  Many more...
+  
+Adding features to older browsers
+  Polyfills
+  
+Linting
+  JSHint, JSLint, ESLint
+
+CSS Architectures
+-----------------
+A better language than CSS
+  SASS, LESS - cool features, but compiles down to vanilla CSS
+
+Cross browser CSS - look up this tool?
+
+Pre-built CSS for common cases
+  Bootstrap, Foundation
+  
+HTML Architectures
+------------------
+Responsive design
+Responsive images
+
+Other stuff
+-----------
+Doesn't always have to be client driving communication with server
+Web sockets provides two-way communication - so server can initiate messages
