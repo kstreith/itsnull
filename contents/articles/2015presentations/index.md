@@ -1,7 +1,7 @@
 ---
 title: Some of my 2015 presentations
 author: kstreith 
-date: 2015-10-16
+date: 2015-10-15
 template: article.jade
 ---
 
