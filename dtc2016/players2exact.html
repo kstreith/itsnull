@@ -1,0 +1,1259 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DTC Library</title>
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="DTC Library">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="DTC Library">
+    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
+
+    <!-- Color the status bar on mobile devices -->
+    <meta name="theme-color" content="#2F3BA2">
+    
+    <style>
+      body {
+        font-size: 2rem;
+      }
+      .header {
+      }
+      .gameitem {
+        background-color: lightsteelblue;
+        border-radius: 5px;
+        padding: 5px;
+        margin-bottom: 5px;
+        position: relative;
+        clear: both;
+      }
+      .gameitemcontrols {
+        float: right;
+      }
+      button, input {
+        font-size: 2rem;
+      }
+      .header {
+        margin-bottom: 5px;
+      }      
+      .gameowned {
+        background-color: deepskyblue;
+      }
+      .gamesummary {
+        font-size: 50%;
+      }
+      .form-input {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        color: #555;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        padding: 6px 12px;
+      }
+    </style>
+  </head>
+  <body>
+  <div class="header">
+    <div>Dice Tower Con 2016 Library</div>
+    <div>All 2 Player Only Games</div>
+    <div style="font-size: 0.8rem; font-style: italic;">
+      <p>For the official Dice Tower Con 2016 Library list, please go to <a href="http://www.boardgaming.info/convention/library/Library_List_2016.htm">DTC site</a>.</p>
+      <p>This site was created by combining the official libary list with data pulled from boardgamegeek, many thanks to those folks. Some corrections to DTC library list were made, may not be up-to-date with official list. This page created by Kip Streithorst (mipville on bgg). Hope this is helpful.</p>
+    </div>
+    <div class="buttonbar">
+      Players: <a href="index.html">All</a> <a href="players2exact.html">2</a> <a href="players2.html">2+</a> <a href="players3.html">3+</a> <a href="players4.html">4+</a> <a href="players5.html">5+</a> <a href="players6.html">6+</a> <a href="players7.html">7+</a> <a href="players8.html">8+</a>
+    </div>
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/173346/7-wonders-duel" target="_blank">BGG</a>
+    </div>  
+    <div>7 Wonders: Duel</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 8.21</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2015</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Ancient, Card Game, City Building, Civilization</div>
+      <div><b>Mechanics:</b> Card Drafting, Set Collection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/79828/few-acres-snow" target="_blank">BGG</a>
+    </div>  
+    <div>A Few Acres of Snow</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.46</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2011</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 60 - 120</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Age of Reason, American Indian Wars, Card Game, Territory Building, Wargame</div>
+      <div><b>Mechanics:</b> Area Control / Area Influence, Card Drafting, Deck / Pool Building, Hand Management, Point to Point Movement</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/176013/abordaje" target="_blank">BGG</a>
+    </div>  
+    <div>Abordaje!</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.03</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2015</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 10 - 25</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Nautical, Pirates, Print &amp; Play</div>
+      <div><b>Mechanics:</b> Area Control / Area Influence, Card Drafting, Rock-Paper-Scissors, Simultaneous Action Selection, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/119890/agricola-all-creatures-big-and-small" target="_blank">BGG</a>
+    </div>  
+    <div>Agricola: All Creatures Big
+  and Small</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.56</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2012</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Animals, Farming</div>
+      <div><b>Mechanics:</b> Area Enclosure, Tile Placement, Worker Placement</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/154458/akrotiri" target="_blank">BGG</a>
+    </div>  
+    <div>Akrotiri</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.40</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Civilization, Exploration</div>
+      <div><b>Mechanics:</b> Hand Management, Pick-up and Deliver, Tile Placement</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/124742/android-netrunner" target="_blank">BGG</a>
+    </div>  
+    <div>Android Netrunner</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 8.09</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2012</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Bluffing, Card Game, Science Fiction</div>
+      <div><b>Mechanics:</b> Action Point Allowance System, Hand Management, Secret Unit Deployment, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/104955/antike-duellum" target="_blank">BGG</a>
+    </div>  
+    <div>Antike Duellum</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.24</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2012</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 75 - 75</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Ancient, Civilization, Fighting, Nautical, Territory Building</div>
+      <div><b>Mechanics:</b> Area Control / Area Influence, Area Movement, Hand Management</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/56931/arena-roma-ii" target="_blank">BGG</a>
+    </div>  
+    <div>Arena Roma 2</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.99</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2009</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Ancient, Card Game, Dice</div>
+      <div><b>Mechanics:</b> Action Point Allowance System, Card Drafting, Dice Rolling, Hand Management</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/145633/ascension-apprentice-edition" target="_blank">BGG</a>
+    </div>  
+    <div>Ascension: Apprentice Edition</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.20</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2013</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Fantasy</div>
+      <div><b>Mechanics:</b> Card Drafting, Deck / Pool Building, Hand Management</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/149459/assaultous" target="_blank">BGG</a>
+    </div>  
+    <div>Assaultous</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.87</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2013</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Abstract Strategy, Wargame</div>
+      <div><b>Mechanics:</b> Area Control / Area Influence, Dice Rolling, Modular Board</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/5716/balloon-cup" target="_blank">BGG</a>
+    </div>  
+    <div>Balloon Cup</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.72</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2003</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Aviation / Flight, Card Game</div>
+      <div><b>Mechanics:</b> Hand Management, Set Collection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/127129/batman-arkham-city-escape" target="_blank">BGG</a>
+    </div>  
+    <div>Batman Arkham City Escape</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 5.91</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2013</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 40 - 40</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Comic Book / Strip, Fighting, Video Game Theme</div>
+      <div><b>Mechanics:</b> Action Point Allowance System, Dice Rolling, Grid Movement, Hand Management, Secret Unit Deployment</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/760/battle-line" target="_blank">BGG</a>
+    </div>  
+    <div>Battle Line</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.43</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2000</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Ancient, Card Game, Deduction</div>
+      <div><b>Mechanics:</b> Hand Management, Set Collection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/135219/battle-five-armies" target="_blank">BGG</a>
+    </div>  
+    <div>Battle of Five Armies 2nd
+  Edition</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 8.07</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 90 - 240</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Adventure, Fantasy, Miniatures, Novel-based, Wargame</div>
+      <div><b>Mechanics:</b> Area Movement, Dice Rolling, Hand Management</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/551/battle-cry" target="_blank">BGG</a>
+    </div>  
+    <div>Battlecry</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.17</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2000</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> American Civil War, Wargame</div>
+      <div><b>Mechanics:</b> Dice Rolling, Hand Management, Modular Board</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/146439/battlelore-second-edition" target="_blank">BGG</a>
+    </div>  
+    <div>Battlelore 2nd Edition</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 8.02</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2013</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 90 - 90</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Fantasy, Miniatures, Wargame</div>
+      <div><b>Mechanics:</b> Campaign / Battle Card Driven, Dice Rolling, Grid Movement, Modular Board, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/16395/blokus-duo" target="_blank">BGG</a>
+    </div>  
+    <div>Blokus: Travel Edition</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.90</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2005</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 15 - 15</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Abstract Strategy, Territory Building</div>
+      <div><b>Mechanics:</b> Tile Placement</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/112373/braverats" target="_blank">BGG</a>
+    </div>  
+    <div>BraveRats</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.56</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2011</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 15 - 15</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Fantasy</div>
+      <div><b>Mechanics:</b> Simultaneous Action Selection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/114903/castellan" target="_blank">BGG</a>
+    </div>  
+    <div>Castellon</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.44</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2013</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Medieval</div>
+      <div><b>Mechanics:</b> Area Enclosure, Hand Management</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/36932/claustrophobia" target="_blank">BGG</a>
+    </div>  
+    <div>Claustrophobia</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.64</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2009</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Horror, Adventure, Fantasy, Fighting, Miniatures</div>
+      <div><b>Mechanics:</b> Dice Rolling, Modular Board, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/163929/coconuts-duo" target="_blank">BGG</a>
+    </div>  
+    <div>Coconuts Duo</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.29</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 20 - 20</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Action / Dexterity, Children&#39;s Game, Expansion for Base-game</div>
+      <div><b>Mechanics:</b> </div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/21050/combat-commander-europe" target="_blank">BGG</a>
+    </div>  
+    <div>Combat Commander: Europe</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.94</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2006</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 60 - 180</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Wargame, World War II</div>
+      <div><b>Mechanics:</b> Campaign / Battle Card Driven, Hex-and-Counter, Simulation, Variable Phase Order</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/62222/commands-colors-napoleonics" target="_blank">BGG</a>
+    </div>  
+    <div>Commands &amp; Colors:
+  Napoleonics</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.97</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2010</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 90 - 90</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Napoleonic, Wargame</div>
+      <div><b>Mechanics:</b> Campaign / Battle Card Driven, Dice Rolling, Hand Management, Hex-and-Counter, Modular Board</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/14105/commands-colors-ancients" target="_blank">BGG</a>
+    </div>  
+    <div>Commands and Colors Ancients</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.82</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2006</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 60 - 60</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Ancient, Wargame</div>
+      <div><b>Mechanics:</b> Campaign / Battle Card Driven, Dice Rolling, Hand Management, Hex-and-Counter, Modular Board</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/2961/confusion-espionage-and-deception-cold-war" target="_blank">BGG</a>
+    </div>  
+    <div>Confusion: Espionage and Deception in the Cold War</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.16</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 1992</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Abstract Strategy, Bluffing, Deduction, Spies/Secret Agents</div>
+      <div><b>Mechanics:</b> Grid Movement, Pick-up and Deliver</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/142262/draco-magi" target="_blank">BGG</a>
+    </div>  
+    <div>Draco Magi</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.74</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Fantasy</div>
+      <div><b>Mechanics:</b> Area Control / Area Influence, Card Drafting, Deck / Pool Building, Hand Management</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/36235/duke" target="_blank">BGG</a>
+    </div>  
+    <div>Duke</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.63</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2013</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Abstract Strategy, Medieval</div>
+      <div><b>Mechanics:</b> Grid Movement, Tile Placement</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/403/elk-fest" target="_blank">BGG</a>
+    </div>  
+    <div>Elk Fest</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.19</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 1999</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 15 - 15</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Action / Dexterity, Animals, Racing</div>
+      <div><b>Mechanics:</b> Modular Board</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/146388/enders-game-battle-school" target="_blank">BGG</a>
+    </div>  
+    <div>Ender&#39;s Game: Battle School</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.07</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2013</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Movies / TV / Radio theme, Science Fiction, Wargame</div>
+      <div><b>Mechanics:</b> Dice Rolling, Grid Movement, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/165662/haru-ichiban" target="_blank">BGG</a>
+    </div>  
+    <div>Haru Ichiban</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.99</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 20 - 20</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Animals</div>
+      <div><b>Mechanics:</b> Grid Movement, Memory, Pattern Building, Simultaneous Action Selection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/53093/heroes-normandie" target="_blank">BGG</a>
+    </div>  
+    <div>Heroes of Normandie</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.74</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 60</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Wargame, World War II</div>
+      <div><b>Mechanics:</b> Dice Rolling, Grid Movement, Hex-and-Counter, Modular Board, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/54043/jaipur" target="_blank">BGG</a>
+    </div>  
+    <div>Jaipur</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.54</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2009</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Animals, Card Game</div>
+      <div><b>Mechanics:</b> Card Drafting, Hand Management, Set Collection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/12002/jambo" target="_blank">BGG</a>
+    </div>  
+    <div>Jambo</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.08</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2004</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Economic</div>
+      <div><b>Mechanics:</b> Action Point Allowance System, Hand Management, Set Collection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/37836/julius-caesar" target="_blank">BGG</a>
+    </div>  
+    <div>Julius Caesar</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.83</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2010</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 120 - 120</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Ancient, Civil War, Wargame</div>
+      <div><b>Mechanics:</b> Campaign / Battle Card Driven, Dice Rolling, Hand Management, Point to Point Movement, Secret Unit Deployment, Simultaneous Action Selection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/394/kahuna" target="_blank">BGG</a>
+    </div>  
+    <div>Kahuna</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.66</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 1998</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 40</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Abstract Strategy</div>
+      <div><b>Mechanics:</b> Area Control / Area Influence, Card Drafting, Hand Management, Route/Network Building, Take That</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/148290/longhorn" target="_blank">BGG</a>
+    </div>  
+    <div>Longhorn</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.66</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2013</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 15 - 15</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Abstract Strategy, American West, Animals</div>
+      <div><b>Mechanics:</b> Area Control / Area Influence, Grid Movement, Set Collection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/50/lost-cities" target="_blank">BGG</a>
+    </div>  
+    <div>Lost Cities: The Card Game</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.13</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 1999</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Exploration</div>
+      <div><b>Mechanics:</b> Hand Management, Set Collection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/101721/mage-wars-arena" target="_blank">BGG</a>
+    </div>  
+    <div>Mage Wars</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.92</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2012</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 90 - 90</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Fantasy, Fighting</div>
+      <div><b>Mechanics:</b> Dice Rolling, Grid Movement, Simultaneous Action Selection, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/17396/manoeuvre" target="_blank">BGG</a>
+    </div>  
+    <div>Manoeuvre</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.31</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2008</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 60 - 60</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Napoleonic, Wargame</div>
+      <div><b>Mechanics:</b> Campaign / Battle Card Driven, Dice Rolling, Grid Movement, Hand Management, Modular Board, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/10630/memoir-44" target="_blank">BGG</a>
+    </div>  
+    <div>Memoir 44</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.53</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2004</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 60</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Wargame, World War II</div>
+      <div><b>Mechanics:</b> Area Control / Area Influence, Campaign / Battle Card Driven, Dice Rolling, Grid Movement, Hand Management, Modular Board, Simulation</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/21763/mr-jack" target="_blank">BGG</a>
+    </div>  
+    <div>Mr. Jack</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.10</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2006</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Deduction, Murder/Mystery</div>
+      <div><b>Mechanics:</b> Grid Movement, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/1265/mystery-rummy-jekyll-hyde" target="_blank">BGG</a>
+    </div>  
+    <div>Mystery Rummy: Jekyll &amp; Hyde</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.63</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2001</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Murder/Mystery</div>
+      <div><b>Mechanics:</b> Hand Management, Set Collection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/120605/neuroshima-convoy" target="_blank">BGG</a>
+    </div>  
+    <div>Neuroshima: Convoy 2nd
+  Edition</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.94</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2012</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 40</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Fighting, Science Fiction</div>
+      <div><b>Mechanics:</b> Area Movement, Hand Management, Take That</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/125311/niya" target="_blank">BGG</a>
+    </div>  
+    <div>Niya</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.73</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2012</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 10 - 10</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Abstract Strategy</div>
+      <div><b>Mechanics:</b> Pattern Building</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/160592/oklahoma-boomers" target="_blank">BGG</a>
+    </div>  
+    <div>Oklahoma Boomers</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.79</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 20 - 20</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Abstract Strategy, American West, Territory Building</div>
+      <div><b>Mechanics:</b> Area Control / Area Influence, Area Enclosure, Area Movement</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="http://boardgamegeek.com/boardgame/160477/onitama" target="_blank">BGG</a>
+    </div>  
+    <div>Onitama</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.67</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 10 - 10</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Abstract Strategy</div>
+      <div><b>Mechanics:</b> Grid Movement</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/163412/patchwork" target="_blank">BGG</a>
+    </div>  
+    <div>Patchwork</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.89</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 15 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Abstract Strategy, Puzzle</div>
+      <div><b>Mechanics:</b> Card Drafting, Tile Placement, Time Track</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/125548/pixel-tactics" target="_blank">BGG</a>
+    </div>  
+    <div>Pixel Tactics</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.21</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2012</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Fantasy, Video Game Theme</div>
+      <div><b>Mechanics:</b> Hand Management, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/76150/revolver" target="_blank">BGG</a>
+    </div>  
+    <div>Revolver</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.98</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2011</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> American West, Card Game, Fighting</div>
+      <div><b>Mechanics:</b> Hand Management</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/128733/revolver-2-last-stand-malpaso" target="_blank">BGG</a>
+    </div>  
+    <div>Revolver 2</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.10</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2012</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> American West, Bluffing, Card Game, Fighting</div>
+      <div><b>Mechanics:</b> Hand Management</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/136000/rivet-wars-eastern-front" target="_blank">BGG</a>
+    </div>  
+    <div>Rivet Wars</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.34</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2013</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Miniatures, Wargame</div>
+      <div><b>Mechanics:</b> Dice Rolling, Grid Movement, Modular Board, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/201/rose-king" target="_blank">BGG</a>
+    </div>  
+    <div>Rose King</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.80</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 1997</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Abstract Strategy, Medieval</div>
+      <div><b>Mechanics:</b> Grid Movement, Hand Management</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/54625/space-hulk-third-edition" target="_blank">BGG</a>
+    </div>  
+    <div>Space Hulk</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.58</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2009</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 60 - 60</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Fighting, Miniatures, Science Fiction</div>
+      <div><b>Mechanics:</b> Action Point Allowance System, Dice Rolling, Grid Movement, Modular Board</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/147020/star-realms" target="_blank">BGG</a>
+    </div>  
+    <div>Star Realms</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.68</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 20 - 20</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Fighting, Science Fiction</div>
+      <div><b>Mechanics:</b> Card Drafting, Deck / Pool Building, Take That</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/160964/star-wars-empire-vs-rebellion" target="_blank">BGG</a>
+    </div>  
+    <div>Star Wars: Empire vs.
+  Rebellion</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.57</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 60 - 60</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Bluffing, Card Game, Movies / TV / Radio theme, Science Fiction</div>
+      <div><b>Mechanics:</b> Deck / Pool Building, Hand Management, Memory, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/2338/starship-catan" target="_blank">BGG</a>
+    </div>  
+    <div>Starship Catan</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.86</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2001</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 60 - 60</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Exploration, Science Fiction, Space Exploration</div>
+      <div><b>Mechanics:</b> Dice Rolling, Memory, Press Your Luck, Trading</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/159632/strife-legacy-eternals" target="_blank">BGG</a>
+    </div>  
+    <div>Strife</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.09</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 60 - 60</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Fantasy</div>
+      <div><b>Mechanics:</b> Hand Management, Pattern Building, Simultaneous Action Selection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/179460/stronghold-2nd-edition" target="_blank">BGG</a>
+    </div>  
+    <div>Stronghold: Second Edition</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 8.04</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2016</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 90</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Fantasy, Fighting, Medieval</div>
+      <div><b>Mechanics:</b> Action Point Allowance System, Area Control / Area Influence, Point to Point Movement, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/161742/tacdex-halo" target="_blank">BGG</a>
+    </div>  
+    <div>TacDex: Halo</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 5.95</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 10 - 10</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Fighting</div>
+      <div><b>Mechanics:</b> </div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/161743/tacdex-pirates" target="_blank">BGG</a>
+    </div>  
+    <div>TacDex: Pirates</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 5.49</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 10 - 10</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Fighting, Pirates</div>
+      <div><b>Mechanics:</b> </div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/173572/tacdex-super-mario" target="_blank">BGG</a>
+    </div>  
+    <div>TacDex: Super Mario</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.94</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 10 - 15</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Children&#39;s Game, Fighting, Video Game Theme</div>
+      <div><b>Mechanics:</b> </div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/161744/tacdex-walking-dead" target="_blank">BGG</a>
+    </div>  
+    <div>TacDex: The Walking Dead</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 4.94</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 10 - 10</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Fighting, Zombies</div>
+      <div><b>Mechanics:</b> </div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/908/tally-ho" target="_blank">BGG</a>
+    </div>  
+    <div>Tally Ho!</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.08</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 1973</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Animals</div>
+      <div><b>Mechanics:</b> Grid Movement</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/176229/tides-time" target="_blank">BGG</a>
+    </div>  
+    <div>Tides of Time</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.98</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2015</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 15 - 20</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Ancient, Card Game</div>
+      <div><b>Mechanics:</b> Card Drafting, Set Collection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="http://boardgamegeek.com/boardgame/175293/trambahn" target="_blank">BGG</a>
+    </div>  
+    <div>Trambahn</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.14</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2015</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Trains, Transportation</div>
+      <div><b>Mechanics:</b> Card Drafting</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/12333/twilight-struggle" target="_blank">BGG</a>
+    </div>  
+    <div>Twilight Struggle</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 8.35</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2005</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 180 - 180</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Modern Warfare, Political, Wargame</div>
+      <div><b>Mechanics:</b> Area Control / Area Influence, Campaign / Battle Card Driven, Dice Rolling, Hand Management, Simultaneous Action Selection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/34969/ubongo-duel" target="_blank">BGG</a>
+    </div>  
+    <div>Ubongo Duel</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.92</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2008</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 15 - 40</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Puzzle, Real-time</div>
+      <div><b>Mechanics:</b> Pattern Building</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/116593/uno-dice-game" target="_blank">BGG</a>
+    </div>  
+    <div>Uno: Dice Game</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 4.98</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2011</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 15 - 15</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Abstract Strategy, Dice</div>
+      <div><b>Mechanics:</b> Dice Rolling</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/128698/vampire-empire" target="_blank">BGG</a>
+    </div>  
+    <div>Vampire Empire</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 6.88</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2012</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Bluffing, Card Game, Deduction, Medieval</div>
+      <div><b>Mechanics:</b> Hand Management</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/156776/warhammer-40000-conquest" target="_blank">BGG</a>
+    </div>  
+    <div>Warhammer Conquest</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.57</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2014</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 45 - 45</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Card Game, Fighting, Science Fiction</div>
+      <div><b>Mechanics:</b> Area Control / Area Influence, Hand Management, Set Collection</div>
+    </div>    
+  </div>
+  
+  <div class="gameitem">
+    <div class="gameitemcontrols">
+      <a style="" href="https://boardgamegeek.com/boardgame/43022/yomi" target="_blank">BGG</a>
+    </div>  
+    <div>Yomi</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Rating:</b> 7.19</div>
+    <div class="gamesummary" style="float: right"><b>Year:</b> 2011</div>
+    <div class="gamesummary" style="float: left; clear: both;"><b>Players:</b> 2 - 2</div>
+    <div class="gamesummary" style="float: right"><b>Time:</b> 30 - 30</div>
+    <div style="clear: both"></div>
+    <div class="gamesummary">
+      <div><b>Categories:</b> Bluffing, Card Game, Fantasy, Fighting</div>
+      <div><b>Mechanics:</b> Hand Management, Rock-Paper-Scissors, Simultaneous Action Selection, Variable Player Powers</div>
+    </div>    
+  </div>
+  
+<!--  
+  <div style="display: none" class="gamelist" data-bind="visible: showGameList, foreach: games">
+    <div class="gameitem" data-bind="css: {'gameowned': owned }">
+      <div class="gameitemcontrols">
+        <a style="" data-bind="attr: {'href': url}" target="_blank">BGG</a>        
+        <span style="color: gold;" data-bind="visible: fav, click: $parent.toggle">&#9733;</span>
+        <span style="" data-bind="visible: !fav(), click: $parent.toggle">&#9734;</span>
+      </div>
+      <div data-bind="text: name, click: $parent.toggleDetails"></div>
+      <div class="gamesummary" style="float: left; clear: both;">Rating: <span data-bind="text: rating"></span></div>
+      <div class="gamesummary" style="float: right">Year: <span data-bind="text: yearPublished"></span></div>
+      <div class="gamesummary" style="float: left; clear: both;">Players: <span data-bind="text: minPlayers"></span> - <span data-bind="text: maxPlayers"></span></div>
+      <div class="gamesummary" style="float: right">Time: <span data-bind="text: minPlayTime"></span> - <span data-bind="text: maxPlayTime"></span></div>
+      <div style="clear: both"></div>
+      <div class="gamesummary" data-bind="visible: showDetails">
+        <div><b>Rating Count:</b> <span data-bind="text: numRatings"></div>
+        <div><b>Categories:</b> <span data-bind="text: categories"></div>
+        <div><b>Mechanics:</b> <span data-bind="text: mechanics"></div>
+        <div><b>Description:</b> <span data-bind="html: description"></div>
+      </div>
+    </div>  
+  </div>
+  <div style="display: none" data-bind="visible: showFilter">
+    <div><input type="checkbox" data-bind="checked: onlyFavs" />Only Favorites</div>
+    <div>Sort: <button type="button" data-bind="click: sortByName">Name</button> <button data-bind="click: sortByRating">Rating</button> <button data-bind="click: sortByTime">Time</button></div>
+  </div>
+  <script src="scripts/service-worker-registration.js"></script>	
+  <script src="scripts/jquery-2.2.4.js"></script>
+  <script src="scripts/knockout-3.4.0.js"></script>
+  <script src="scripts/main.js"></script>
+-->
+
+  </body>
+</html>
