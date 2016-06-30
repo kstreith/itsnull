@@ -1,3 +1,115 @@
+Original vs Modern
+----------
+Original is simpler model
+Original is thin client, defers everything interesting to server
+Modern is thick client
+Modern provides rich applications
+Modern not restricted to clicks to get data
+Modern not restricted to updating whole page at a time
+what are people building? Original? Modern? a mix? why?
+Original - code executed on your server, you know the hardware, exceptions happen, you can capture them?
+Modern - code executed in user's browser, which browser? what hardware? exceptions happen, do you know about them?
+Original - easier for client to deal with, doesn't need a javascript VM, web scraping, search engine indexing, screen readers
+Modern - Very similar to mobile application, step 1 is akin to installing your app, step 2 is app running, discuss e-mail app
+Modern - Can talk to server whenever you want, auto-save every X minutes/seconds.
+Modern - Doesn't require a back-end at all, see this presentation.
+Modern - Updates can be pushed to all connected clients, e.g. chat, twitter (websockets)
+Modern - App can be more responsive, only the parts required need to update & redraw, may not need server (e.g. client-side sorting)
+Modern - Don't need a page for everything, i.e. add/edit/update, can have dialogs or inline edits.
+Modern -Can be made to work offline and then talk to server when it's available (HTML5 local storage, service workers)
+Modern - Choices used to be back-end specific, no longer, front-end choices can be mixed with back-end choices.
+Modern - Not just ASP.NET datepickers, can use any front-end datepicker, not just ASP.NET grids, can you use any front-end grid. Much wider choice.
+
+Developer Workflow
+------------------
+Front-end/back-end teams can be separated, run independently.
+Back-end used to be one big script file, but now we use tools/frameworks to tame that (MVC, OOP, etc.)
+Front-end doesn't need to be one big JS file, can also use tools/frameworks to tame that.
+Unit testing can be done in browser's javascript vm.
+With modern browsers, e.g. developer tools, you can prototype in the browser
+
+Modern - Couple or De-couple
+------------------------
+Validations, Models - are they duplicated? why? why not?
+Is back-end API independent of front-end? only for that front-end?
+Do you use the same technology stack for both front-end/back-end?
+Do you build assuming the front-end will be replaced in 5 years? Do you want that change having effects on vetted back-end?
+
+Complexity
+----------
+When user clicked submit button before, browser became locked. Not now, user can still type away. Disable controls, use modals.
+Before user didn't get page until all data was in the page, not now. Now, they have a page with no data in it. Spinners to the rescue.
+Network may fail intermittently, how to status that? should you?
+App start-up time? Lots of JS, slower start-up time.
+Before you updated the entire page, now you update a piece of the page. What if the other data on the page is now stale?
+Code-reuse, how do you do it, which part of stack?
+What about JS failures or exceptions? Do you know about them, or only users are frustrated?
+How do you use latest front-end techniques? Do you force users to upgrade their browsers?
+
+
+
+Build an app SIG
+-----------------
+Initial app w/ bootstrap css
+Mocked API, no actual back-end
+Child grid - showing mock data
+Chore grid - not working
+
+First meeting goal - get project from GitHub, talk about it, talk about goal when we finish, get chore grid rendering using JQuery or plain DOM using data from mocked API.
+
+Later meetings
+  Dialog to add/edit/delete child
+  Dialog to add chore, mark chore complete
+  Connect to actual back-end, talk about latency issues with back-end
+  Add validation
+  Move dialogs to view and talk about routing, single page app
+  Add grid sorting/filtering
+  Use grid library? Use date picker library?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Front-end & Back-end coupling
 -----------------------------
 
