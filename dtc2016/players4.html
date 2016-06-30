@@ -2,14 +2,18 @@
         alert(error);
     };
     var body = document.getElementsByTagName("body")[0];
+    alert('1');
     body.addEventListener("click", function (evt) {
+      alert('2');    
       var target = evt.target;
       if (target.classList.contains("gametitle")) {
-        console.log('clicked ', target);
+        alert('3');          
+        //console.log('clicked ', target);
         var siblings = target.parentNode.children;
         for (var i = 0; i < siblings.length; ++i) {
           var sibling = siblings[i];
           if (sibling.classList.contains("gamedetails")) {
+            alert('4');
             if (sibling.classList.contains("show")) {
               sibling.classList.remove("show");
             } else {
