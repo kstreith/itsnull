@@ -52,10 +52,9 @@
           <h3>Goal</h3>
           <ul>
             <li>Have an simple existing web app (VS 2013 using WebAPI)</li>
+            <li>Discuss why ASP.Net Core, .Net Core</li>
             <li>Convert to ASP.Net Core and .NET Core</li>
             <li>Demo converted app running on Linux</li>
-            <li>Code for original and converted app available:
-            <a href="https://github.com/kstreith/ConvertingWebApiToAspNetCore">https://github.com/kstreith/ConvertingWebApiToAspNetCore</a></li>
           </ul>
         </section>
         <section>
@@ -99,10 +98,10 @@
         <section>
           <h3>Why not .Net Core?</h3>
           <ul>
-            <li>Slight changes - Reflection</li>
             <li>Removed - App Domains, Remoting, Binary serialization, Sandboxing</li>
             <li>Gone, but might come back - System.Data.DataTable, System.Drawing, XSD, XSLT, System.Net.Mail</li>
-            <li>As of today, most NuGet packges may not run on it. This should improve over time.</li>
+            <li>Slight changes - Reflection</li>            
+            <li>As of today, most NuGet packages may not run on it. This should improve over time.</li>
           </ul>
         </section>
         <section>
@@ -164,16 +163,7 @@
             <li>ApiController class gone, HttpResponseException class gone</li>
             <li>New controller base class, exception gone, routing and model binding changed</li>
             <li>Found WebApiCompatShim, part of ASP.Net Core</li>
-            <li>Contains ApiController, HttpResponseExceptionm, original routing, etc...</li>
-          </ul>
-        </section>
-        <section>
-          <h3>Shim or Not?</h3>
-          <ul>
-            <li>WebApiCompatShim makes transition much easier</li>
-            <li>But new code is using a shim?</li>
-            <li>Haven't researched a MVC shim or know if one is needed</li>
-            <li>Decided to do 2 conversions: first with shim, second without shim</li>
+            <li>Contains ApiController, HttpResponseException, original routing, etc...</li>
           </ul>
         </section>
         <section>
