@@ -18,7 +18,7 @@
     </script>
     
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/beige.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -68,6 +68,24 @@
           </ul>
         </section>
         <section>
+          <h3>What is .Net Core?</h3>
+          <ul>
+            <li>Cross platform, open-source .NET runtime</li>
+            <li>Runs on Linux, Mac OS X and Windows, supported by MS</li>
+            <li>Doesn't have to install globally, smaller footprint</li>
+            <li>Can run isolated and multiple versions side by side</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Why not .Net Core?</h3>
+          <ul>
+            <li>Removed - App Domains, Remoting, Binary serialization, Sandboxing</li>
+            <li>Gone, but might come back - System.Data.DataTable, System.Drawing, XSD, XSLT, System.Net.Mail</li>
+            <li>Slight changes - Reflection</li>            
+            <li>As of today, most NuGet packages may not run on it. This should improve over time.</li>
+          </ul>
+        </section>
+        <section>
           <h3>What is ASP.Net Core?</h3>
           <ul>
             <li>Re-write of MVC and WebAPI</li>
@@ -78,30 +96,12 @@
           </ul>
         </section>
         <section>
-          <h3>What is .Net Core?</h3>
-          <ul>
-            <li>Cross platform, open-source .NET runtime</li>
-            <li>Runs on Linux, Mac OS X and Windows, supported by MS</li>
-            <li>Doesn't have to install globally, smaller footprint</li>
-            <li>Can run isolated and multiple versions side by side</li>
-          </ul>
-        </section>
-        <section>
           <h3>Why not ASP.Net Core?</h3>
           <ul>
             <li>Web.config gone - IIS provided that</li>            
             <li>Manual conversion - MVC, WebAPI pipelines merged, new class names and namespaces.</li>
             <li>WebForms is not part of ASP.NET Core</li>
             <li>SignalR is missing in 1.0.0 release of ASP.Net Core</li>
-          </ul>
-        </section>
-        <section>
-          <h3>Why not .Net Core?</h3>
-          <ul>
-            <li>Removed - App Domains, Remoting, Binary serialization, Sandboxing</li>
-            <li>Gone, but might come back - System.Data.DataTable, System.Drawing, XSD, XSLT, System.Net.Mail</li>
-            <li>Slight changes - Reflection</li>            
-            <li>As of today, most NuGet packages may not run on it. This should improve over time.</li>
           </ul>
         </section>
         <section>
@@ -316,7 +316,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
             <li>WebAPI would serialize a C# class to JSON with the exact same casing</li>
             <li>ASP.Net Core will serialize as JS case by default, so:
             <li>class Person { string FirstName {get; set;} }</li>
-            <li>will serialize as "{firstName: ""}" with ASP.Net Core</li>
+            <li>Will serialize as "{firstName: ""}" with ASP.Net Core</li>
             <li>This is a breaking change</li>
           </ul>
         </section>
@@ -386,7 +386,7 @@ $.ajax({
           <ul>
             <li>WebAPI would check both form and body when model binding complex types</li>
             <li>ASP.Net Core will only check one of them</li>
-            <li>Must use [FromBody] or [FromFrom] attribute on method parameter</li>
+            <li>Must use [FromBody] or [FromForm] attribute on method parameter</li>
             <li>In-depth blog post: <a href="http://andrewlock.net/model-binding-json-posts-in-asp-net-core/">http://andrewlock.net/model-binding-json-posts-in-asp-net-core/</a></li>           
           </ul>
         </section>
