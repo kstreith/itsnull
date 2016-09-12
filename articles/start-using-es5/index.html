@@ -47,35 +47,38 @@
 <p><strong>Built-in Map&nbsp;function</strong></p>
 <pre><code class="lang-javascript">  <span class="keyword">var</span> arr = [{id: <span class="number">2</span>, name: <span class="string">'cat'</span>}, {id: <span class="number">3</span>, name: <span class="string">'dog'</span>}];
 <span class="comment">//<span class="caps">REPLACE</span> THIS JQuery</span>
-  <span class="keyword">var</span> names = $.map(arr, <span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span> <span class="keyword">return</span> arr.name; });
+  <span class="keyword">var</span> names = $.map(arr, <span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>{ <span class="keyword">return</span> arr.name; });
 <span class="comment">//<span class="caps">OR</span>, REPLACE THIS Underscore/LoDash</span>
-  <span class="keyword">var</span> names = _.map(arr, <span class="function"><span class="keyword">function</span> <span class="params">(item)</span> {</span> <span class="keyword">return</span> arr.name; });
+  <span class="keyword">var</span> names = _.map(arr, <span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>{ <span class="keyword">return</span> arr.name; });
 
 <span class="comment">//<span class="caps">WITH</span></span>
-  <span class="keyword">var</span> names = arr.map(<span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span> <span class="keyword">return</span> arr.name; });</code></pre>
+  <span class="keyword">var</span> names = arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>{ <span class="keyword">return</span> arr.name; });
+</code></pre>
 <p><strong>Built-in Filter&nbsp;function</strong></p>
 <pre><code class="lang-javascript">  <span class="keyword">var</span> arr = [{id: <span class="number">2</span>, name: <span class="string">'cat'</span>}, {id: <span class="number">3</span>, name: <span class="string">'dog'</span>}];
 <span class="comment">//<span class="caps">REPLACE</span> THIS JQuery</span>
-  <span class="keyword">var</span> startsWithC = $.map(arr, <span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span> <span class="keyword">return</span> (arr.name.indexOf(<span class="string">"C"</span>) === <span class="number">0</span>) ? arr : <span class="literal">null</span>; });
+  <span class="keyword">var</span> startsWithC = $.map(arr, <span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>{ <span class="keyword">return</span> (arr.name.indexOf(<span class="string">"C"</span>) === <span class="number">0</span>) ? arr : <span class="literal">null</span>; });
 <span class="comment">//<span class="caps">OR</span>, REPLACE THIS Underscore/LoDash</span>
-  <span class="keyword">var</span> startsWithC = _.filter(arr, <span class="function"><span class="keyword">function</span> <span class="params">(item)</span> {</span> <span class="keyword">return</span> !!(arr.name.indexOf(<span class="string">"C"</span>) === <span class="number">0</span>); });
+  <span class="keyword">var</span> startsWithC = _.filter(arr, <span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>{ <span class="keyword">return</span> !!(arr.name.indexOf(<span class="string">"C"</span>) === <span class="number">0</span>); });
 
 <span class="comment">//<span class="caps">WITH</span></span>
-  <span class="keyword">var</span> startsWithC = arr.filter(<span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span> <span class="keyword">return</span> !!(arr.name.indexOf(<span class="string">"C"</span>) === <span class="number">0</span>); });</code></pre>
+  <span class="keyword">var</span> startsWithC = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>{ <span class="keyword">return</span> !!(arr.name.indexOf(<span class="string">"C"</span>) === <span class="number">0</span>); });
+</code></pre>
 <p><strong>Built-in&nbsp;Iteration</strong></p>
 <pre><code class="lang-javascript">  <span class="keyword">var</span> arr = [<span class="number">2</span>,<span class="number">5</span>,<span class="number">10</span>];
 <span class="comment">//<span class="caps">REPLACE</span> THIS JQuery</span>
-  $.each(arr, <span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span> <span class="keyword">if</span> (item &gt; <span class="number">5</span>) { process(item); } });
+  $.each(arr, <span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>{ <span class="keyword">if</span> (item &gt; <span class="number">5</span>) { process(item); } });
 <span class="comment">//<span class="caps">OR</span>, REPLACE THIS Underscore/LoDash</span>
-  _.each(arr, <span class="function"><span class="keyword">function</span><span class="params">(item)</span> {</span> <span class="keyword">if</span> (item &gt; <span class="number">5</span>) { process(item); } });
+  _.each(arr, <span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>{ <span class="keyword">if</span> (item &gt; <span class="number">5</span>) { process(item); } });
 
 <span class="comment">//<span class="caps">WITH</span></span>
-  arr.forEach(<span class="function"><span class="keyword">function</span> <span class="params">(item)</span> {</span> <span class="keyword">if</span> (item &gt; <span class="number">5</span>) { process(item); } });</code></pre>
+  arr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>{ <span class="keyword">if</span> (item &gt; <span class="number">5</span>) { process(item); } });
+</code></pre>
 <p>Or, my two personal&nbsp;favorites:</p>
 <p><strong>Function&nbsp;binding</strong></p>
 <pre><code class="lang-javascript">  <span class="keyword">var</span> person = {
      likeCount: <span class="number">0</span>,
-     like: <span class="function"><span class="keyword">function</span><span class="params">()</span> {</span> <span class="keyword">this</span>.like = <span class="keyword">this</span>.like + <span class="number">1</span>; }
+     like: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{ <span class="keyword">this</span>.like = <span class="keyword">this</span>.like + <span class="number">1</span>; }
   };
 <span class="comment">//<span class="caps">REPLACE</span> THIS JQuery</span>
   <span class="keyword">var</span> boundLike = $.proxy(person.like, person);
@@ -83,7 +86,8 @@
   <span class="keyword">var</span> boundLike = _.bind(person.like, person);
 
 <span class="comment">//<span class="caps">WITH</span></span>
-  <span class="keyword">var</span> boundLike = person.like.bind(person);</code></pre>
+  <span class="keyword">var</span> boundLike = person.like.bind(person);
+</code></pre>
 <p><strong>Iterating the keys of an&nbsp;object</strong></p>
 <pre><code class="lang-javascript"><span class="comment">//<span class="caps">REPLACE</span> THIS</span>
   <span class="keyword">var</span> observablesOnObject = [];
@@ -95,10 +99,11 @@
     }
   } 
 <span class="comment">//<span class="caps">OR</span> THIS Underscore/LoDash</span>
-  <span class="keyword">var</span> observablesOnObject = _.filter(_.keys(myObj), <span class="function"><span class="keyword">function</span> <span class="params">(item)</span> {</span> <span class="keyword">return</span> ko.isObservable(myObj(item)); });
+  <span class="keyword">var</span> observablesOnObject = _.filter(_.keys(myObj), <span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>{ <span class="keyword">return</span> ko.isObservable(myObj(item)); });
 
 <span class="comment">//<span class="caps">WITH</span></span>
-  <span class="keyword">var</span> observablesOnObject = Object.keys(myObj).filter(<span class="function"><span class="keyword">function</span> <span class="params">(item)</span> {</span> <span class="keyword">return</span> ko.isObservable(myObj(item)); });</code></pre>
+  <span class="keyword">var</span> observablesOnObject = <span class="built_in">Object</span>.keys(myObj).filter(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>{ <span class="keyword">return</span> ko.isObservable(myObj(item)); });
+</code></pre>
 <p>Now, you might say, that didn’t change much. And that’s true. Those functions are so useful that can find them in quite a few <span class="caps">JS</span> libraries or hand-written into application code-bases. And that my friend is why those functions got added to the EcmaScript5 specification and therefore built into the language. So, now you can use these functions without adding a third-party dependency. Very helpful if you like to re-use code between projects. And if someone reads your code, they don’t have to go look up the documentation for the third-party library. Sounds good so far,&nbsp;right…</p>
 <p>But…&nbsp;But…</p>
 <p><strong>But, I have to support an old&nbsp;browser</strong></p>
