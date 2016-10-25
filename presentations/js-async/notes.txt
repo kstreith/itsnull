@@ -1,0 +1,73 @@
+- Web page
+    - get data from server
+    - sleep
+- Single-threaded
+- So, callback after it's done
+- Callbacks
+    - Pros - Conceptually simple, used everywhere
+    - Cons
+        - hard to chain multiple calls
+        - control flow hard to read
+        - Function is now inside-out
+        - hard to mock
+- So, here come promises
+    - Function returns a thing, the thing tracks the state of the uncompleted operation
+    - Builds on top of callbacks
+    - What is a promise:
+        - State tracking
+- So, now what does our function look like:
+- Attach callbacks to the two states
+- Now let's layer on async/await syntax
+    - Stage 3 Draft - https://tc39.github.io/ecmascript-asyncawait/
+    - Edge experimental support - https://blogs.windows.com/msedgedev/2015/09/30/asynchronous-code-gets-easier-with-es2016-async-function-support-in-chakra-and-microsoft-edge/
+    - Chrome Canary support - e.g. Chrome 55
+- ES6 promises add chaining, show chaining
+- How, did we get here?
+    - JQuery Deferred's first
+    - Promise A+ spec and libraries
+    - Promise libraries (e.g. Q, bluebird, rsvp.js)
+    - Promise added to JS spec
+- Which should I use, how are they different?
+- JQuery Deferred, bundled with JQuery, returned by $.ajax
+- Angular 1.x uses tiny version of Q
+- Call ES6 as ES2015
+- ES6 promises supported in latest version of Edge, Firefox, Chrome
+- bluebird, Q, rsvp.js act as polyfills of ES6 spec plus add extras
+- Differences
+    - Deferred supports cancellation, other's don't
+    - Exception handling
+    - Chaining Differences
+- Recommend using ES6 promises unless you need cancellation
+- How to make ajax calls?
+    - Use something provided by your framework, e.g. Angular, Aurelia
+    - Or use a library, e.g. JQuery
+    - Or use browser built-in? XmlHttpRequest is hard to use
+    - fetch is being added to browsers
+        http://caniuse.com/#feat=fetch
+        Or use a fetch polyfill
+- How to wrap $.ajax to return ES6 promises, or upgrade to JQuery 3.x??
+- Limitations of browser provided promises
+    - Might not know you had an exception, recommend bluebird to fix this
+    - Missing some useful composite methods, recommend bluebird to fix this
+- Next step, using async/await syntax to automatically generate your callbacks for you
+    - Babel.js
+    - Typescript only supports JS runtime that supports generators
+- There are other async events in browser:
+    - events, click, keypress, setInterval
+    - Those are handled currently using callbacks
+    - These aren't data = func(); calls, these are 0-n events over time things
+    - Or put another way: IEnumerable<Click>, but instead of being pull are instead push
+    - There is a pattern for this, Observable, e.g. RxJS
+    - This is being used in Angular 2.x, consider learning about RxJS
+
+
+graph TD
+  start{Start}
+  success{Resolved}
+  failed{Rejected}
+  start -->success
+  start -->failed
+  scall(Call all callbacks passed to .done)
+  fcall(Call all callbacks passed to .fail)
+  success --- scall
+  failed --- fcall
