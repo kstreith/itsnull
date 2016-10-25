@@ -42,19 +42,21 @@
       <div class="content-wrap">
         <article class="article">
           <section class="content"><p>I’ve been working with Durandal lately, which means I’m using RequireJS. Almost all of the RequireJS module definition examples will look like&nbsp;this:</p>
-<pre><code class="lang-javascript">define([<span class="string">'durandal/app'</span>, <span class="string">'durandal/system'</span>], <span class="function"><span class="keyword">function</span><span class="params">(app, system)</span> {</span>
+<pre><code class="lang-javascript">define([<span class="string">'durandal/app'</span>, <span class="string">'durandal/system'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">app, system</span>) </span>{
   app.trigger(<span class="string">'myEvent'</span>);
   system.log(<span class="string">'myMessage'</span>);
-});</code></pre>
+});
+</code></pre>
 <p>Let me introduce you to my preferred RequireJS syntax…
 <span class="more" /></p>
-<pre><code class="lang-javascript">define(<span class="function"><span class="keyword">function</span><span class="params">(require)</span> {</span>
-  <span class="keyword">var</span> app = require(<span class="string">'durandal/app'</span>);
-  <span class="keyword">var</span> system = require(<span class="string">'durandal/system'</span>);
+<pre><code class="lang-javascript">define(<span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>{
+  <span class="keyword">var</span> app = <span class="built_in">require</span>(<span class="string">'durandal/app'</span>);
+  <span class="keyword">var</span> system = <span class="built_in">require</span>(<span class="string">'durandal/system'</span>);
 
   app.trigger(<span class="string">'myEvent'</span>);
   system.log(<span class="string">'myMessage'</span>);
-});</code></pre>
+});
+</code></pre>
 <p>So, why do I prefer this syntax? I avoid the need to match up argument orders, between the dependencies array and the callback function. Or more specifically, I avoid the incomprehensible errors that would other occur when i later add, remove, re-order a dependency in one list but forget to do it in the other list. Yes, my syntax has more lines of code, but no more than you’d see in other languages that have built-in modules (e.g. import statement in Python, C#, Java, #include in C++). I don’t see this syntax mentioned enough, so I thought it worthwhile to blog about&nbsp;it.</p>
 <h3 id="warning-deep-dive-ahead">Warning: Deep Dive&nbsp;Ahead</h3>
 <hr>
