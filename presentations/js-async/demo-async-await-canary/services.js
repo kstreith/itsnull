@@ -10,7 +10,7 @@ async function getNearbyStores(zipCode) {
       } else if (zipCode == 34343) {
         resolve([3, 4]);
       } else if (zipCode == 56565) {
-        reject(new Error("server unavailable"));
+        reject(new Error("Fake exception!!"));
       } else {
         resolve([]);
       }

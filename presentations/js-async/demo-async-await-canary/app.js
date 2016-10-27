@@ -17,15 +17,32 @@ $(function () {
     $("#noResults").hide();
     var zip = $("#zipCode").val();
     getClosestStore(zip).then(function (details) {
-      if (details) {
-        $("#address").text(details.address);
-        $("#hours").text(details.hours);
-        $("#results").show();      
-      } else {
-        $("#noResults").show();
-      }
-    }).catch(function (e) {
-      alert('error occurred');
-    });
+      showDetails(details);      
+    })
+    //.catch(function (e) {
+    //  alert('error occurred - used .catch');
+    //});
   });
+  
+  /*
+  $("#search").on("click", async function () {
+    //try {
+    $("#results").hide();
+    $("#noResults").hide();
+    var zip = $("#zipCode").val();
+    var details = await getClosestStore(zip);  
+    showDetails(details);
+    //} catch (e) {
+    //  alert('error occurred - used try/catch');
+    //}
+  });*/
 });
+function showDetails(details) {
+  if (details) {
+    $("#address").text(details.address);
+    $("#hours").text(details.hours);
+    $("#results").show();      
+  } else {
+    $("#noResults").show();
+  }  
+}
