@@ -386,9 +386,10 @@ fetch('/api/users', {method: 'POST', body: new FormData(form)});
           <h3>Warning - No more cancellation, cont.</h3>
           <ul class="code">
             <li>XMLHttpRequest supports cancellation</li>
-            <li>$.ajax supports cancellation</li>
+            <li>$.ajax supports cancellation, but not Promises/A+</li>
             <li>Promises don't support cancellation</li>
             <li>Fetch doesn't support cancellation</li>
+            <li>$.ajax in JQuery 3.0 supports cancellation and Promises/A+</li>
             <li>Browser vendors are brainstorming possible solutions</li>
           </ul>
         </section>
