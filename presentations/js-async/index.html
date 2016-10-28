@@ -53,10 +53,10 @@
         <section>
           <h3>Overview</h3>
           <ul>
-            <li>Why async?</li>
-            <li>How to handle async</li>
-            <li>History of solutions</li>
-            <li>Practical applications</li>
+            <li>Sync vs. Async</li>
+            <li>Fixes for async</li>
+            <li>Demos</li>
+            <li>Gotchas</li>
             <li>Looking forward</li>
           </ul>
         </section>
@@ -335,7 +335,7 @@ function async getClosestStore(zipCode) {
             <li>Javascript Language - ES 2015 (e.g ES 6) adds Promises/A+</li>
             <li>Javascript Language documents constructor, .catch method</li>
             <li>Promise documentation on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">MDN</a></li>
-            <li>Async/Await scheduled for next version of JS language <a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">ES 2107</a></li>
+            <li>Async/Await scheduled for next version of JS language <a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">ES 2017</a></li>
           </ul>
         </section>
         <section>
@@ -348,27 +348,6 @@ function async getClosestStore(zipCode) {
             <li>Don't use JQuery $.ajax, <strong>NOT Promises/A+ compatible</strong></li>
           </ul>
         </section>
-        <!--
-        <section>
-          <h3>Stuff2</h3>
-          <ul>
-            <li>A</li>
-            <li>B</li>
-            <li>B</li>
-          </ul>
-        </section> -->                        
-          <!--
-        <section>
-          <h3></h3>
-          <ul>
-            <li></li>            
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-        </section>
-        -->
         <section>
           <h3>Fetch</h3>
           <ul class="code">
@@ -440,7 +419,7 @@ fetch('/api/users', {method: 'POST', body: new FormData(form)});
           <ul>
             <li>Poylfill: <a href="https://github.com/stefanpenner/es6-promise">https://github.com/stefanpenner/es6-promise</a></li>
             <li>Libraries provide polyfill plus more</li>
-            <li>Bluebird.js, RSVP.js, When.js</li>                        
+            <li><a href="http://bluebirdjs.com/">Bluebird.js</a>, <a href="https://github.com/tildeio/rsvp.js/">RSVP.js</a>, <a href="https://github.com/cujojs/when">When.js</a></li>                        
           </ul>
         </section>                                                                 
         <section>
