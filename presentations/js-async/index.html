@@ -41,7 +41,7 @@
 		<div class="reveal">
 			<div class="slides">
         <section>
-          <h3>JS Async Patterns</h3>
+          <h3>Javascript Async Patterns</h3>
           <h4>October 2016</h4>
           <h4>Follow along at:</h4>
           <p><a href="http://itsnull.com/">http://itsnull.com/</a></p>
@@ -63,9 +63,9 @@
         <section>
           <h3>Our API</h3>
           <ul>
-            <li>Both functions make call to server</li>
             <li>getNearbyStores(zipCode) -> list of ids</li>
             <li>getStoreDetails(storeId) -> details of store</li>
+            <li>Both functions make call to server</li>
           </ul>
         </section>
         <section>
@@ -73,9 +73,9 @@
           <ul class="code">
             <li>How we'd like to use:
               <pre><code class="js">function getClosestStore(zipCode) {
-  var storeList = getNearbyStores(zipCode);
-  if (storeList.length) {
-    return getStoreDetails(storeList[0]);
+  var storeIds = getNearbyStores(zipCode);
+  if (storeIds.length) {
+    return getStoreDetails(storeIds[0]);
   }
   return null;
 }
@@ -84,13 +84,23 @@
           </ul>
         </section>
         <section>
+          <h3>Why can't I do that in browser?</h3>
+          <ul>
+            <li>Each browser tab has a single UI thread</li>
+            <li>That thread is shared between browser and your code</li>
+            <li>So, if getNearbyStores took 5 seconds, UI thread would be blocked entire time</li>
+            <li>So, browser vendors never added synchronous apis, only async apis</li>
+            <li>Pass a callback to browser, when IO is complete, browser will call your callback</li>
+          </ul>
+        </section>        
+        <section>
           <h3>Using our API - Reality</h3>
           <ul class="code">
             <li>Real example, using AJAX which is async:
               <pre><code class="js">function getClosestStore(zipCode, successCallback, failureCallback) {
-  getNearbyStores(zipCode, function (storeList) {
-    if (storeList.length) {
-      getStoreDetails(storeList[0], function (storeDetails) {
+  getNearbyStores(zipCode, function (storeIds) {
+    if (storeIds.length) {
+      getStoreDetails(storeIds[0], function (storeDetails) {
         successCallback(storeDetails);
       }, failureCallback);
     } else {
@@ -103,19 +113,10 @@
           </ul>
         </section>
         <section>
-          <h3>Why is browser IO async?</h3>
-          <ul>
-            <li>Each browser tab has a single UI thread</li>
-            <li>That thread is shared between browser and your code</li>
-            <li>So, if getNearbyStores took 5 seconds, UI thread would be blocked entire time</li>
-            <li>So, browser vendors never added synchronous apis, only async apis</li>
-            <li>Pass a callback to browser, when IO is complete, browser will call your callback</li>
-          </ul>
-        </section>
-        <section>
           <h3>Callbacks - PROS</h3>
           <ul>
-            <li>Long history of usage, especially for events: click, keypress</li>
+            <li>Long history of usage</li>
+            <li>Especially for events: click, keypress</li>
             <li>Well understood, simple for browsers to implement.</li>
           </ul>
         </section>               
@@ -134,7 +135,6 @@
             </li>
             <li>Are unweidly when chained, wasn't a problem for event handlers, but now every IO operation causes another level of nesting.</li>
             <li>Much harder to read the control flow</li>
-            <li>More annoying to mock functions that take callbacks</li>
           </ul>
         </section>
         <section>
@@ -168,9 +168,9 @@
             <li>Implement with future:
               <pre><code class="js">function getClosestStore(zipCode) {
   var retValue = new Future();
-  getNearbyStores(zipCode).done(function (storeList) {
-    if (storeList.length) {
-      getStoreDetails(storeList[0]).done(function (storeDetails) {
+  getNearbyStores(zipCode).done(function (storeIds) {
+    if (storeIds.length) {
+      getStoreDetails(storeIds[0]).done(function (storeDetails) {
         retValue.resolve(storeDetails);
       }).fail(retValue.reject);
     } else {
@@ -209,9 +209,9 @@
           <ul class="code">
             <li>Implement with future w/ chaining:
               <pre><code class="js">function getClosestStore(zipCode) {  
-  return getNearbyStores(zipCode).then(function (storeList) {
-    if (storeList.length) {
-      return getStoreDetails(storeList[0]);
+  return getNearbyStores(zipCode).then(function (storeIds) {
+    if (storeIds.length) {
+      return getStoreDetails(storeIds[0]);
     }
     return null;
   });
@@ -221,16 +221,25 @@
           </ul>
         </section>
         <section>
-          <h3>More Improvements?</h3>
+          <h3>Good enough?</h3>
           <ul>
-            <li>Code is much easier to read, but we still have to use .then initially and put into callback</li>
-            <li>Maybe, the language could help with that?</li>
+            <li>Pretty close to our ideal</li>
+            <li>No direct references to future, just the .then method</li>
+            <li>Functions always return values, not passed callbacks</li>
+            <li>One inconvenience, have to put code that uses the result into a callback</li>            
+          </ul>
+        </section>        
+        <section>
+          <h3>Can language help?</h3>
+          <ul>
+            <li>Maybe, the language could help?</li>
             <li>C# has async/await keywords, might those help?
-              <pre><code class="js" class="code">var data = await getData();
-var result = await parseData(data);
+              <pre><code class="js" class="code">var initialData = await getInitialData();
+var result = await parseData(initialData);
+printResult(result);
 </code></pre>
 </li>
-            <li>The code after getData is put into a callback which is passed to the Future returned from getData()</li>
+            <li>The code that needs initialData result is put into a callback automatically by language, that's what await keyword does.</li>
           </ul>
         </section>         
         <section>
@@ -252,7 +261,7 @@ function async getClosestStore(zipCode) {
         <section>
           <h3>Full circle</h3>
           <ul class="code">
-            <li>Our initial ideal
+            <li>Our ideal
               <pre><code class="js">
 function getClosestStore(zipCode) {  
   var storeList = getNearbyStores(zipCode);
@@ -263,7 +272,7 @@ function getClosestStore(zipCode) {
 }
               </code></pre>
             </li>
-            <li>Future, async/await
+            <li>What we have now
               <pre><code class="js">
 function async getClosestStore(zipCode) {  
   var storeList = await getNearbyStores(zipCode);
@@ -277,60 +286,11 @@ function async getClosestStore(zipCode) {
           </ul>
         </section>
         <section>
-          <h3>Now what?</h3>
+          <h3>Nice, now what?</h3>
           <ul>
-            <li>We just learned about JQuery Deferred</li>
-            <li>and JS Promises</li>
-            <li>and async/await which is likely coming to next version of JS language</li>
-            <li>Let's dive into these further and come away with some recommendations</li>
-          </ul>
-        </section>        
-        <section>
-          <h3>JQuery Deferred</h3>
-          <ul>
-            <li>$.Deferred, returned from $.ajax</li>
-            <li>There was a Promises/A spec</li>
-            <li>JQuery thought they implemented spec with Deferred, <a href="https://blog.domenic.me/youre-missing-the-point-of-promises/">but didn't</a></li>
-            <li>A new spec was written, Promises/A+</li>
-            <li>JQuery didn't implement either spec, Deferred only useful for callback aggregation (.done, .fail)</li>
-            <li>JQuery 3.0, released June 2016 implements Promises/A+</li>
-          </ul>
-        </section>
-        <section>
-          <h3><a href="https://promisesaplus.com/">Promises/A+</a></h3>
-          <ul>
-            <li>Defines the behavior of .then method only</li>
-            <li>Defines how exception handling and chaining works</li>
-            <li>Construction of promises, how to resolve, reject <strong>not part of spec</strong></li>
-          </ul>
-        </section>
-        <section>
-          <h3>Promises/A+, cont.</h3>
-          <ul>
-            <li>JS language implements as of ES 2015 (e.g. ES6)</li>
-            <li>Supported by <a href="http://caniuse.com/#feat=promises">browsers</a>: Chrome, Firefox, Edge, Safari, Opera, <strong>No IE</strong></li>
-            <li>Multiple libraries implement: Angular 1.x, Q, RSVP.js, when.js, bluebird</li>
-            <li><a href="https://promisesaplus.com/implementations">All implementations</a> are therefore interoperable</li>
-            <li>JQuery Deferred earlier than 3.0 (June 2016) has a .then method, but it is <strong>NOT interoperable</strong></li> 
-          </ul>
-        </section>        
-        <section>
-          <h3>Why $.Deferred?</h3>
-          <ul>
-            <li>The $.ajax adds a .abort method to return Deferred object</li>
-            <li>The .abort() method allows you to cancel a request</li>
-            <li>Cancellation is highly useful when dealing with multiple in-flight requests where UI only cares about response to last issued request, e.g. a search page</li>
-            <li>Either support some ordering key passed between client and server or have client <strong>abort</strong> previous request before starting a new request</li>
-          </ul>
-        </section>
-        <section>
-          <h3>Promise or $.Deferred</h3>
-          <ul>
-            <li><strong>Recommendation:</strong> Use Promises/A+</li>
-            <li>Well-defined, multiple interoperable implementations</li>
-            <li>Promises don't support abort/cancellation.</li>
-            <li>If you need use $.ajax and $.Deferred</li>
-            <li>Or convert $.ajax and $.Deferred into Promises/A+ and add abort, we'll come back to this</li>
+            <li>We just covered the history of solutions</li>
+            <li>Demo async/await running in browsers</li>
+            <li>Talk gotchas</li>
           </ul>
         </section>
         <section>
@@ -342,65 +302,13 @@ function async getClosestStore(zipCode) {
             <li>This is the appropriate mental model</li>
             <li>Also what async/await syntax depends upon</li>
           <ul>
-        </section>        
-        <section>
-          <h3>Creating promises</h3>
-          <ul>
-            <li>Creating, resolving promise not defined by Promises/A+, only .then method</li>
-            <li>ES 2015/ES6, e.g. JS language defines this, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">MDN</a></li>
-            <li>JS language adds .catch method, not part of Promises/A+ spec, equivalent to .then(null, onRejected)</li>
-            <li>Promise.resolve(value); // returns already resolved promise</li>
-            <li>Promise.reject(reason); // returns already rejected promise</li>
-          </ul>
-        </section>
-        <section>
-          <h3>Creating promises, cont.</h3>
-          <ul class="code">
-            <li><pre><code class="js">var p = new Promise(function (resolveFunc, rejectFunc) {
-  //do something, once complete call resolveFunc(resolveValue);
-  //if error, call rejectFunc(Error subclass);
-});</code></pre></li>
-            <li>Only functions passed to Promise constructor can be used to resolve or reject the promise</li>
-          </ul>
-        </section>
-        <section>
-          <h3>AJAX - Start using Promises</h3>
-          <ul>
-            <li>Your framework might have a ajax method that returns Promises/A+ object</li>
-            <li>Angular 1.x, $http</li>
-            <li>Angular 2.x, http service but then need to call .toPromise()</li>
-            <li>Research your framework</li>
-            <li>Convert $.Deferred from $.ajax into Promise</li>
-            <li>Use fetch provided by browser</li>
-          </ul>
-        </section>
-        <section>
-          <h3>Fetch</h3>
-          <ul class="code">
-            <li><a href="https://fetch.spec.whatwg.org/">New cross browser standard</a></li>
-            <li>Simple function, similiar to $.ajax, $http.get, returns Promise/A+</li>
-            <li><pre><code class="js">fetch('/api/users').then(function (response) {
-  if (response.ok) {
-    //do stuff, call response.json() which returns Promise/A+
-  }
-});</code></pre></li>
-            <li><pre><code class="js">fetch('/api/users', {method: 'POST', body: new FormData(form)});</code></pre></li>
-          </ul>
-        </section>
-        <section>
-          <h3>Fetch, cont.</h3>
-          <ul>            
-            <li>Supported by latest browsers: Edge, Firefox, Chrome, Opera, Android</li>
-            <li>Advanced uses still evolving, last updated 10/24/2016</li>
-            <li><a href="https://github.com/github/fetch">Polyfill</a> for older browsers, may also require a Promise polyfill as well</li>
-            <li>Or wrap $.ajax to return Promise, we'll get there, few more slides to go</li>
-          </ul>
         </section>
         <section>
           <h3>Exceptions and Promises</h3>
           <ul>
-            <li><pre><code class="js">fetch('/api/users').then(function (response) {
-  if (respnse.ok) { //mis-typed variable, what happens here???
+            <li><pre><code class="js">getClosestStore(12121).then(function (storeDetails) {
+  if (store.open) { //has an exception?         
+    //do stuff
   }
 });</code></pre>
             </li>
@@ -408,33 +316,119 @@ function async getClosestStore(zipCode) {
             <li>I don't have an additional .then or a .catch</li>
             <li>Our mental model says that is an unhandled exception</li>
           </ul>
-        </section>
+        </section>                
         <section>
-          <h3>Exceptions and Promises, cont.</h3>
+          <h3>Async/Await Demo</h3>
           <ul>
-            <li>So, in our mental model I don't have a try/catch</li>
-            <li>You would expect to see a message in console of browser developer tools</li>
-            <li>But almost all browsers <strong>silently swallow the unhandled rejection</strong>. No indication you have any problem.</li>
-            <li>Chrome is only browser to flag that and treat as such, e.g. unhandled exception</li>
-            <li>Can we fix browsers? Maybe...</li>
+            <li>Chrome Canary (e.g. v55) supports async/await already</li>
+            <li>MS Edge supports behind experimental flag, since Sept. 2015</li>
+            <li>Or transpile w/ BabelJS and add some polyfills</li>
+            <li>Or coming in Typescript 2.1 (November 2016)</li>
+          </ul>
+        </section>                
+        <section>
+          <h3>Spec History</h3>
+          <ul>
+            <li>Initial Promise/A spec (2010)</li>
+            <li>JQuery team implemented <strong>incorrectly</strong> (2011)</li>
+            <li>New <a href="https://promisesaplus.com/">Promise/A+ spec</a> (2012), only describes .then method</li>            
+            <li>Javascript Language - ES 2015 (e.g ES 6) adds Promises/A+</li>
+            <li>Javascript Language documents constructor, .catch method</li>
+            <li>Promise documentation on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">MDN</a></li>
+            <li>Async/Await scheduled for next version of JS language <a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">ES 2107</a></li>
           </ul>
         </section>
         <section>
-          <h3>Promises outside of AJAX calls</h3>
+          <h3>How to use AJAX</h3>
           <ul>
-            <li>Assuming you need to construct your own Promises</li>
-            <li>Will either need a polyfill or compatible library</li>
-            <li>Poylfill: <a href="https://github.com/stefanpenner/es6-promise">https://github.com/stefanpenner/es6-promise</a></li>
-            <li>Polyfill only provides what is defined in JS language</li>
-            <li>Libraries provide helper methods and other useful features</li>
-            <li>Bluebird.js, RSVP.js, When.js</li>
-            <li>Highly recommend <a href="http://bluebirdjs.com/docs/getting-started.html">Bluebird.js</a></li>
+            <li>Use fetch provided by browser</li>
+            <li>Use your framework's method, must return Promises/A+ compatible</li>
+            <li>Angular 1.x, $http</li>
+            <li>Angular 2.x, http service but then need to call .toPromise()</li>
+            <li>Don't use JQuery $.ajax, <strong>NOT Promises/A+ compatible</strong></li>
+          </ul>
+        </section>
+        <!--
+        <section>
+          <h3>Stuff2</h3>
+          <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>B</li>
+          </ul>
+        </section> -->                        
+          <!--
+        <section>
+          <h3></h3>
+          <ul>
+            <li></li>            
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </section>
+        -->
+        <section>
+          <h3>Fetch</h3>
+          <ul class="code">
+            <li><a href="https://fetch.spec.whatwg.org/">New cross browser standard</a></li>
+            <li>Simple function, similiar to $.ajax, $http.get, returns Promise/A+</li>
+            <li><pre><code class="js">fetch('/api/users').then(function (response) {
+  //processing
+});
+fetch('/api/users', {method: 'POST', body: new FormData(form)});
+</code></pre></li>
+            <li>Supported by latest browsers: Edge, Firefox, Chrome, Opera, Android</li>
+            <li><a href="https://github.com/github/fetch">Polyfill</a> for older browsers, may also require a Promise polyfill as well</li>
+          </ul>
+        </section>                          
+        <section>
+          <h3>Warning - Be wary of JQuery</h3>
+          <ul class="code">
+            <li>$.Deferred has a .then method, doesn't implement Promises/A+</li>
+            <li>$.ajax returns $.Deferred</li>
+            <li><strong>Not interoperable</strong> with async/await or other libraries</li>
+            <li>Finally fixed in JQuery 3.0 (June 2016)</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Warning - No more cancellation</h3>
+          <ul class="code">
+            <li>Promises don't support cancellation</li>
+            <li>Cancellation is highly useful when dealing with multiple in-flight requests where UI only cares about latest response</li>
+            <li>Have a search page, user starts search, changes search, starts another search</li>
+            <li>Search results make come back out-of-order</li>
+            <li>Fix: Pass ordering key to server, it passes it back to client, ignore old responses</li>
+            <li>Fix: Cancel prior unfinished request before starting a new request</li>
+          </ul>
+        </section>                           
+        <section>
+          <h3>Warning - No more cancellation, cont.</h3>
+          <ul class="code">
+            <li>XMLHttpRequest supports cancellation</li>
+            <li>$.ajax supports cancellation</li>
+            <li>Promises don't support cancellation</li>
+            <li>Fetch doesn't support cancellation</li>
+            <li>Browser vendors are brainstorming possible solutions</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Warning - Uncaught rejections</h3>
+          <ul class="code">
+            <li>Remember exception in callback turns into rejection from Promise</li>
+            <li>Need a .then or .catch to handle</li>
+            <li>If you don't, it's an uncaught rejection</li>
+            <li>All browsers (except Chrome), <strong>silently fail, no message or ability to find it</strong></li>
+            <li>Makes it much harder to find bugs</li>
+            <li>Bluebird.js provides a solution</li>
           </ul>
         </section>
         <section>
           <h3>Bluebird.js features</h3>
           <ul>
-            <li>Will report errors to console for uncaught rejections in all browsers</li>
+            <li>Will report errors to console for uncaught rejections in all browsers, even in Chrome</li>
+            <li>Polyfills Promises for older browsers</li>
             <li>Encourages proper promise usage, e.g. reports error if rejecting with something other than an exception</li>
             <li>Debugging across an async jump can be difficult, latest dev tools in browsers fix this</li>
             <li>Bluebird provides long stack traces in older browsers that don't have latest dev tool features</li>
@@ -442,95 +436,13 @@ function async getClosestStore(zipCode) {
           </ul>
         </section>
         <section>
-          <h3>Wrap $.ajax into Promise</h3>
-          <ul class="code">
-            <li>Convert $.Deferred into Promise
-              <pre><code class="js">function wrapAjax(settings) {
-  return new Promise(function (resolve, reject) {
-    $.ajax(settings).then(function (data, textStatus, jqXHR) {
-      resolve({data: data, textStatus: textStatus, jqXHR: jqXHR});
-    }, function (jqXHR, textStatus, errorThrown) {
-      var e = new Error(textStatus);
-      e.jqXHR = jqXHR;
-      e.textStatus = textStatus;
-      e.errorThrown = errorThrown;
-      reject(e);
-    });
-  });
-}            </code></pre></li>
-          </ul>
-        </section>
-        <section>
-          <h3>Wrap $.ajax into Promise w/ abort method</h3>
-          <ul class="code">
-            <li>Convert $.Deferred into Promise, add abort          
-              <pre><code class="js">function wrapAjax(settings) {
-  var dfd = $.ajax(settings);
-  var p = new Promise(function (resolve, reject) {
-    dfd.then(function (data, textStatus, jqXHR) {
-      resolve({data: data, textStatus: textStatus, jqXHR: jqXHR});
-    }, function (jqXHR, textStatus, errorThrown) {
-      var e = new Error(textStatus);
-      e.jqXHR = jqXHR;
-      e.textStatus = textStatus;
-      e.errorThrown = errorThrown;
-      reject(e);
-    });
-  });
-  p.abort = dfd.abort.bind(dfd); //this is a monkey-patch, could overwrite browser provided abort if one
-  return p;
-}            </code></pre></li>
-          </ul>
-        </section>                        
-        <section>
-          <h3>async/await</h3>
+          <h3>Promises</h3>
           <ul>
-            <li>Code can look synchronous while still being asyncronous</li>
-            <li>Decorate function with async keyword</li>
-            <li>Use await to get result of promise, throws exception if promise rejected</li>
-            <li>Takes code after await and effectively wraps into a callback passed to .then of promise</li>
+            <li>Poylfill: <a href="https://github.com/stefanpenner/es6-promise">https://github.com/stefanpenner/es6-promise</a></li>
+            <li>Libraries provide polyfill plus more</li>
+            <li>Bluebird.js, RSVP.js, When.js</li>                        
           </ul>
-        </section>
-        <section>
-          <h3>async/await</h3>
-          <ul class="code">
-            <li>This code:
-              <pre><code class="js">function getClosestStore(zipCode) {  
-  return getNearbyStores(zipCode).then(function (storeList) {
-    if (storeList.length) {
-      return getStoreDetails(storeList[0]);
-    }
-    return null;
-  });
-}</code></pre>
-</li>
-            <li>Becomes: 
-              <pre><code class="js">function async getClosestStore(zipCode) {  
-  var storeList = await getNearbyStores(zipCode);  
-  if (storeList.length) {
-    return getStoreDetails(storeList[0]);
-  }
-  return null;
-}</code></pre>              
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>Using async/await</h3>
-          <ul>
-            <li>Chrome 55, e.g. Chrome Canary supports async/await natively</li>
-            <li>Edge supports async/await if you manually toggle experimental feature</li>            
-            <li>Or use a transpiler</li>
-          </ul>
-        </section>        
-        <section>
-          <h3>Using async/await, cont.</h3>
-          <ul>
-            <li>BabelJS with a polyfill can transpile to target older browsers</li>
-            <li>Typescript transpiles, but still requires a modern browser to run</li>
-            <li>For Typescript, may need to take it's transpiled output and transpile again with BabelJS to target IE and older</li> 
-          </ul>
-        </section>        
+        </section>                                                                 
         <section>
           <h3>Beyond Promises</h3>
           <ul>
@@ -573,6 +485,50 @@ function async getClosestStore(zipCode) {
             <li>Presentation: <a target="_blank" href="http://itsnull.com/presentations/js-async/">http://itsnull.com/presentations/js-async/</a>
           </ul>
         </section>
+
+
+        <!-- 
+        <section>
+          <h3>Wrap $.ajax into Promise</h3>
+          <ul class="code">
+            <li>Convert $.Deferred into Promise
+              <pre><code class="js">function wrapAjax(settings) {
+  return new Promise(function (resolve, reject) {
+    $.ajax(settings).then(function (data, textStatus, jqXHR) {
+      resolve({data: data, textStatus: textStatus, jqXHR: jqXHR});
+    }, function (jqXHR, textStatus, errorThrown) {
+      var e = new Error(textStatus);
+      e.jqXHR = jqXHR;
+      e.textStatus = textStatus;
+      e.errorThrown = errorThrown;
+      reject(e);
+    });
+  });
+}            </code></pre></li>
+          </ul>
+        </section>
+        <section>
+          <h3>Wrap $.ajax into Promise w/ abort method</h3>
+          <ul class="code">
+            <li>Convert $.Deferred into Promise, add abort          
+              <pre><code class="js">function wrapAjax(settings) {
+  var dfd = $.ajax(settings);
+  var p = new Promise(function (resolve, reject) {
+    dfd.then(function (data, textStatus, jqXHR) {
+      resolve({data: data, textStatus: textStatus, jqXHR: jqXHR});
+    }, function (jqXHR, textStatus, errorThrown) {
+      var e = new Error(textStatus);
+      e.jqXHR = jqXHR;
+      e.textStatus = textStatus;
+      e.errorThrown = errorThrown;
+      reject(e);
+    });
+  });
+  p.abort = dfd.abort.bind(dfd); //this is a monkey-patch, could overwrite browser provided abort if one
+  return p;
+}            </code></pre></li>
+          </ul>
+        </section>  -->      
 			</div>
 		</div>
 
