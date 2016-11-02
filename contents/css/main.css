@@ -80,7 +80,7 @@ hr {
 }
 
 .siteTitle {
-  background-color: #3d9ad1;
+  background-color: #AA3939;
 }
 
 .siteTitle h1
@@ -92,7 +92,7 @@ hr {
 
 .siteTitle a, .siteTitle a:hover {
   text-decoration: none;
-  color: #561400;  
+  color: #f1f227;  
 }
 
 .siteTitle .description {
@@ -100,7 +100,7 @@ hr {
   font-style: italic;
   text-align: center;
   margin-top: -0.3em;
-  color: #561400;
+  color: #f1f227;
 }
 
 /* page header */
@@ -118,7 +118,7 @@ hr {
 
 .header a, .header a:hover {
   text-decoration: none;
-  color: #561400;
+  color: #f1f227;
 }
 
 .header .author {
@@ -155,7 +155,7 @@ hr {
 }
 
 .siteTabs > a {
-  border-color: #3d9ad1;
+  border-color: #d2d2d2;
   border-style: solid;
   border-bottom-width: 1px;
   border-top-left-radius: 5px;
@@ -163,6 +163,7 @@ hr {
   display: inline-block;
   margin: 0 7px;
   vertical-align: middle;
+  text-decoration: none;
 }
 
 .siteTabs > a.active {
@@ -247,7 +248,7 @@ hr {
   text-decoration: none;
 }
 .archive li:not(:last-child) {
-	border-bottom: 1px solid #d2d2d2;
+	border-bottom: 1px dashed #d2d2d2;
 	margin-bottom: 5px;
   padding-bottom: 5px;
 }
@@ -272,6 +273,19 @@ hr {
 
 .archive-date {
   width: 7em;
+}
+
+/* talks */
+.talk h2 {
+  border-bottom-width: 1px;
+  border-color: #d2d2d2;
+  border-style: dashed;
+}
+
+#talkList {
+  list-style: none;
+  margin: 0;
+  margin-bottom: 3em;
 }
 
 /* code styling */

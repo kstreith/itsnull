@@ -15,9 +15,10 @@
     <div class="contentWrap">
         <h1><a href="{{url}}">{{name}}</a></h1>
         <p class="description">{{description}}</p>
-        <div class="siteTabs"><a href="/" {% if page == "index" %}class="active"{%endif%}>Home</a><a href="/archive.html" {% if page == "archive" %}class="active"{%endif%}>Archive</a></div>            
     </div>
 </div>
+<div class="siteTabs"><a href="/" {% if page == "index" %}class="active"{%endif%}>Home</a><a href="/archive.html" {% if page == "archive" %}class="active"{%endif%}>Archive</a><a href="/talks/" {% if page == "talks" %}class="active"{%endif%}>Talks</a></div>            
+
 {% endmacro %}
     {% block nav %}{% endblock %}
     
