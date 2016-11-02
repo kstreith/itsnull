@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block nav %}
+{{ nav('index') }}
+{% endblock %}
+
+{% block content %}
+{% set articles = env.helpers.getArticles(contents, 3) %}
+{% for article in articles %}
+<div id="content">
+    <div class="content-wrap">  
+        <article class="article intro">
+            <header>
+                <p class="date">
+                    <span>{{ moment.utc(article.date).format('DD. MMMM YYYY') }}</span>
+                </p>
+                <h2>
+                    <a href="{{ article.url }}">{{ article.title }}</a>
+                </h2>
+            </header>
+            <section class="content">
+                {{ typogr(article.intro).typogrify() | safe }}
+                {% if article.hasMore %}
+                    <p class="more">
+                        <a href="{{ article.url }}">more</a>
+                    </p>
+                {% endif %}
+            </section>
+        </article>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

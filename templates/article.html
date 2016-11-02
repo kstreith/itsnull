@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block nav %}
+{{ nav('') }}
+{% endblock %}
+
+{% block content %}
+    <div class="article-detail">
+        <header class="header">
+            <div class="content-wrap">            
+                <header>
+                    <div class="logo">
+                        <h1>{{ page.title }}</h1>
+                        <p class="author">Written by <a href="https://twitter.com/itsnull">Kip Streithorst</a></p>
+                    </div>
+                </header>
+            </div>
+        </header>
+        <div id="content">
+            <div class="content-wrap">
+                <article class="article">
+                    <section class="content">
+                        {{ typogr(page.html).typogrify() | safe }}
+                    </section>
+                </article>            
+            </div>
+        </div>
+    </div> 
+{% endblock %}

@@ -2,7 +2,7 @@
 title: It's time to start using ES5 in your javascript code, actually it's past time
 author: kstreith 
 date: 2014-02-08
-template: article.jade
+template: article.html
 ---
 
 If you don't know, ES5 is the EcmaScript5 specification, otherwise known as version 5 of the Javascript specification. Why should you use it? Because the spec has been out long enough (*since 2009*) to be very well supported across a wide swath of browsers and browser versions.

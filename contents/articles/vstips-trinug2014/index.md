@@ -2,7 +2,7 @@
 title: Visual Studio Tips - TRINUG Lightning Talk
 author: kstreith 
 date: 2014-12-11
-template: article.jade
+template: article.html
 ---
 
 Went to the [TRINUG](http://www.trinug.org/) Potluck and Lightning Talks Meetup last night. Lots of awesome presentations! I did a short lightning talk about some tips for Visual Studio. I covered 3 tips in 5 minutes, which is pretty quick. So, I wanted to discuss them again in long form here.

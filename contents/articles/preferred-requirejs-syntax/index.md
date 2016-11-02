@@ -2,7 +2,7 @@
 title: My preferred RequireJS syntax 
 author: kstreith 
 date: 2014-01-08
-template: article.jade
+template: article.html
 ---
 
 I've been working with Durandal lately, which means I'm using RequireJS. Almost all of the RequireJS module definition examples will look like this:

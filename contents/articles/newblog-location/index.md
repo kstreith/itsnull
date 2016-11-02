@@ -2,7 +2,7 @@
 title: From Wordpress to Wintersmith 
 author: kstreith 
 date: 2014-01-07
-template: article.jade
+template: article.html
 ---
 
 I've always wanted to be able to write my blog entries in Markdown, instead of using the Wordpress editor. What can I say, I really like Markdown. I had considered writing my own small blog engine that converted Markdown to HTML. But then there goes any free time I might have had. Plus, I would have to find a hosting provider. So, there my blog was stuck on Wordpress. Or so, I thought until I read a post by Phil Haack about [converting his blog](http://haacked.com/archive/2013/12/02/dr-jekyll-and-mr-haack/) to run on GitHub pages.

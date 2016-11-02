@@ -6,7 +6,8 @@
     "description": "Phrase heard round the world"
   },
   "plugins": [
-    "./plugins/paginator.coffee"
+    "./plugins/archive_helper.js",
+    "wintersmith-nunjucks"
   ],
   "require": {
     "moment": "moment",
@@ -19,8 +20,5 @@
   "markdown": {
     "smartLists": true,
     "smartypants": true
-  },
-  "paginator": {
-    "perPage": 3
   }
 }
