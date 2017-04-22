@@ -1,0 +1,455 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Azure Container Service</title>
+    
+   <script type="text/javascript">
+        var appInsights=window.appInsights||function(config){
+            function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s=u.createElement(o),i,f;for(s.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)r("track"+i.pop());return r("setAuthenticatedUserContext"),r("clearAuthenticatedUserContext"),config.disableExceptionTracking||(i="onerror",r("_"+i),f=e[i],e[i]=function(config,r,u,e,o){var s=f&&f(config,r,u,e,o);return s!==!0&&t["_"+i](config,r,u,e,o),s}),t
+        }({
+            instrumentationKey:"7835d8bd-cc2d-4cd1-ace6-04799eba844f"
+        });
+        
+        window.appInsights=appInsights;
+        appInsights.trackPageView();
+    </script>
+    
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/beige.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<meta name="description" content="JS Async Patterns">
+		<meta name="author" content="Kip Streithorst">
+    <style>
+      ul.code { width: 100%; }
+    </style>
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+        <section>
+          <h3>Azure Container Service</h3>
+          <h4>April 2017</h4>
+          <h4>Follow along at:</h4>
+          <p><a href="http://itsnull.com/">http://itsnull.com/</a></p>
+          <p><a href="http://itsnull.com/presentations/acs/">http://itsnull.com/presentations/acs/</a></p>
+          <p>
+          <small>Created by <a href="http://itsnull.com">Kip Streithorst</a> / <a href="http://twitter.com/itsnull">@itsnull</a></small>
+          </p>
+        </section>
+        <section>
+          <h3>Let's parse - Azure Container Service</h3>
+          <ul>
+            <li>Container</li>
+            <li>Container Service (Orchestrator)</li>
+            <li>Azure</li>
+            <li>Kubernetes (a Container Orchestrator)</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Container</h3>
+          <ul>
+            <li>Everything required to run custom software is package into isolated container</li>
+            <li>Unlike VM, does NOT include OS, only libraries required by custom software</li>
+            <li>Efficient, light-weight, self-contained, versionable</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Docker Containers</h3>
+          <ul>
+            <li>Docker (https://www.docker.com/what-docker)</li>
+            <li>Free software to create custom containers and share containers.</li>
+            <li>Easy to install on Windows 10 Anniversary Update or later</li>
+            <li>Containers started as Linux only</li>
+            <li>Microsoft and Docker released support for Windows containers (early 2017)</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Demo application</h3>
+          <ul>
+            <li>We will use Linux Docker containers</li>
+            <li>Demo Time - ASP.Net Core App that runs on Windows, Linux and inside a container</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Create and publish container</h3>
+          <ul>
+            <li>Go to directory with app source code, then</li>
+            <li>docker build -t kstreith/acs-gab-demo:1.0 .</li>
+            <li>docker push kstreith/acs-gab-demo:1.0</li>
+            <li>Docker Hub - <a href="https://hub.docker.com/r/kstreith/acs-gab-demo/">https://hub.docker.com/r/kstreith/acs-gab-demo/</a></li>
+          </ul>
+        </section>        
+        <section>
+          <h3>Run demo application</h3>
+          <ul>
+            <li>Install Docker</li>
+            <li>Create DocumentDB in your Azure account, find Endpoint Uri and Primary Key</li>
+            <li>docker run -d -p 8084:80 -e "DocDbEndpointUri=[docDb endpoint]" -e "DocDbPrimaryKey=[docDb key]" kstreith/acs-gab-demo:1.0
+            <li>Open web browser to http://localhost:8084/.</li>
+          </ul>
+        </section>        
+        <section>
+          <h3>Container Service/Container Orchestrator</h3>
+          <ul>
+            <li>Want to deploy containers</li>
+            <li>Redundancy across physical machines</li>
+            <li>Self-healing properties</li>
+            <li>Deployment checks, history and rollbacks</li>
+            <li>Scale horizontally with load balancing</li>
+            <li>Typically called Orchestrator</li>
+          </ul>
+        </section>                
+        <section>
+          <h3>Container Orchestrator</h3>
+          <ul>
+            <li>A few competitors in this space</li>
+            <li>Kubernetes - <a href="https://kubernetes.io/">https://kubernetes.io/</a></li>
+            <li>DC/OS - <a href="https://dcos.io/">https://dcos.io/</a></li>
+            <li>Docker Swarm - <a href="https://docs.docker.com/engine/swarm/">https://docs.docker.com/engine/swarm/</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3>Installing a Container Orchestrator</h3>
+          <ul>
+            <li>Have multiple machines (physical or virtual)</li>
+            <li>Install master software on a node</li>
+            <li>Install agent software on a node, enlist with master</li>
+            <li>Set-up security, storage, networking</li>
+            <li>Adding/removing a machine is manual process</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Azure Container Service</h3>
+          <ul>
+            <li>Allocates the machines</li>
+            <li>Installs the orchestration software, master and agents</li>
+            <li>Handles security, storage and networking</li>
+            <li>Has simple commands to add/remove machines</li>
+          </ul>
+        </section>    
+        <section>
+          <h3>Azure Container Service (cont.)</h3>
+          <ul>
+            <li>I will demo Kubernetes, didn't heavily research the other 2</li>
+            <li>Supports all three orchestrators:</li>
+            <li>Kubernetes</li>
+            <li>DC/OS</li>
+            <li>Docker Swarm (uses older Docker Swarm before replaced with new Docker Swarm, not recommended)</li>
+          </ul>
+        </section>     
+        <section>
+          <h3>Kubernetes</h3>
+          <ul>
+              <li>Supported on:</li>
+              <li>Azure Container Service</li>
+              <li>Google Container Engine</li>
+              <li>IBM Bluemix Container Service</li>
+              <li>Amazon Web Services EC2</li>
+              <li>On-premise machines</li>
+              <li>Kubernetes supports federation (alpha quality) - multiple Kubernetes clusters (one in AWS, one in Azure)</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Installing Kubernetes on Azure</h3>
+          <ul>
+            <li>Use the CLI or Azure Portal, CLI recommended</li>
+            <li>Install Azure CLI 2.0 first</li>
+            <li><a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli">https://docs.microsoft.com/en-us/cli/azure/install-azure-cli</a></li>
+            <li>Cross-platform</li>
+            <li>For Windows: use Bash on Windows, Docker on Windows or install Python and run natively</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Installing Kubernetes on Azure</h3>
+          <ul>
+            <li>Login<pre><code>az login</code></pre></li>
+            <li>Create Resource Group, makes it easy to delete later
+                <pre><code>az group create -n demo-gab-kub-1 -l "eastus"</code></pre>
+            </li>
+            <li>Create default cluster - (1 master, 3 agents)
+              <pre><code>az acs create --orchestrator-type=kubernetes
+ --resource-group demo-gab-kub-1
+ --name=demo-gab-kub-cname-1 --dns-prefix=demo-gab-kub-1
+ --generate-ssh-keys</code></pre>
+            </li>
+          </ul>
+        </section>        
+        <section>
+          <h3>Installing Kubernetes on Azure (cont)</h3>
+          <ul>
+            <li>Takes about 10 minutes</li>
+            <li>Creates 20+ resources, 1 master VM, 3 agent VMs, storage, network, load balancers</li>
+            <li>Costs less than $20 to run for 24 hours, e.g. < $1 per hour</li>
+            <li>When learning: save money, delete the cluster
+              <pre><code>az group delete -n demo-gab-kub-1</code></pre>
+            </li>
+          </ul>
+        </section>        
+        <section>
+          <h3>Installing Kubernetes on Azure (cont)</h3>
+          <ul>
+            <li>Install kubectl locally
+<pre><code>az acs kubernetes install-cli --install-location=C:\kubectl\kubectl.exe</code></pre>
+            </li>
+            <li>Retrieve Kubernetes credentials
+<pre><code>az acs kubernetes get-credentials --resource-group=demo-gab-kub-1
+  --name=demo-gab-kub-cname-1</code></pre>
+            </li>
+            <li>Test kubernetes
+<pre><code>kubectl version
+kubectl get nodes
+kubectl cluster-info
+</code></pre>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Kubernetes High Level</h3>
+          <img src="images/KubernetesDiagram.png" />
+        </section>  
+        <section>
+          <h3>Kubernetes High Level (cont)</h3>
+          <ul>
+            <li>Define a Pod, e.g. add labels, set a container image to be pulled from Docker Hub</li>
+            <li>Define a Deployment, which consists of a Replica Set. A Replica Set will replicate Pods across the cluster</li>
+          </ul>
+        </section>          
+        <section>
+          <h3>Kubernetes High Level (cont)</h3>
+          <ul>
+            <li>All Docker resources are by default only reachable from inside the cluster</li>
+            <li>Create a Service (e.g. external IP) that then exposes our Deployment, so that we can access via browser</li>
+          </ul>
+        </section>          
+        <section>
+          <h3>Deployment - acs-deployment.yaml</h3>
+          <pre><code class="yaml">apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: acs-demo-deployment
+spec:
+  replicas: 3 #Replica Set (3 copies of Pod)
+  template:
+    metadata:
+      name: acs-demo-pod
+      labels:
+        app: acs-demo
+    spec: #Defines POD
+      containers:
+      - name: acs-demo-container
+        image: kstreith/acs-gab-demo:1.0
+        env: #Environment Variables for Container
+        - name: DocDbEndpointUri
+          value: "https://acs-trinug-gab.documents.azure.com:443/"
+        - name: DocDbPrimaryKey
+          value: "PutKeyHere"
+        - name: DemoNodeName
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: DemoPodName
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        ports:
+        - containerPort: 80
+</code></pre>                  
+        </section>
+        <section>
+          <h3>Deploy App</h3>
+          <ul>
+            <li>Create deployment
+              <pre><code>kubectl create -f acs-deployment.yaml
+--record</code></pre>
+            </li>
+            <li>Check deployment
+              <pre><code>kubectl get deployment                      
+kubectl get pods --output=wide
+                </code></pre>
+            </li>
+          </ul>
+        </section>        
+        <section>
+          <h3>Create Service</h3>
+          <ul>
+            <li>Create Service, takes Azure a few minutes to allocate external IP
+              <pre><code>kubectl expose deployments acs-demo-deployment --port=80
+ --type=LoadBalancer</code></pre>
+            </li>
+            <li>Get external IP
+              <pre><code>kubectl get svc</code></pre>
+            </li>
+            <li>Open Browser http://[external ip]/</li>            
+          </ul>
+        </section>        
+        <section>
+          <h3>Scale within Kubernetes</h3>
+          <ul>
+            <li>Scale pods across nodes (change replica count)
+              <pre><code>kubectl scale deployment acs-demo-deployment
+ --replicas 10</code></pre>
+            </li>
+            <li>Check for new pods</li>
+              <pre><code>kubectl get pods --output=wide</code></pre>
+            </li>    
+          </ul>
+        </section>
+        <section>
+          <h3>Scale Kubernetes Cluster</h3>
+          <ul>
+            <li>Set new agent VM count for cluster, takes a few minutes to allocate VMs, install SWs and boot VMs
+              <pre><code>az acs scale -g demo-gab-kub-1 -n demo-gab-kub-cname-1 --new-agent-count 4</code></pre>
+            </li>
+            <li>Check for new nodes</li>
+              <pre><code>kubectl get nodes</code></pre>
+            </li>    
+          </ul>
+        </section>        
+        <section>
+          <h3>Rolling Update from v1 to v2</h3>
+          <ul>
+            <li>Depending on Deployment config, pulls some pods out of service, create new pods with new version,
+              keeps rolling until new replica set is up to count with all new pods
+              <pre><code>kubectl set image deployment/acs-demo-deployment
+acs-demo-container=kstreith/acs-gab-demo2</code></pre>
+            </li>
+            <li>Check rollout status</li>
+              <pre><code>kubectl rollout status deployment/acs-demo-deployment
+kubectl get rs
+kubectl get pods           
+</code></pre>
+            </li>    
+            <li>I made a typo on image name, rollout is now stuck</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Fixing stuck rollout</h3>
+          <ul>
+            <li>Querying pods shows problem pulling image
+              <pre><code>kubectl get pods</code></pre>
+            </li>
+            <li>Check deployment history</li>
+              <pre><code>kubectl rollout history deployment/acs-demo-deployment</code></pre>
+            </li>
+            <li>Rollback deployment change</li>
+              <pre><code>kubectl rollout undo deployment/acs-demo-deployment</code></pre>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Try again</h3>
+          <ul>
+            <li>Update using proper image tag now
+              <pre><code>kubectl set image deployment/acs-demo-deployment
+acs-demo-container=kstreith/acs-gab-demo:2.0</code></pre>
+            </li>
+            <li>Check in the browser that version 2 is running</li>
+          </ul>
+        </section>        
+        <section>
+          <h3>Self-healing</h3>
+          <ul>
+            <li>Let's go in the Azure Portal and hard shutdown a VM</li>
+            <li>Let's keep going with the presentation and then come back and check health of the cluster</li>
+          </ul>
+        </section>                        
+        <section>
+          <h3>Blue/Green Deployment</h3>
+          <ul>
+            <li>Run 2 deployments side by side (e.g. blue and green)</li>
+            <li>A Service (e.g. Production) uses a selector to route to pods on one of the sides (blue/green)</li>
+            <li>Start with Production pointed at blue</li>
+            <li>Update Green deployment with rolling update, no change to production. Verify deployment.</li>
+            <li>Switch Service (e.g. Production) to now select pods on the green side, router only change.</li>            
+          </ul>
+        </section>    
+        <section>
+          <h3>CAAS</h3>
+          <ul>
+            <li>Infrastructure As A Service (IAAS) - manage VMs</li>
+            <li>Container As A Service (CAAS) - manage containers</li>
+            <li>Platform As A Service (PAAS) - manage code</li>
+          </ul>
+        </section>                            
+        <section>
+          <h3>Recap</h3>
+          <ul>
+            <li>Azure Container Service can create redundant masters as well</li>
+            <li>Microsoft actively coordinating with Kubernetes on adding Windows container support</li>
+            <li>Private container repository possible with Private Docker Hub, Azure Container Registry</li>
+          </ul>
+        </section>                        
+        <section>
+          <h3>Recap (cont)</h3>
+          <ul>
+            <li>Multiple Kubernetes clusters and federation is possible (alpha quality)</li>
+            <li>Auto scaling based on cpu/memory pressure is available, didn't demo</li>
+            <li>I demo'd stateless applications, Kubernetes has support for stateful applications</li>
+          </ul>
+        </section>                        
+        <section>
+          <h3>Recap (cont)</h3>
+          <ul>
+            <li>Put almost any web software into a container</li>
+            <li>Auto-create cluster on Azure</li>
+            <li>Now have self-healing, load balancing, rolling updates, horizontal scaling, deployment history</li>
+            <li>Rapid updates in this space, keep eye on Kubernetes, DC/OS, Docker Swarm</li>
+          </ul>
+        </section>        
+        <section>
+          <h3>Thanks, Any Questions?</h3>
+          <ul>
+            <li>Kip Streithorst</li>
+            <li>Twitter: <a target="_blank" href="http://twitter.com/itsnull">@itsnull</a></li>
+            <li>Blog: <a target="_blank" href="http://itsnull.com/">http://itsnull.com/</a></li>
+            <li>Presentation: <a target="_blank" href="http://itsnull.com/presentations/acs/">http://itsnull.com/presentations/acs/</a>
+          </ul>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46954011-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    
+	</body>
+</html>

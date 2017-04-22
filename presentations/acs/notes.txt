@@ -1,0 +1,146 @@
+ACS
+    https://azure.microsoft.com/en-us/services/container-service/
+
+Use Azure CLI 2.0
+    https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
+    Install Python (3.6.1) on Windows or run az client from Docker container
+
+    Install Azure CLI 2.0
+        %LOCALAPPDATA%\Programs\Python\Python36\Scripts\pip install --user azure-cli
+        az.bat was installed to %APPDATA%\Python\Python36\Scripts
+    Open command prompt, configure & test, run
+        set PATH=%PATH%;%LOCALAPPDATA%\Programs\Python\Python36\;%APPDATA%\Python\Python36\Scripts
+        python --version
+        az --version
+
+PATHs to set
+    set PATH=%PATH%;%LOCALAPPDATA%\Programs\Python\Python36\;%APPDATA%\Python\Python36\Scripts;;C:\kubectl
+
+AZ CLI 2.0
+    az -h or az help to see top-level options
+    az [top-level] -h to see subcommands
+    az [top-level] [detail] -h for command level detail
+
+ACS - Kubernetes Walkthrough (https://docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-walkthrough)
+
+Install Kubernetes client
+    create directory C:\kubectl
+    az acs kubernetes install-cli --install-location=C:\kubectl\kubectl.exe
+    If omit --install-location, installed to C:\Program Files\
+    set PATH=%PATH%;C:\kubectl
+
+Install ACS
+    az login
+    List subscriptions
+        az account list --output table
+        If more than one, set default
+            az account set --subscription "f66xxxxx-xxxx-xxxx-xxx-zgxxxx33cha5"
+    Create new resource group, makes easier to delete later
+        az group create -n demo-gab-kub-1 -l "eastus"    
+    Create cluster
+        az acs create --orchestrator-type=kubernetes --resource-group demo-gab-kub-1 --name=demo-gab-kub-cname-1 --dns-prefix=demo-gab-kub-1 --generate-ssh-keys
+        
+        created ssh keys at: C:\Users\kip.streithorst\.ssh\id_rsa,C:\Users\kip.streithorst\.ssh\id_rsa.pub
+        Took about 10 minutes to create ACS cluster
+        Created 23 resources, view:
+            az resource list -g demo-gab-kub-1 --output table        
+            1 master VM, 3 agent VMs, network interfaces, load balancers, routers, etc.
+    Connect to Kubernetes
+        az acs kubernetes get-credentials --resource-group=demo-gab-kub-1 --name=demo-gab-kub-cname-1    
+        Creates ~/.kube/configure
+
+    Show Details on ACS cluster
+        az acs show -g demo-gab-kub-1 -n demo-gab-kub-cname-1
+    Scale up to 4 agents
+        az acs scale -g demo-gab-kub-1 -n demo-gab-kub-cname-1 --new-agent-count 4
+            Scale up takes a few minutes to acquire VM hardware, boot VM & join cluster
+        kubectl get nodes
+            Should see new agent active on the cluster
+    Scale down to 2 agent
+        az acs scale -g demo-gab-kub-1 -n demo-gab-kub-cname-1 --new-agent-count 2    
+            Scale down takes a few minutes, fully deletes the VMs from Azure resource group.
+        kubectl get nodes
+            Should see only agents active
+    Run kubectl command-line
+        kubectl version
+            Client Version: version.Info{Major:"1", Minor:"6", GitVersion:"v1.6.1", GitCommit:"b0b7a323cc5a4a2019b2e9520c21c7830b7f708e", GitTreeState:"clean", BuildDate:"2017-04-03T20:44:38Z", GoVersion:"go1.7.5", Compiler:"gc", Platform:"windows/amd64"}        
+            Server Version: version.Info{Major:"1", Minor:"5", GitVersion:"v1.5.3", GitCommit:"029c3a408176b55c30846f0faedf56aae5992e9b", GitTreeState:"clean", BuildDate:"2017-02-15T06:34:56Z", GoVersion:"go1.7.4", Compiler:"gc", Platform:"linux/amd64"}
+    
+
+Kubernetes
+    kubectl run acsdemo --image kstreith/acs-gab-demo
+    See if running (wait a minute or two)
+        kubectl get pods
+    Expose publicly
+        kubectl expose deployments acsdemo --port=80 --type=LoadBalancer
+    Check for status & external ip (takes a few minutes, e.g. 5)
+        kubectl get svc        
+    Can browse to external ip and see nginx in browser
+
+    Cleaning up
+        Delete External IP
+            kubectl delete services acsdemo 
+        Delete deployment
+            kubectl delete deployment acsdemo            
+
+    See Kubernetes
+        kubectl proxy
+        http://127.0.0.1:8001/ui    
+
+Kubernetes YAML deployment
+   kubectl create -f acs-deployment.yaml --record
+   kubectl get deployment
+   kubectl get pods --output=wide
+   kubectl expose deployments acs-demo-deployment --port=80 --type=LoadBalancer
+   kubectl get svc
+
+   Scale deployment
+      kubectl scale deployment acs-demo-deployment --replicas 10
+      kubectl get deploy
+         (see it)
+      kubectl get pods
+
+   Rollout new deployment
+     kubectl set image deployment/acs-demo-deployment acs-demo-container=kstreith/acs-gab-demo:2.0
+   Checkout rollout status
+     kubectl rollout status deployment/acs-demo-deployment
+   Check Details
+     kubectl get rs
+     kubectl get pods
+   View rollout history
+     kubectl rollout history deployment/acs-demo-deployment
+
+
+     kubectl edit deployment/acs-demo-deployment
+
+
+Delete Resource Group to free up resources & stop being billed.
+
+Docker image
+   C:\Trinug\AzureContainerService\
+    Uses Azure DocumentDB for geo-replicated, highly-available storage
+    Web app itself is stateless, all state stored in Azure DocumentDB
+   Create image
+    dotnet publish -c "Release"
+    docker build -t kstreith/acs-gab-demo:1.0 -f Dockerfile.publish .
+    docker push kstreith/acs-gab-demo:1.0
+
+   Demo locally multiple instances:
+    docker run -d -p 8084:80 -e "DocDbEndpointUri=https://acs-trinug-gab.documents.azure.com:443/" -e "DocDbPrimaryKey=bnlexUu5DSL17AhaGim3WItmqoabWsOQLS7U2XkxBqtTnwJ0HKcDAOO68ugWOceNnZKuAorZrHByK6V4xIWFCg==" -e "DemoNodeName=DockerLocal" -e "DemoPodName=DockerLocal" kstreith/acs-gab-demo:1.0   
+    docker run -d -p 8083:80 -e "DocDbEndpointUri=https://acs-trinug-gab.documents.azure.com:443/" -e "DocDbPrimaryKey=bnlexUu5DSL17AhaGim3WItmqoabWsOQLS7U2XkxBqtTnwJ0HKcDAOO68ugWOceNnZKuAorZrHByK6V4xIWFCg==" -e "DemoNodeName=DockerLocal" -e "DemoPodName=DockerLocal" kstreith/acs-gab-demo:1.0
+
+  Create new Azure Document DB in Azure
+    Find keys, pass as Docker env variables
+        https://acs-trinug-gab2.documents.azure.com:443/
+        ZSAW8ibkJsRKbJ1KFFQQMT8YSFCcOXQJ31HhcPKM0ezyQzp2ZIlevojicIF1K9QEIueDc3yn58Vzpqz55oZkJQ==
+    docker run -d -p 8085:80 -e "DocDbEndpointUri=https://acs-trinug-gab2.documents.azure.com:443/" -e "DocDbPrimaryKey=ZSAW8ibkJsRKbJ1KFFQQMT8YSFCcOXQJ31HhcPKM0ezyQzp2ZIlevojicIF1K9QEIueDc3yn58Vzpqz55oZkJQ==" -e "DemoNodeName=DockerLocal2" -e "DemoPodName=DockerLocal2" kstreith/acs-gab-demo:1.0
+
+
+Blue-Green deployments
+Create service (prod-slot, staging-slot)        
+    kubectl apply -f prod-staging-service.yaml
+    kubectl create -f green-deployment.yaml --record
+    kubectl create -f blue-deployment.yaml --record
+
+    kubectl edit svc prod-slot
+      change selector from blue to green, now routes to pods with green label
