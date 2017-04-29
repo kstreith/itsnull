@@ -5,9 +5,29 @@
     <atom:link href="http://itsnull.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <link>http://itsnull.com</link>
     <description>Phrase heard round the world</description>
-    <pubDate>Thu, 15 Oct 2015 20:00:00 -0400</pubDate>
+    <pubDate>Fri, 28 Apr 2017 20:00:00 -0400</pubDate>
     <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
     <language>en</language>
+    <item>
+      <title>Global Azure Bootcamp 2017</title>
+      <link>http://itsnull.com/articles/gab2017/</link>
+      <pubDate>Fri, 28 Apr 2017 20:00:00 -0400</pubDate>
+      <guid isPermaLink="true">http://itsnull.com/articles/gab2017/</guid>
+      <author></author>
+      <description>&lt;p&gt;I presented at &lt;a href=&quot;https://www.meetup.com/TRINUG/events/237900403/&quot;&gt;Raleigh-Durham Global Azure Bootcamp&lt;/a&gt; last weekend, April 22nd, 2017. I had a blast and the other presentations were great.   &lt;/p&gt;
+&lt;p&gt;My talk was on Azure Container Service. Azure Container Service can be broken down into three things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Containers: packaged version of an application with all dependencies, commonly a &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; container.&lt;/li&gt;
+&lt;li&gt;Container Service: otherwise known as a container orchestrator. This is software that manages a cluster of machines and can spin up running instances of software from a container image. You get features like auto-scaling, self-healing, versioned deployments, rolling deployments. These features work for any software that can be packaged into a container.&lt;/li&gt;
+&lt;li&gt;Azure: normally getting started using an container orchestrator can be a bit painful since you have to have the cluster of machines, you have to install the software and configure the cluster. This is where &lt;a href=&quot;https://azure.microsoft.com/en-us/services/container-service/&quot;&gt;Azure Container Service&lt;/a&gt; comes in, you can run a single command using the Azure CLI 2.0 and create a cluster using one of three container orchestrators.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My presentation includes a sample ASP.NET Core application I wrote and packaged into a container on &lt;a href=&quot;https://hub.docker.com/r/kstreith/acs-gab-demo/&quot;&gt;Docker Hub&lt;/a&gt;. Follow the presentation and create your own cluster and try out rolling deployments, self-healing, replication in your own Azure account or create a free trial Azure account.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Slides: &lt;a href=&quot;http://itsnull.com/presentations/acs/&quot;&gt;View&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Have fun learning!&lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>Learn C# 6 - By Example</title>
       <link>http://itsnull.com/articles/learn-csharp6/</link>
