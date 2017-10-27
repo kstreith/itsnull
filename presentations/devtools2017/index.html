@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Developer Tools for the Browser - Level Up!</title>
+    
+   <script type="text/javascript">
+        var appInsights=window.appInsights||function(config){
+            function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s=u.createElement(o),i,f;for(s.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)r("track"+i.pop());return r("setAuthenticatedUserContext"),r("clearAuthenticatedUserContext"),config.disableExceptionTracking||(i="onerror",r("_"+i),f=e[i],e[i]=function(config,r,u,e,o){var s=f&&f(config,r,u,e,o);return s!==!0&&t["_"+i](config,r,u,e,o),s}),t
+        }({
+            instrumentationKey:"7835d8bd-cc2d-4cd1-ace6-04799eba844f"
+        });
+        
+        window.appInsights=appInsights;
+        appInsights.trackPageView();
+    </script>
+    
+		<link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+    <style>
+      footer {
+        position: fixed;
+        bottom: 1.5em;
+        left: 1.5em;
+        font-size: 2em;
+      }
+      footer, footer > a {
+        color: #fff;        
+      }
+    </style>
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<meta name="description" content="JS Async Patterns">
+		<meta name="author" content="Kip Streithorst">
+    <style>
+      ul.code { width: 100%; }
+    </style>
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+        <section>
+          <h3>Developer Tools for the Browser - Level Up!</h3>
+          <h4>2017</h4>
+          <h4>Follow along at:</h4>
+          <p><a href="http://itsnull.com/">http://itsnull.com/</a></p>
+          <p><a href="http://itsnull.com/presentations/devtools2017/">http://itsnull.com/presentations/devtools2017/</a></p>
+          <p>
+          <small>Created by <a href="http://itsnull.com">Kip Streithorst</a> / <a href="http://twitter.com/itsnull">@itsnull</a></small>
+          </p>
+        </section>
+        <!--
+        <section>
+          <h3>Let's parse - Azure Container Service</h3>
+          <ul>
+            <li>Container</li>
+            <li>Container Service (Orchestrator)</li>
+            <li>Azure</li>
+            <li>Kubernetes (a Container Orchestrator)</li>
+          </ul>
+        </section> 
+        <section>
+          <h3>Container</h3>
+          <ul>
+            <li>Everything required to run custom software is package into isolated container</li>
+            <li>Unlike VM, does NOT include OS, only libraries required by custom software</li>
+            <li>Efficient, light-weight, self-contained, versionable</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Docker Containers</h3>
+          <ul>
+            <li>Docker (https://www.docker.com/what-docker)</li>
+            <li>Free software to create custom containers and share containers.</li>
+            <li>Easy to install on Windows 10 Anniversary Update or later</li>
+            <li>Containers started as Linux only</li>
+            <li>Microsoft and Docker released support for Windows containers (early 2017)</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Demo application</h3>
+          <ul>
+            <li>We will use Linux Docker containers</li>
+            <li>Demo Time - ASP.Net Core App that runs on Windows, Linux and inside a container</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Create and publish container</h3>
+          <ul>
+            <li>Go to directory with app source code, then</li>
+            <li>docker build -t kstreith/acs-gab-demo:1.0 .</li>
+            <li>docker push kstreith/acs-gab-demo:1.0</li>
+            <li>Docker Hub - <a href="https://hub.docker.com/r/kstreith/acs-gab-demo/">https://hub.docker.com/r/kstreith/acs-gab-demo/</a></li>
+          </ul>
+        </section>        
+        <section>
+          <h3>Run demo application</h3>
+          <ul>
+            <li>Install Docker</li>
+            <li>Create DocumentDB in your Azure account, find Endpoint Uri and Primary Key</li>
+            <li>docker run -d -p 8084:80 -e "DocDbEndpointUri=[docDb endpoint]" -e "DocDbPrimaryKey=[docDb key]" kstreith/acs-gab-demo:1.0
+            <li>Open web browser to http://localhost:8084/.</li>
+          </ul>
+        </section>        
+        <section>
+          <h3>Container Service/Container Orchestrator</h3>
+          <ul>
+            <li>Want to deploy containers</li>
+            <li>Redundancy across physical machines</li>
+            <li>Self-healing properties</li>
+            <li>Deployment checks, history and rollbacks</li>
+            <li>Scale horizontally with load balancing</li>
+            <li>Typically called Orchestrator</li>
+          </ul>
+        </section>                
+        <section>
+          <h3>Container Orchestrator</h3>
+          <ul>
+            <li>A few competitors in this space</li>
+            <li>Kubernetes - <a href="https://kubernetes.io/">https://kubernetes.io/</a></li>
+            <li>DC/OS - <a href="https://dcos.io/">https://dcos.io/</a></li>
+            <li>Docker Swarm - <a href="https://docs.docker.com/engine/swarm/">https://docs.docker.com/engine/swarm/</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3>Installing a Container Orchestrator</h3>
+          <ul>
+            <li>Have multiple machines (physical or virtual)</li>
+            <li>Install master software on a node</li>
+            <li>Install agent software on a node, enlist with master</li>
+            <li>Set-up security, storage, networking</li>
+            <li>Adding/removing a machine is manual process</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Azure Container Service</h3>
+          <ul>
+            <li>Allocates the machines</li>
+            <li>Installs the orchestration software, master and agents</li>
+            <li>Handles security, storage and networking</li>
+            <li>Has simple commands to add/remove machines</li>
+          </ul>
+        </section>    
+        <section>
+          <h3>Azure Container Service (cont.)</h3>
+          <ul>
+            <li>I will demo Kubernetes, didn't heavily research the other 2</li>
+            <li>Supports all three orchestrators:</li>
+            <li>Kubernetes</li>
+            <li>DC/OS</li>
+            <li>Docker Swarm (uses older Docker Swarm before replaced with new Docker Swarm, not recommended)</li>
+          </ul>
+        </section>     
+        <section>
+          <h3>Kubernetes</h3>
+          <ul>
+              <li>Supported on:</li>
+              <li>Azure Container Service</li>
+              <li>Google Container Engine</li>
+              <li>IBM Bluemix Container Service</li>
+              <li>Amazon Web Services EC2</li>
+              <li>On-premise machines</li>
+              <li>Kubernetes supports federation (alpha quality) - multiple Kubernetes clusters (one in AWS, one in Azure)</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Installing Kubernetes on Azure</h3>
+          <ul>
+            <li>Use the CLI or Azure Portal, CLI recommended</li>
+            <li>Install Azure CLI 2.0 first</li>
+            <li><a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli">https://docs.microsoft.com/en-us/cli/azure/install-azure-cli</a></li>
+            <li>Cross-platform</li>
+            <li>For Windows: use Bash on Windows, Docker on Windows or install Python and run natively</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Installing Kubernetes on Azure</h3>
+          <ul>
+            <li>Login<pre><code>az login</code></pre></li>
+            <li>Create Resource Group, makes it easy to delete later
+                <pre><code>az group create -n demo-gab-kub-1 -l "eastus"</code></pre>
+            </li>
+            <li>Create default cluster - (1 master, 3 agents)
+              <pre><code>az acs create --orchestrator-type=kubernetes
+ --resource-group demo-gab-kub-1
+ --name=demo-gab-kub-cname-1 --dns-prefix=demo-gab-kub-1
+ --generate-ssh-keys</code></pre>
+            </li>
+          </ul>
+        </section> -->
+			</div>
+		</div>
+    <footer>
+      <a href="http://itsnull.com">http://itsnull.com</a><br/>
+      <a href="https://twitter.com/itsnull">@itsnull</a>
+    </footer>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46954011-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    
+	</body>
+</html>
