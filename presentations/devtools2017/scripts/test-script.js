@@ -85,8 +85,9 @@ window.presentation = window.presentation || {};
             document.querySelector(".tempLabel").classList.add("hot");
         }
     }    
-    document.querySelector("#slowOp").addEventListener("click", function () {
-        window.performance.mark('slowOpStart');
+    document.querySelector("#firstOp").addEventListener("click", function () {
+        //append directly, use nth-child to style
+        window.performance.mark('firstOpStart');
         var counter = document.querySelector("#counter");
         counter.innerText = "";
         counter.innerHtml = "";
@@ -103,14 +104,15 @@ window.presentation = window.presentation || {};
                 var done = document.createElement("div");
                 done.innerText = "Done!";
                 counter.insertBefore(done, counter.childNodes[0]);
-                window.performance.mark('slowOpStop');                
-                window.performance.measure("SlowOp", "slowOpStart", "slowOpStop");
+                window.performance.mark('firstOpStop');                
+                window.performance.measure("FirstOp", "firstOpStart", "firstOpStop");
             }
         }
         setTimeout(updateCounter, 5);
     });    
-    document.querySelector("#fastOp").addEventListener("click", function () {
-        window.performance.mark('fastOpStart');        
+    document.querySelector("#secondOp").addEventListener("click", function () {
+        //append every 100 elements at once, style using inline styles
+        window.performance.mark('secondOpStart');        
         var counter = document.querySelector("#counter");
         counter.innerText = "";
         counter.innerHtml = "";
@@ -119,8 +121,12 @@ window.presentation = window.presentation || {};
         function updateCounter() {
             counterValue++;
             var newNode = document.createElement("div");
-            newNode.classList.add("item");            
             newNode.innerText = counterValue;
+            if (counterValue % 2 == 0)
+            {
+                newNode.style.color = "black";
+                newNode.style.backgroundColor = "white";
+            }
             tempNodes.push(newNode);
             if (counterValue % 100) {
                 for (var i = 0; i < tempNodes.length; ++i) {
@@ -134,8 +140,8 @@ window.presentation = window.presentation || {};
                 var done = document.createElement("div");
                 done.innerText = "Done!";
                 counter.insertBefore(done, counter.childNodes[0]);
-                window.performance.mark('fastOpStop');                
-                window.performance.measure("FastOp", "fastOpStart", "fastOpStop");
+                window.performance.mark('secondOpStop');                
+                window.performance.measure("SecondOp", "secondOpStart", "secondOpStop");
             }
         }
         setTimeout(updateCounter, 5);        
