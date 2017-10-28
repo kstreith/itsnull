@@ -84,7 +84,62 @@ window.presentation = window.presentation || {};
         if (currentTemp > 99) {
             document.querySelector(".tempLabel").classList.add("hot");
         }
-    }
+    }    
+    document.querySelector("#slowOp").addEventListener("click", function () {
+        window.performance.mark('slowOpStart');
+        var counter = document.querySelector("#counter");
+        counter.innerText = "";
+        counter.innerHtml = "";
+        var counterValue = 0;
+        function updateCounter() {
+            counterValue++;
+            var newNode = document.createElement("div");
+            counter.insertBefore(newNode, counter.childNodes[0]);                
+            newNode.classList.add("item");
+            newNode.innerText = counterValue;
+            if (counterValue < 500) {
+                setTimeout(updateCounter, 5);
+            } else {
+                var done = document.createElement("div");
+                done.innerText = "Done!";
+                counter.insertBefore(done, counter.childNodes[0]);
+                window.performance.mark('slowOpStop');                
+                window.performance.measure("SlowOp", "slowOpStart", "slowOpStop");
+            }
+        }
+        setTimeout(updateCounter, 5);
+    });    
+    document.querySelector("#fastOp").addEventListener("click", function () {
+        window.performance.mark('fastOpStart');        
+        var counter = document.querySelector("#counter");
+        counter.innerText = "";
+        counter.innerHtml = "";
+        var counterValue = 0;
+        var tempNodes = [];
+        function updateCounter() {
+            counterValue++;
+            var newNode = document.createElement("div");
+            newNode.classList.add("item");            
+            newNode.innerText = counterValue;
+            tempNodes.push(newNode);
+            if (counterValue % 100) {
+                for (var i = 0; i < tempNodes.length; ++i) {
+                    counter.insertBefore(tempNodes[i], counter.childNodes[0]);                    
+                }
+                tempNodes = [];
+            }
+            if (counterValue < 500) {
+                setTimeout(updateCounter, 5);
+            } else {
+                var done = document.createElement("div");
+                done.innerText = "Done!";
+                counter.insertBefore(done, counter.childNodes[0]);
+                window.performance.mark('fastOpStop');                
+                window.performance.measure("FastOp", "fastOpStart", "fastOpStop");
+            }
+        }
+        setTimeout(updateCounter, 5);        
+    });    
     Reveal.addEventListener( 'showTempControl', function() {
         document.querySelector("#tempControl").classList.add("shown");
     }, false );    
