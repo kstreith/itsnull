@@ -5,9 +5,23 @@
     <atom:link href="http://itsnull.com/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <link>http://itsnull.com</link>
     <description>Phrase heard round the world</description>
-    <pubDate>Sat, 29 Apr 2017 20:00:00 -0400</pubDate>
+    <pubDate>Thu, 26 Oct 2017 20:00:00 -0400</pubDate>
     <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
     <language>en</language>
+    <item>
+      <title>Presenting &quot;Developer Tools for the Browser - Level Up!&quot;</title>
+      <link>http://itsnull.com/articles/netConfLocal2017/</link>
+      <pubDate>Thu, 26 Oct 2017 20:00:00 -0400</pubDate>
+      <guid isPermaLink="true">http://itsnull.com/articles/netConfLocal2017/</guid>
+      <author></author>
+      <description>&lt;p&gt;I’m presenting &lt;a href=&quot;https://www.meetup.com/TRINUG/events/237900403/&quot;&gt;Raleigh .NET Conf Local 2017&lt;/a&gt; this weekend, October 28th, 2017.&lt;/p&gt;
+&lt;p&gt;I’m excited to be presenting on Developer Tools in the Web Browser. We will cover a bunch of content. Come learn how to use the developer tools for debugging and prototyping. But also how to use the dev tools to learn new web features and most importantly how to have empathy for your users and develop better web applications. It covers a wide variety of techniques, from beginners to experts.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Slides: &lt;a href=&quot;hhttp://itsnull.com/presentations/devtools2017/&quot;&gt;View&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Have fun learning!&lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>Section for talks</title>
       <link>http://itsnull.com/articles/talks/</link>
@@ -224,6 +238,15 @@
 </description>
     </item>
     <item>
+      <title>Old Blog still on wordpress.com</title>
+      <link>http://itsnull.com/articles/oldblog-location/</link>
+      <pubDate>Mon, 06 Jan 2014 19:00:00 -0500</pubDate>
+      <guid isPermaLink="true">http://itsnull.com/articles/oldblog-location/</guid>
+      <author></author>
+      <description>&lt;p&gt;If you are looking for one of my older blog entries, those can still be found on &lt;a href=&quot;http://itsnull.wordpress.com/&quot;&gt;http://itsnull.wordpress.com/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    <item>
       <title>From Wordpress to Wintersmith</title>
       <link>http://itsnull.com/articles/newblog-location/</link>
       <pubDate>Mon, 06 Jan 2014 19:00:00 -0500</pubDate>
@@ -237,15 +260,6 @@
 &lt;p&gt;wintersmith preview&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I did not convert my old posts on Wordpress over to Wintersmith. Something for the next brave convert to Wintersmith, maybe. You can find my old posts at &lt;a href=&quot;http://itsnull.wordpress.com/&quot;&gt;http://itsnull.wordpress.com/&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    <item>
-      <title>Old Blog still on wordpress.com</title>
-      <link>http://itsnull.com/articles/oldblog-location/</link>
-      <pubDate>Mon, 06 Jan 2014 19:00:00 -0500</pubDate>
-      <guid isPermaLink="true">http://itsnull.com/articles/oldblog-location/</guid>
-      <author></author>
-      <description>&lt;p&gt;If you are looking for one of my older blog entries, those can still be found on &lt;a href=&quot;http://itsnull.wordpress.com/&quot;&gt;http://itsnull.wordpress.com/&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
   </channel>
