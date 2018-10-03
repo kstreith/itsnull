@@ -1,0 +1,408 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>How To Improve Code Quality</title>
+
+  <script type="text/javascript">
+    var appInsights = window.appInsights || function (config) {
+      function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, u = document, e = window, o = "script", s = u.createElement(o), i, f; for (s.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;)r("track" + i.pop()); return r("setAuthenticatedUserContext"), r("clearAuthenticatedUserContext"), config.disableExceptionTracking || (i = "onerror", r("_" + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t["_" + i](config, r, u, e, o), s }), t
+    }({
+      instrumentationKey: "7835d8bd-cc2d-4cd1-ace6-04799eba844f"
+    });
+
+    window.appInsights = appInsights;
+    appInsights.trackPageView();
+  </script>
+
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/black.css">
+  <style>
+    footer {
+      position: fixed;
+      bottom: 1.5em;
+      left: 1.5em;
+      font-size: 1.5em;
+    }
+
+    footer,
+    footer>a {
+      color: #fff;
+    }
+  </style>
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <meta name="description" content="How To Improve Code Quality">
+  <meta name="author" content="Kip Streithorst">
+  <style>
+    ul.code {
+      width: 100%;
+    }
+  </style>
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h3>How To Improve Code Quality</h3>
+        <h4>2018</h4>
+        <h4>Follow along at:</h4>
+        <p>
+          <a href="http://itsnull.com/">http://itsnull.com/</a>
+        </p>
+        <p>
+          <a href="http://itsnull.com/presentations/hticq/">http://itsnull.com/presentations/hticq/</a>
+        </p>
+        <p>
+          <small>Created by
+            <a href="http://itsnull.com">Kip Streithorst</a> /
+            <a href="http://twitter.com/itsnull">@itsnull</a>
+          </small>
+        </p>
+      </section>
+      <section>
+        <h3>How To Improve Code Quality</h3>
+        <ul>
+          <li>What is quality code?</li>
+          <li>Ways to improve it</li>
+          <li>Where to start?</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What is quality code?</h3>
+        <ul>
+          <li>Satisfies customer requirements</li>
+          <li>Easy to change
+            <ul><li>Defining feature of software compared to hardware</li></ul>
+          </li>
+        </ul>
+      </section> 
+      <section>
+        <h3>How to satisfy customer requirements?</h3>
+        <ul>
+          <li>The great question, is there an answer?</li>
+          <li>Yeah, know what you don't know. Be agile.</li>
+          <li>Deliver early, deliver often.</li>
+          <li>Get feedback early, get feedback often.</li>
+          <li>Reprioritize as needed.</li>
+        </ul>
+      </section> 
+      <section>
+        <h3>How to deliver early, deliver often</h3>
+        <ul>
+          <li>Automate it. No, really automate it.</li>
+          <li>Continuous integration - automated builds on check-in.</li>
+          <li>Continous deploy - automated or push button deployments all the way to production</li>
+          <li>Deploy multiple times a month, multiple times a day.</li>
+        </ul>
+      </section> 
+      <section>
+        <h3>What is quality code?</h3>
+        <ul>
+          <li>Satisfies customer requirements</li>
+          <li>Easy to change
+            <ul><li>Defining feature of software compared to hardware</li></ul>
+          </li>
+        </ul>
+      </section>           
+      <section>
+        <h3>How to make code easy to change</h3>
+        <ul>
+          <li>Be able to assert code behaves the same before and after a change</li>
+          <li>Code is maintainable</li>
+          <li>Code is readable</li>
+        </ul>
+      </section>      
+      <section>
+        <h3>How to assert behavior hasn't changed?</h3>
+        <ul>
+          <li>Write tests</li>
+          <li>Unit tests, integration tests, system tests, etc.</li>
+          <li>Make them easy to run</li>
+          <li>Automate them, e.g. continuous integration, continuous deploy</li>
+        </ul>
+      </section>
+      <section>
+        <h3>How to ensure maintainability?</h3>
+        <ul>
+          <li>Afraid to change it? Then it's not maintainable</li>
+          <li>Can't explain it? Then it's not maintainable</li>
+          <li>Can't easily debug it? Then it's not maintainable</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Unit tests can help with maintainability</h3>
+        <ul>
+          <li>Changing it? Tests help prevent regressions</li>
+          <li>Explain it? Tests provide example of happy paths and sad paths</li>
+          <li>Debug it? Debug the test to get directly to a piece of lower level code</li>
+        </ul>
+      </section>
+      <section>
+        <h3>However, tests aren't the whole answer</h3>
+        <ul>
+          <li>Tests only assist with their focus area</li>
+          <li>To improve maintainability, we need to improve readability</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What does readable code mean?</h3>
+        <ul>
+          <li>Can code be universally readable?</li>
+          <li>Are all books universally readable?</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What does readable code mean? (pt. 2)</h3>
+        <ul>
+          <li>Chemistry Book</li>
+          <li>Knitting Book</li>
+          <li>Economics Book</li>
+          <li>Software Design Pattern Book</li>
+          <li>Are all of those equally readable for everyone?</li>
+          <li>No, they have required knowledge of the domain that contributes to the readability</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What does readable code mean? (pt. 3)</h3>
+        <ul>
+          <li>We write custom software to deliver value for a domain</li>
+          <li>So each piece of software has required domain knowledge</li>
+          <li>So, readability of code isn't universal</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What does readable code mean? (pt. 4)</h3>
+        <ul>
+          <li>You need someone with domain knowledge first</li>
+          <li>Then you can evaluate readability</li>
+          <li>So, to improve readability, you need another team member to read it.</li>
+          <li>So... Code Reviews are paramount</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What are Code Reviews?</h3>
+        <ul>
+          <li>Another member of the team reads the code and provides feedback</li>
+          <li>That feedback is incorporated back into the code</li>
+          <li>Repeat until team is satisifed</li>
+          <li>Think back to editing a writing assignment</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Why do Code Reviews?</h3>
+        <ul>
+          <li>Increase readability</li>
+          <li>Keep scary code out</li>
+          <li>Keep code that can't be explained out</li>
+          <li>Keep code that can't be debugged out</li>
+          <li>... Improve Code Quality</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Why do Code Reviews? (pt. 2)</h3>
+        <ul>
+          <li>Other Benefits as well</li>
+          <li>Find bugs earlier</li>
+          <li>Intrinsic cross training</li>
+          <li>Break down of silos</li>
+          <li>Mentor/on board team members</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What isn't a code review</h3>
+        <ul>
+          <li>Not a performance or review metric for software engineers</li>
+          <li>Not a way to belittle others</li>
+          <li>Not a way to settle scores</li>
+          <li>Not a way to rubber stamp each others work</li>
+          <li>Not just the job of one person on the team</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Mindset of the coder</h3>
+        <ul>
+          <li>Review comments are an opening line in a discussion</li>
+          <li>Review comments can be ignored</li>
+          <li>Review comments are NOT an order or directive to be blindly followed</li>
+          <li>You still own the completion of the task/feature, not the reviewer</li>
+          <li>Remember, the quantity of feedback has NOTHING to do with the size of your change</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Mindset of the reviewer</h3>
+        <ul>
+          <li>You are providing feedback, not orders or directives</li>
+          <li>Not all of your feedback may be accepted or acted upon</li>
+          <li>Never a need for personal attacks or inappropriate language, it distracts from your point and wastes time</li>
+          <li>Try not to pre-filter your feedback, if you think of it, put it down</li>
+          <li>Try and review equally, regardless if you are reviewing team lead's code or new team member's code</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Mindset of the team</h3>
+        <ul>
+          <li>Remember, the goal is to improve code quality</li>
+          <li>Don't let reviews get bogged down in minutiae, e.g. formatting arguments</li>
+          <li>Don't let reviews become repetitive</li>
+          <li>Use tools and standards to automate formatting and repetitive things so they are fixed before the review ever starts</li>
+        </ul>
+      </section>
+      <!--
+        Early problems when starting reviews:
+          - It will devolve into arguments about things that you likely don't have:
+              - Preferred Formatting Standards
+              - Preferred Naming Conventions
+              - Standard Patterns
+              - Architectural Patterns
+              - Preferred Error Handling Strategies 
+          - Progress will appear slow and always contentious
+          - But you are converging your code so it appears to be written by one author, not N authors.
+          - That will increase readability in the long term, a single file or feature no longer randomly switches between N writing styles.
+      -->
+      <!-- 
+        Resolving disputes
+          - Try and let coder and reviewer work it out
+          - Bring members of the team into the discussion, come to consensus
+          - Last resort is decision from on high
+      -->
+      <!--
+        - What are we looking for?
+          - Code that you can't read
+          - Code that you can't understand
+              - What it does?
+              - Why it does what it does?
+          - Code you wouldn't know how to debug
+          - Code you would be afraid to start maintaining tomorrow
+        - What are we reviewing?
+          - Changes in the commit
+          - Changes NOT in the commit, should other changes have been made, but weren't?
+        - Does this implement the task or user story?
+        - Does it actually run? Do you know how to run it or test it?
+        - Have you tried to break it?
+        - Does it handle errors or invalid input?
+        - Does it have any performance issues?
+        - Does it have any security issues?
+        - Is it standards compliant?
+        - Does the team want to bring in a new 3rd party dependency? Or write this code custom?
+        - Could this be simplified?
+        - Does the code follow the patterns for this team?
+        - Does the code use clear names?
+        - Does it have unit tests? Have you reviewed the unit tests as well?
+        - Should other code be changed as a result of this? Or removed as a result of this?
+      -->
+      <!--
+        Misc.
+          - Try to limit scope creep within a single code review, e.g. now the commit morphs into something else.            
+          - Don't use the above as an excuse not to do something
+          - Feel free to start the review even earlier, e.g. engage other members of the team earlier.
+          - Review before the code is committed to master or trunk
+             - Once code is committed to master or trunk, excuses about breaking working code start piling up.
+             - you end up with a list of feedback but no actual actions taken based upon that feedback.
+          - Should every commit be reviewed?
+            - Yes, I think so.
+            - Any attempt to create a different rule results in loop holes that will be used by devs on team in a hurry.
+          - How many reviewers, which reviewers?
+            - At least one reviewer, more is fine as well. How critical is that code?
+            - Whatever works for you team.
+            - I've seen self assignment work.
+            - I've seen team lead assignment work.
+            - Just ensure you are getting value from your reviews
+            - Don't have reviewers only/coders only. That demotivates people, creates adversial relationships.
+          - Do you create a review checklist?
+            - Sure, if it helps. Make sure it helps add value to your reviews.
+          - Do you write a standards document?
+            - Sure, if it helps. Make sure it helps add value to your reviews.
+          - Reviews take too long?
+            - How many review cycles are too many?
+              - I've been involved in reviews that went through 20+ rounds. But we were still getting value.
+            - Do they? Are you still getting value?
+          - Leave it better than you found it.
+            - You don't have to get it all in the first pass. 
+            - You don't have to get it all in this review, maybe the next review as well.
+          - You might get a comment on code you didn't touch, so what? The goal is to improve the code quality.
+          - Don't take feedback personally.
+            - You got paid for the code you wrote that went into the review.
+            - If it makes sense, delete it as a result of the review.
+            - No one expects you to know all the standards etc.
+          - It should almost always be possible to provide one piece of feedback, NO ONE is perfect.
+            - Yes, even on a one line code change. Especially on a one line code change.
+      -->
+      <section>
+        <h3>Recap</h3>
+        <ul>
+          <li>Debug</li>
+          <li>Prototype</li>
+          <li>Learn</li>
+          <li>Improve User Experience</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Thanks, Any Questions?</h3>
+        <ul>
+          <li>Kip Streithorst</li>
+          <li>Twitter:
+            <a target="_blank " href="http://twitter.com/itsnull ">@itsnull</a>
+          </li>
+          <li>Blog:
+            <a target="_blank " href="http://itsnull.com/ ">http://itsnull.com/</a>
+          </li>
+          <li>Presentation:
+            <a target="_blank " href="http://itsnull.com/presentations/hticq/ ">http://itsnull.com/presentations/hticq/</a>
+        </ul>
+      </section>
+    </div>
+  </div>
+  <footer>
+    <a href="http://itsnull.com ">http://itsnull.com</a>
+    <br/>
+    <a href="https://twitter.com/itsnull ">@itsnull</a>
+  </footer>
+  <script src="lib/js/head.min.js "></script>
+  <script src="js/reveal.js "></script>
+
+  <script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      history: true,
+
+      // More info https://github.com/hakimel/reveal.js#dependencies
+      dependencies: [
+        { src: 'plugin/markdown/marked.js' },
+        { src: 'plugin/markdown/markdown.js' },
+        { src: 'plugin/notes/notes.js', async: true },
+        { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+      ]
+    });
+  </script>
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-46954011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+</body>
+
+</html>
