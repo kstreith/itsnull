@@ -75,11 +75,18 @@
         </p>
       </section>
       <section>
+        <h3>WARNING - Opinions!!</h3>
+        <ul>
+          <li>These are MY opinions</li>
+          <li>Stop me, ask questions</li>
+          <li>Sorry, no code to see here</li>
+        </ul>
+      </section>
+      <section>
         <h3>How To Improve Code Quality</h3>
         <ul>
           <li>What is quality code?</li>
           <li>Ways to improve it</li>
-          <li>Where to start?</li>
         </ul>
       </section>
       <section>
@@ -240,7 +247,17 @@
           <li>Review comments can be ignored</li>
           <li>Review comments are NOT an order or directive to be blindly followed</li>
           <li>You still own the completion of the task/feature, not the reviewer</li>
-          <li>Remember, the quantity of feedback has NOTHING to do with the size of your change</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Mindset of the coder</h3>
+        <ul>
+          <li>You are NOT your code</li>
+          <li>If a suggestion results in undoing of your previous work, that's ok</li>
+          <li>No ONE is perfect, you will miss something</li>
+          <li>The quantity of feedback has NOTHING to do with the size of your change</li>
+          <li>A suggestion might be for code you didn't change, that's ok</li>
+          <li>Remember, the goal is to improve the code quality</li>
         </ul>
       </section>
       <section>
@@ -254,101 +271,178 @@
         </ul>
       </section>
       <section>
-        <h3>Mindset of the team</h3>
+        <h3>What is the reviewer looking for?</h3>
         <ul>
-          <li>Remember, the goal is to improve code quality</li>
-          <li>Don't let reviews get bogged down in minutiae, e.g. formatting arguments</li>
-          <li>Don't let reviews become repetitive</li>
-          <li>Use tools and standards to automate formatting and repetitive things so they are fixed before the review ever starts</li>
+          <li>Does code implement the actual task/feature?</li>
+          <li>Does code actually run? Do you know how to run or debug code?</li>
+          <li>Have you tried to break code? Does code handle errors?</li>
         </ul>
       </section>
-      <!--
-        Early problems when starting reviews:
-          - It will devolve into arguments about things that you likely don't have:
-              - Preferred Formatting Standards
-              - Preferred Naming Conventions
-              - Standard Patterns
-              - Architectural Patterns
-              - Preferred Error Handling Strategies 
-          - Progress will appear slow and always contentious
-          - But you are converging your code so it appears to be written by one author, not N authors.
-          - That will increase readability in the long term, a single file or feature no longer randomly switches between N writing styles.
-      -->
-      <!-- 
-        Resolving disputes
-          - Try and let coder and reviewer work it out
-          - Bring members of the team into the discussion, come to consensus
-          - Last resort is decision from on high
-      -->
-      <!--
-        - What are we looking for?
-          - Code that you can't read
-          - Code that you can't understand
-              - What it does?
-              - Why it does what it does?
-          - Code you wouldn't know how to debug
-          - Code you would be afraid to start maintaining tomorrow
-        - What are we reviewing?
-          - Changes in the commit
-          - Changes NOT in the commit, should other changes have been made, but weren't?
-        - Does this implement the task or user story?
-        - Does it actually run? Do you know how to run it or test it?
-        - Have you tried to break it?
-        - Does it handle errors or invalid input?
-        - Does it have any performance issues?
-        - Does it have any security issues?
-        - Is it standards compliant?
-        - Does the team want to bring in a new 3rd party dependency? Or write this code custom?
-        - Could this be simplified?
-        - Does the code follow the patterns for this team?
-        - Does the code use clear names?
-        - Does it have unit tests? Have you reviewed the unit tests as well?
-        - Should other code be changed as a result of this? Or removed as a result of this?
-      -->
-      <!--
-        Misc.
-          - Try to limit scope creep within a single code review, e.g. now the commit morphs into something else.            
-          - Don't use the above as an excuse not to do something
-          - Feel free to start the review even earlier, e.g. engage other members of the team earlier.
-          - Review before the code is committed to master or trunk
-             - Once code is committed to master or trunk, excuses about breaking working code start piling up.
-             - you end up with a list of feedback but no actual actions taken based upon that feedback.
-          - Should every commit be reviewed?
-            - Yes, I think so.
-            - Any attempt to create a different rule results in loop holes that will be used by devs on team in a hurry.
-          - How many reviewers, which reviewers?
-            - At least one reviewer, more is fine as well. How critical is that code?
-            - Whatever works for you team.
-            - I've seen self assignment work.
-            - I've seen team lead assignment work.
-            - Just ensure you are getting value from your reviews
-            - Don't have reviewers only/coders only. That demotivates people, creates adversial relationships.
-          - Do you create a review checklist?
-            - Sure, if it helps. Make sure it helps add value to your reviews.
-          - Do you write a standards document?
-            - Sure, if it helps. Make sure it helps add value to your reviews.
-          - Reviews take too long?
-            - How many review cycles are too many?
-              - I've been involved in reviews that went through 20+ rounds. But we were still getting value.
-            - Do they? Are you still getting value?
-          - Leave it better than you found it.
-            - You don't have to get it all in the first pass. 
-            - You don't have to get it all in this review, maybe the next review as well.
-          - You might get a comment on code you didn't touch, so what? The goal is to improve the code quality.
-          - Don't take feedback personally.
-            - You got paid for the code you wrote that went into the review.
-            - If it makes sense, delete it as a result of the review.
-            - No one expects you to know all the standards etc.
-          - It should almost always be possible to provide one piece of feedback, NO ONE is perfect.
-            - Yes, even on a one line code change. Especially on a one line code change.
-      -->
       <section>
-        <h3>Recap</h3>
+        <h3>What is the reviewer looking for? (pt. 2)</h3>
         <ul>
-          <li>Debug</li>
-          <li>Prototype</li>
-          <li>Learn</li>
-          <li>Improve User Experience</li>
+          <li>Is code readable?</li>
+          <li>Is code understandable?</li>
+          <li>Would you be afraid to maintain the code?</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What is the reviewer looking for? (pt. 3)</h3>
+        <ul>
+          <li>Is there anything missing?</li>
+          <li>Should similiar changes be made elsewhere?</li>
+          <li>Should some changes NOT be made?</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What is the reviewer looking for? (pt. 4)</h3>
+        <ul>
+          <li>Does code have performance issues?</li>
+          <li>Does code have security issues?</li>
+          <li>Does code follow applicable standards?</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What is the reviewer looking for? (pt. 5)</h3>
+        <ul>
+          <li>Does code follow team patterns?</li>
+          <li>Does code follow team naming conventions?</li>
+          <li>Does code follow team formatting conventions?</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What is the reviewer looking for? (pt. 6)</h3>
+        <ul>
+          <li>Does code have unit tests?</li>
+          <li>Do unit tests follow team conventions?</li>
+          <li>Are unit tests testing happy paths?</li>
+          <li>Are unit tests testing sad paths?</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What gets reviewed?</h3>
+        <ul>
+          <li>Every commit to the project</li>
+          <li>If you add exceptions to the above, the loop hole will get abused</li>
+          <li>If it really is simple, it really will be quick to review</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Who should do reviews?</h3>
+        <ul>
+          <li>At least one other coder on the project</li>
+          <li>Coders should be reviewers and vice-versa</li>
+          <li>Silo'ing into coder only, reviewer only will demotivate and create adversarial relationships</li>
+          <li>More reviewers is good if the code is critical</li>
+        </ul>
+      </section>
+      <section>
+        <h3>How are reviewers selected?</h3>
+        <ul>
+          <li>Whatever works for your team</li>
+          <li>I've seen self assignment work</li>
+          <li>I've seen team lead assignment work</li>
+          <li>Just check to ensure reviews are actual resulting in code quality improvements</li>
+        </ul>
+      </section>
+      <section>
+        <h3>When do reviews happen?</h3>
+        <ul>
+          <li>Before the code is committed to master or trunk</li>
+          <li>After that and any leverage is lost</li>
+          <li>We want tangible code quality improvements not a list of future tasks</li>
+        </ul>
+      </section>
+      <section>
+        <h3>When do reviews happen (pt. 2)?</h3>
+        <ul>
+          <li>The reviewer should review independently</li>
+          <li>Don't review in a real-time meeting</li>
+          <li>Reviewer needs to be able to make multiple passes</li>
+          <li>Reviewer needs to be able to take breaks</li>
+          <li>Reviewer needs to be able to research</li>
+          <li>Don't timebox a review before it starts. If it's going long, ask why</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Resolving disputes</h3>
+        <ul>
+          <li>Try and let coder and reviewer work it out</li>
+          <li>Bring members of the team into the discussion, drive to consensus</li>
+          <li>Last resort is decision from on high</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Scope of Review Comments</h3>
+        <ul>
+          <li>Comment is for old pre-existing code that wasn't changed</li>
+          <li>And... remember the goal is to improve code quality, both new and old</li>
+          <li>If it improves quality, make the change now</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Scope of Review Comments (pt. 2)</h3>
+        <ul>
+          <li>Will the fix radically increase the size of the overall change?</li>
+          <li>Maybe split it into another commit and do it separately, either before or after this change</li>
+          <li>Don't use this an excuse to NOT do something that should be done</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Scope of Review Comments (pt. 3)</h3>
+        <ul>
+          <li>Will the fix radically increase risk?</li>
+          <li>Maybe split it into another commit and do it separately, either before or after this change</li>
+          <li>Don't use this an excuse to NOT do something that should be done</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Code review is too long?</h3>
+        <ul>
+          <li>Is it? Are you still getting value?</li>
+          <li>Should the change have been smaller to start with? Do that next time</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Code Review Mindset</h3>
+        <ul>
+          <li>Leave it better than you found it</li>
+          <li>Don't take feedback personally</li>
+          <li>Almost every review should have at least ONE comment</li>
+          <li>No ONE is perfect</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Starting with code reviews</h3>
+        <ul>
+          <li>Just start and adjust as you go</li>
+          <li>The first reviews will be slow, very slow and very argumentative</li>
+          <li>Team will be having arguments over things that don't exist yet: formatting and naming standards, standard patterns</li>
+          <li>Team will be cross training each other</li>
+          <li>Team will eventually converge on those things and reviews will smooth out</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What is quality code?</h3>
+        <ul>
+          <li>Satisfies customer requirements</li>
+          <li>Easy to change
+            <ul><li>Defining feature of software compared to hardware</li></ul>
+          </li>
+        </ul>
+      </section>           
+      <section>
+        <h3>Recap - Get feedback faster</h3>
+        <ul>
+          <li>Automate builds</li>
+          <li>Automate deployments</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Recap - Easy to change</h3>
+        <ul>
+          <li>Add tests</li>
+          <li>Do code reviews</li>
         </ul>
       </section>
       <section>
