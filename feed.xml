@@ -238,15 +238,6 @@
 </description>
     </item>
     <item>
-      <title>Old Blog still on wordpress.com</title>
-      <link>http://itsnull.com/articles/oldblog-location/</link>
-      <pubDate>Mon, 06 Jan 2014 19:00:00 -0500</pubDate>
-      <guid isPermaLink="true">http://itsnull.com/articles/oldblog-location/</guid>
-      <author></author>
-      <description>&lt;p&gt;If you are looking for one of my older blog entries, those can still be found on &lt;a href=&quot;http://itsnull.wordpress.com/&quot;&gt;http://itsnull.wordpress.com/&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    <item>
       <title>From Wordpress to Wintersmith</title>
       <link>http://itsnull.com/articles/newblog-location/</link>
       <pubDate>Mon, 06 Jan 2014 19:00:00 -0500</pubDate>
@@ -260,6 +251,15 @@
 &lt;p&gt;wintersmith preview&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I did not convert my old posts on Wordpress over to Wintersmith. Something for the next brave convert to Wintersmith, maybe. You can find my old posts at &lt;a href=&quot;http://itsnull.wordpress.com/&quot;&gt;http://itsnull.wordpress.com/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Old Blog still on wordpress.com</title>
+      <link>http://itsnull.com/articles/oldblog-location/</link>
+      <pubDate>Mon, 06 Jan 2014 19:00:00 -0500</pubDate>
+      <guid isPermaLink="true">http://itsnull.com/articles/oldblog-location/</guid>
+      <author></author>
+      <description>&lt;p&gt;If you are looking for one of my older blog entries, those can still be found on &lt;a href=&quot;http://itsnull.wordpress.com/&quot;&gt;http://itsnull.wordpress.com/&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
   </channel>
