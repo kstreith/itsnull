@@ -135,6 +135,146 @@
         </ul>
       </section>      
       <section>
+        <h3>GitHub Pages (cont.)</h3>
+        <ul>
+          <li>Create index.html, paste following content in:</li>
+          <pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport"
+    content="width=device-width, initial-scale=1"&gt;
+  &lt;meta name="description" content="Hello world"&gt;
+  &lt;title>My first page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1>Hello from GitHub Pages!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </ul>
+      </section>      
+
+      <section>
+        <h3>GitHub Pages (cont.)</h3>
+        <ul>
+          <li>Add and commit index.html</li>
+          <pre>git add *</pre>
+          <pre>git commit -m "Add initial page"</pre>
+        </ul>
+      </section>      
+
+      <section>
+        <h3>GitHub Pages (cont.)</h3>
+        <ul>
+          <li>Push index.html to GitHub, first time only</li>          
+          <pre>git push --set-upstream origin gh-pages</pre>
+          <li>Later, only need</li>
+          <pre>git push</pre>
+        </ul>
+      </section>
+
+      <section>
+        <h3>GitHub Pages (cont.)</h3>
+        <ul>
+          <li>View it in a browser</li>
+          <li>Go to https://[githubusername].github.io/[repo-name]/</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Make some changes</h3>
+        <ul>
+          <li>Edit index.html, change message inside &lt;h1&gt;&lt;/h1&gt;</li>
+          <pre>git add *</pre>
+          <pre>git commit -m "My first change"</pre>
+          <pre>git push</pre>
+          <li>Refresh the browser</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Congrats!</h3>
+        <ul>
+          <li>You just pushed custom content to the web</li>
+          <li>It cost you $0 dollars</li>
+        </ul>
+      </section>
+  
+      <section>
+        <h3>What Now?</h3>
+        <ul>
+          <li>Can I host this at my own site? e.g. http://itsnull.com/</li>
+          <li>Can I add JS, CSS?</li>
+          <li>Do I have to hand author everything on my site?</li>
+          <li>Do I have to use GitHub Pages?</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>What are static sites?</h3>
+        <ul>
+          <li>Static site - The HTML, CSS and JS are returned as-is from the server.</li>
+          <li>That's it - that's the entire definition</li>
+          <li>You can use tools to pre-generate the content, e.g. like a compiler.</li>
+          <li>Once JS is running, it can do all kinds of things</li>
+          <li>JS can make AJAX calls to fetch data and dynamically render markup</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Why static sites?</h3>
+        <ul>
+          <li>Every web server on any OS can host static files.</li>
+          <li>They are extremely portable to hosting providers (AWS S3, Azure Blob Storage, Netlify, CDNs, etc.)</li>
+          <li>They are extremely cheap for webserver to serve, simply return file on filesystem.</li>
+          <li>You can still call api endpoints using JS, but now those api endpoints are fully de-coupled from front-end and re-usable.</li>
+          <li>You can use any tool to generate them (either completely manual or use static site generation tools)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Why static sites? (pt. 2)</h3>
+        <ul>
+          <li>Does your site really change every minute? every hour?</li>
+          <li>Likely it's once a week, once a month, maybe once a day.</li>
+          <li>You can run continous deploy systems to auto-build your site and deploy static content when it changes.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Static Site Example</h3>
+        <ul>
+          <li><a href="https://discoverdot.net/">https://discoverdot.net/</a></li>
+          <li>Content for site is managed in GitHub, https://github.com/daveaglick/discoverdotnet</li>
+          <li>Built every hour using Wyam static generator and published to Netlify hosting provider.</li>
+          <li>Site doesn't seem very static does it?</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Custom Domain</h3>
+        <ul>
+          <li>Want your own custom domain, e.g. itsnull.com?</li>
+          <li>Each part of aa.bb.cc is different part of a domain</li>
+          <li>cc is the gTLD - Generic top-level domain</li>
+          <li>bb is the domain that you purchase</li>
+          <li>aa is a sub-domain, it can be pointed to a different IP address than bb</li>
+          <li>You could have many subdomains, e.g. dd.bb.cc and ee.bb.cc</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>What are gTLDs?</h3>
+        <ul>
+          <li>Generic Top-Level Domain</li>
+          <li>Common ones are: .com, .net, .org, .mil</li>
+          <li>Each may have it's own restrictions, e.g. .uk, .mil</li>
+          <li>They are managed by ICANN</li>
+          <li>Thousands of new ones are being approved, e.g. .art, .io, .club</li>
+        </ul>
+      </section>
+  
+      <section>
         <h3>Thanks, Any Questions?</h3>
         <ul>
           <li>Kip Streithorst</li>
