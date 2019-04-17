@@ -78,7 +78,42 @@
         <h3>High Level Goals</h3>
         <ul>
           <li>Write your HTML, JS, CSS</li>
-          <li>Buy a domain and host at https://itsnull.com/</li>
+          <li>Buy a domain and host at https://[myowndomain].com/</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Before you can follow along</h3>
+        <ul>
+          <li>To follow along if desired, please do the following:</li>
+          <li>Create <a href="https://github.com/">GitHub</a> Account</li>
+          <li>Download and Install <a href="https://git-scm.com/">Git</a></li>
+          <li>Have a text editor of your choice. I'll use <a href="https://code.visualstudio.com/">VS Code</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3>Why buy a domain?</h3>
+        <ul>
+          <li>If you run on blog on wordpress or medium, that is part of the url</li>
+          <li>If you ever move to another platform, you can't own the migration of users</li>
+          <li>It's how the web was intended</li>
+          <li>You can move domains between registrars, you can move the physical server between platforms</li>
+          <li>For the best long-term benefits, buy your own domain</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Why run your own server?</h3>
+        <ul>
+          <li>You really shouldn't run your own server</li>
+          <li>You likely don't need a server at all</li>
+          <li>Let's find a way to host content for free or nearly free</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Why write your own HTML, JS and CSS?</h3>
+        <ul>
+          <li>You can if you want</li>
+          <li>I find coding my own site a useful playground to learn</li>
+          <li>Feel free to use static generation tools that have pre-built templates</li>
         </ul>
       </section>
       <section>
@@ -107,7 +142,7 @@
       <section>
         <h3>Host content using GitHub Pages</h3>
         <ul>
-          <li>https://help.github.com/en/articles/what-is-github-pages</li>
+          <li><a href="https://help.github.com/en/articles/what-is-github-pages">https://help.github.com/en/articles/what-is-github-pages</a></li>
           <li>Free static hosting service provided by GitHub</li>
           <li>Use Git to push content to your site.</li>
         </ul>
@@ -115,8 +150,8 @@
       <section>
         <h3>GitHub Pages - Let's get started</h3>
         <ul>
-          <li>Create GitHub Account</li>
-          <li>Download and Install Git</li>
+          <li>Create <a href="https://github.com/">GitHub</a> Account</li>
+          <li>Download and Install <a href="https://git-scm.com/">Git</a></li>
         </ul>
       </section>      
       <section>
@@ -213,9 +248,9 @@
       <section>
         <h3>What are static sites?</h3>
         <ul>
-          <li>Static site - The HTML, CSS and JS are returned as-is from the server.</li>
+          <li>Static site - The HTML, CSS and JS are returned as-is from the server</li>
           <li>That's it - that's the entire definition</li>
-          <li>You can use tools to pre-generate the content, e.g. like a compiler.</li>
+          <li>You can use tools to pre-generate the content, e.g. like a compiler</li>
           <li>Once JS is running, it can do all kinds of things</li>
           <li>JS can make AJAX calls to fetch data and dynamically render markup</li>
         </ul>
@@ -224,20 +259,26 @@
       <section>
         <h3>Why static sites?</h3>
         <ul>
-          <li>Every web server on any OS can host static files.</li>
+          <li>Every web server on any OS can host static files</li>
           <li>They are extremely portable to hosting providers (AWS S3, Azure Blob Storage, Netlify, CDNs, etc.)</li>
-          <li>They are extremely cheap for webserver to serve, simply return file on filesystem.</li>
-          <li>You can still call api endpoints using JS, but now those api endpoints are fully de-coupled from front-end and re-usable.</li>
+          <li>They are extremely cheap for webserver to serve, simply return file on filesystem</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Why static sites? (cont.)</h3>
+        <ul>
+          <li>You can still call api endpoints using JS, but now those api endpoints are fully de-coupled from front-end and re-usable</li>
           <li>You can use any tool to generate them (either completely manual or use static site generation tools)</li>
         </ul>
       </section>
 
       <section>
-        <h3>Why static sites? (pt. 2)</h3>
+        <h3>Why static sites? (cont)</h3>
         <ul>
           <li>Does your site really change every minute? every hour?</li>
-          <li>Likely it's once a week, once a month, maybe once a day.</li>
-          <li>You can run continous deploy systems to auto-build your site and deploy static content when it changes.</li>
+          <li>Likely it's once a week, once a month, maybe once a day</li>
+          <li>You can run continous deploy systems to auto-build your site and deploy static content when it changes</li>
         </ul>
       </section>
 
@@ -245,9 +286,18 @@
         <h3>Static Site Example</h3>
         <ul>
           <li><a href="https://discoverdot.net/">https://discoverdot.net/</a></li>
-          <li>Content for site is managed in GitHub, https://github.com/daveaglick/discoverdotnet</li>
-          <li>Built every hour using Wyam static generator and published to Netlify hosting provider.</li>
+          <li>Content for site is managed in GitHub, <a href="https://github.com/daveaglick/discoverdotnet">https://github.com/daveaglick/discoverdotnet</a></li>
+          <li>Built every hour using <a href="https://wyam.io/">Wyam</a> static generator and published to <a href="https://www.netlify.com/">Netlify</a> hosting provider.</li>
           <li>Site doesn't seem very static does it?</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Static Site Example (cont.)</h3>
+        <ul>
+          <li><a href="https://kstreith.github.io/static-site-examples/">https://kstreith.github.io/static-site-examples/</a></li>
+          <li>Content for site is managed in GitHub, <a href="https://github.com/kstreith/static-site-examples">https://github.com/kstreith/static-site-examples</a></li>
+          <li>Three examples using VueJS framework to make an AJAX call and then render content</li>
         </ul>
       </section>
 
@@ -255,11 +305,11 @@
         <h3>Custom Domain</h3>
         <ul>
           <li>Want your own custom domain, e.g. itsnull.com?</li>
-          <li>Each part of aa.bb.cc is different part of a domain</li>
-          <li>cc is the gTLD - Generic top-level domain</li>
-          <li>bb is the domain that you purchase</li>
-          <li>aa is a sub-domain, it can be pointed to a different IP address than bb</li>
-          <li>You could have many subdomains, e.g. dd.bb.cc and ee.bb.cc</li>
+          <li>Each part of api.itsnull.com is different part of a domain</li>
+          <li>com is the gTLD - Generic top-level domain</li>
+          <li>itsnull is the domain that you purchase</li>
+          <li>api is a sub-domain, it can be pointed to a different IP address than itsnull</li>
+          <li>You could have many subdomains, e.g. blog.itsnull.com and games.itsnull.com</li>
         </ul>
       </section>
 
@@ -281,7 +331,7 @@
           <li>Once you've picked the gTLD you are using</li>
           <li>You simply lease the domain using a domain registar</li>
           <li>Domain registrators are contracted by ICANN</li>
-          <li>NameCheap, GoDaddy</li>
+          <li><a href="https://www.namecheap.com/">NameCheap</a>, GoDaddy</li>
           <li>Each registar charges differently</li>
         </ul>
       </section>
@@ -289,46 +339,46 @@
       <section>
         <h3>Domain Registrar Cont.</h3>
         <ul>
-          <li>Domain registrar maintains the official DNS records for your domain.</li>
-          <li>DNS records are cached throughout the internet, OS, browser.</li>
+          <li>Domain registrar maintains the official DNS records for your domain</li>
+          <li>DNS records are cached throughout the internet, OS, browser</li>
           <li>Changing DNS is not immediate</li>
-          <li>https://www.whatsmydns.net/</li>
+          <li><a href="https://www.whatsmydns.net/">https://www.whatsmydns.net/</a></li>
         </ul>
       </section>
 
       <section>
         <h3>Domain Registrar Cont.</h3>
         <ul>
-          <li>Registrar typically runs a nameserver for you.</li>
-          <li>Registrar points to authoritive nameserver.</li>
+          <li>Registrar typically runs a nameserver for you</li>
+          <li>Registrar points to authoritive nameserver</li>
           <li>You can delegate to another nameserver (e.g. Azure, AWS, etc.)</li>
-          <li>The nameserver maintains the actual DNS records (A, CNAME, etc).</li>
+          <li>The nameserver maintains the actual DNS records (A, CNAME, etc)</li>
         </ul>
       </section>
 
       <section>
         <h3>Domain Registrar Cont.</h3>
         <ul>
-          <li>When you register a domain, personal information is put into WHOIS registry.</li>
-          <li>With GDPR, legality of that is being figured out.</li>
-          <li>Some registrars will hide personal information for free, e.g. Namecheap.</li>
+          <li>When you register a domain, personal information is put into WHOIS registry</li>
+          <li>With GDPR, legality of that is being figured out</li>
+          <li>Some registrars will hide personal information for free, e.g. <a href="https://www.namecheap.com/">NameCheap</a></li>
         </ul>
       </section>
 
       <section>
         <h3>Homework</h3>
         <ul>
-          <li>Buy a domain at a domain registrar.</li>
+          <li>Buy a domain at a domain registrar</li>
           <li>Just need registrar ability to set custom DNS records (e.g. A, CNAME)</li>
-          <li>I will demo next meeting with NameCheap.</li>
+          <li>I will demo next meeting with <a href="https://www.namecheap.com/">NameCheap</a></li>
         </ul>
       </section>
   
       <section>
         <h3>What's Next?</h3>
         <ul>
-          <li>Wyam - DotNet Core static site generator.</li>
-          <li>Configuring GitHubPages with your custom domain, SSL included.</li>
+          <li><a href="https://wyam.io/">Wyam</a> - DotNet Core static site generator</li>
+          <li>Configuring GitHubPages with your custom domain, SSL included</li>
         </ul>
       </section>
   
