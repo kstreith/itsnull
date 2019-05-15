@@ -366,22 +366,237 @@
       </section>
 
       <section>
-        <h3>Homework</h3>
+        <h3>Buy your own domain and come back</h3>
         <ul>
-          <li>Buy a domain at a domain registrar</li>
+          <li>Go buy a domain at a domain registrar</li>
           <li>Just need registrar ability to set custom DNS records (e.g. A, CNAME)</li>
-          <li>I will demo next meeting with <a href="https://www.namecheap.com/">NameCheap</a></li>
+          <li>Once you have a domain, I will show how to configure the DNS</li>
+          <li>To follow along, use and login to <a href="https://www.namecheap.com/">NameCheap</a></li>
         </ul>
       </section>
-  
+
       <section>
-        <h3>What's Next?</h3>
+        <h3>Register DNS to use GitHub Pages (cont.)</h3>
         <ul>
-          <li><a href="https://wyam.io/">Wyam</a> - DotNet Core static site generator</li>
-          <li>Configuring GitHubPages with your custom domain, SSL included</li>
+          <li>Now that you are logged into NameCheap</li>
+          <li>Find your domain and <b>click Manage</b></li>
+          <li>You should have already purchased the domain, if not, do that now</li>
+        </ul>
+        <img src="images/NameCheapMainPage.PNG" style="max-height: 350px;" />
+      </section>
+
+      <section>
+        <h3>Register DNS to use GitHub Pages (cont.)</h3>
+        <ul>
+          <li>Check that the NameServer is set to <b>Namecheap Basic DNS</b></li>
+          <li>Click on <b>Advanced DNS</b></li>
+        </ul>
+        <img src="images/NameCheapDomainPage.PNG" />
+      </section>
+
+      <section>
+        <h3>Register DNS to use GitHub Pages (cont.)</h3>
+        <ul>
+          <li>Use button to add a new DNS record of type A</li>
+          <li>Go ahead and add 4 A Records with a host of @ pointing to GitHub's IP addresses. See <a href="https://help.github.com/en/articles/setting-up-an-apex-domain#configuring-a-records-with-your-dns-provider">GitHub Docs</a></li>
+        </ul>
+        <img src="images/NameCheapDnsPage.PNG" style="max-height: 350px;" />
+      </section>
+
+      <section>
+        <h3>Register DNS to use GitHub Pages (cont.)</h3>
+        <ul>
+          <li>That was the DNS portion, you still need to configure GitHub Pages</li>
+          <li>Login to GitHub and go to your repository from earlier</li>
         </ul>
       </section>
-  
+
+      <section>
+        <h3>Register DNS to use GitHub Pages (cont.)</h3>
+        <ul>
+          <li>Once logged into GitHub, go to your repository</li>
+          <li>Click the <b>Settings tab</b></li>
+        </ul>
+        <img src="images/GitHubRepoSettings.PNG" style="max-height: 350px;" />
+      </section>
+
+      <section>
+        <h3>Register DNS to use GitHub Pages (cont.)</h3>
+        <ul>
+          <li>Scroll down on settings page to GitHub Pages section</li>
+          <li>Enter the name of your custom domain.</li>
+          <li>Save settings and page will now be available in the browser using http://[customdomain]/</li>
+        </ul>
+        <img src="images/GitHubPagesSettings.PNG" style="max-height: 350px;" />
+      </section>
+
+      <section>
+        <h3>Troubleshooting</h3>
+        <ul>
+          <li>DNS may not have propagated, it can take awhile.</li>
+          <li>Use <a href="https://www.whatsmydns.net/">https://www.whatsmydns.net/</a></li>
+          <li>Run nslookup in the command line
+            <pre>nslookup kipstreithorst.com</pre>
+          </li>
+          <li>Clear DNS on your machine, on command line execute
+            <pre>ipconfig /flushdns</pre>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Troubleshooting</h3>
+        <ul>
+          <li>Only HTTP will work properly</li>
+          <li>If you access using https://[customdomain]/, you will get a certificate warning</li>
+          <li>GitHub is generating a Let's Encrypt certificate for your site in the background</li>
+          <li>Proper certificate generation can take up to 24 hours</li>
+          <li>Click the Enforce HTTPS checkbox, it's best practice</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Congratulations!</h3>
+        <ul>
+          <li>You now have a custom site hosted at your own domain.</li>
+          <li>You are only paying for the domain, e.g. less than $20 a year.</li>
+          <li>You site is secured with HTTPS and SSL.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>How do I create lots of pages?</h3>
+        <ul>
+          <li>You can hand author each page, or...</li>
+          <li>Use a static site generator.</li>
+          <li>There are lots of them, see <a href="https://www.staticgen.com/"></a></li>
+          <li>I'm going to show the most popular .NET one, <a href="https://wyam.io/">Wyam</a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Why Wyam?</h3>
+        <ul>
+          <li>I'm a .NET stack developer, I want to be productive in my hobby time.</li>
+          <li>Wyam uses Razor syntax, Nuget packages, allows unit testing of custom modules</li>
+          <li>Wyam is highly configurable</li>
+          <li>Wyam uses .NET Core 2</li>
+          <li>Entire project is open-source at <a href="https://github.com/Wyamio">https://github.com/Wyamio</a>.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>How to get started with Wyam</h3>
+        <ul>
+          <li>First install .NET Core 2, specifically <a href="https://dotnet.microsoft.com/download/dotnet-core/2.1">.NET Core 2.1 SDK</a></li>
+          <li>Check version using
+            <pre>dotnet --info</pre>
+          </li>
+          <li>You can pin a directory to a particular SDK version using
+            <pre>dotnet new globaljson --sdk-version [sdk-version-goes-here]</pre>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>How to get started with Wyam (cont)</h3>
+        <ul>
+          <li>Install Wyam global tool for .NET Core
+            <pre>dotnet tool install -g Wyam.Tool</pre>
+          </li>
+          <li>Check it's installed using
+            <pre>wyam --version</pre>
+          </li>
+          <li>List all installed global tools
+            <pre>dotnet tool list -g</pre>
+          </li>
+          <li>Uninstall it later
+            <pre>dotnet tool uninstall -g Wyam.Tool</pre>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>How to get started with Wyam (cont)</h3>
+        <ul>
+          <li>To recipe or not to recipe</li>
+          <li>I prefer building my config from the ground up</li>
+          <li>But Wyam recipes provide quickest new project experience</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Wyam - Blog recipe</h3>
+        <ul>
+          <li>Create a blog
+            <pre>wyam new --recipe Blog</pre>
+          </li>
+          <li>Build the site and run with a test server locally
+            wyam -p -w
+          </li>
+          <li>Build the final static output to deploy
+            wyam
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Wyam - Custom pipelines</h3>
+        <ul>
+          <li>Need a config.wyam, this is a C# script like file with special syntax</li>
+          <li>Need an input folder</li>
+          <li>Wyam will build to the output folder</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Wyam - Custom pipelines (cont)</h3>
+        <pre>
+  #n Wyam.Yaml //pulls in Nuget package
+  #n Wyam.Razor //pulls in Nuget package
+  #n Wyam.Markdown //pulls in Nuget package
+          
+  Settings[Keys.Host] = "host.com"; //global dictionary
+          
+  Pipelines.Add("PresentationPages",
+    ReadFiles("presentations/*.md"),
+    FrontMatter(Yaml()),
+    Markdown(),
+    Razor().WithLayout("/_PresentationLayout.cshtml"),
+    WriteFiles(".html")
+  );
+        </pre>
+      </section>
+
+      <section>
+        <h3>Wyam - Custom pipelines (cont)</h3>
+        <ul>
+          <li>Each Pipeline has a name and is sequence of modules</li>
+          <li>Each module takes an list of Documents as input and generates a list of Documents as output</li>
+          <li>A document is content and metadata about the content</li>
+        </ul>
+      </section>
+
+      <section>
+          <h3>Wyam - Custom pipelines (cont)</h3>
+          <ul>
+            <li>Modules are small and composable</li>
+            <li>There are lots of <a href="https://wyam.io/modules/">built-in modules</a></li>
+            <li>You can code your own modules in C# and then reference the assemblies.</li>
+            <li>You can write unit tests for custom modules.</li>
+          </ul>
+      </section>
+
+      <section>
+          <h3>Wyam - Templates</h3>
+          <ul>
+            <li>There is a built-in Razor() template</li>
+            <li>It will render a document using the given Razor template.</li>
+            <li>There is a built-in Markdown() module that parses Markdown and generates HTML.</li>
+          </ul>
+      </section>
+
       <section>
         <h3>Thanks, Any Questions?</h3>
         <ul>
