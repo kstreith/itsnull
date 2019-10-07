@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Insightful Logging with Azure Application Insights</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Insightful Logging with Azure Application Insights</h3>
+					<h4>October 2019</h4>
+					<h4>Follow along at:</h4>
+					<p></p>
+					<p>Kip Streithorst</p>
+				</section>
+				<section>
+					<h4>Overview</h4>
+					<ul>
+						<li>ILogger</li>
+						<li>Structured Logging</li>
+						<li>Azure Application Insights</li>
+					</ul>
+				</section>
+				<section>
+					<h4>ILogger</h4>
+					<ul>
+						<li>Part of <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/">Microsoft.Extensions.Abstractions</a> nuget</li>
+						<li>ILogger.LogInformation("My custom message");</li>
+						<li>Only an interface, implementations are provided in other assemblies</li>
+						<li>Was built by ASP.Net Core team, but can be used in normal .net assemblies</li>
+					</ul>
+				</section>
+				<section>
+					<h4>Structured Logging</h4>
+					<ul>
+						<li>What does a logging abstraction get you?</li>
+						<li>Historically, you log strings, e.g. Console.WriteLine</li>
+						<li>With a logging abstraction, you can log to a database, windows event log, etc.</li>
+						<li>But, you still just logged a string</li>
+						<li>How do you search and act on logs faster? Do you parse strings constantly?</li>
+					</ul>
+				</section>	
+				<section>
+					<h4>Structured Logging (cont.)</h4>
+					<ul>
+						<li>Why not log a object with properties? e.g. JSON?</li>
+						<li>Historically, that's always been possible, e.g. custom class with windows event log</li>
+						<li>Really a custom class per message?</li>
+						<li>Serilog came up with an interesting syntax</li>
+					</ul>
+				</section>		
+				<section>
+					<h4>Structured Logging (cont.)</h4>
+					<ul>
+						<li>Classic syntax - logs strings</li>
+						<li>LogInformation(String.Format("Failed to set {0} to {1}", prop, value));</li>
+						<li>LogInformation($"Failed to set {prop} to {value}");</li>
+					</ul>
+				</section>
+				<section>
+					<h4>Structured Logging (cont.)</h4>
+					<ul>
+						<li>Serilog Syntax - logs object</li>
+						<li>LogInformation("Failed to set {prop} to {value}", prop, value);</li>
+						<li>Logs {"prop": "age", "value": 27}</li>
+						<li>Still positional like String.Format</li>
+					</ul>
+				</section>				
+				<section>
+					<h4>Structured Logging (cont.)</h4>
+					<ul>
+						<li>ILogger supports this syntax</li>
+						<li>An implementation can either log an object or render object with template back to a string</li>
+						<li>Now you can query easily and act on log data faster</li>
+						<li>Always use the structured logging syntax</li>
+					</ul>
+				</section>	
+				<section>
+					<h4>Azure Application Insights</h4>
+					<ul>
+						<li>Cloud-based APM (Application Performance Management) tool</li>
+						<li>Lots of features, I'll demo some of them</li>
+						<li>Log storage solution with support for schema-less objects</li>
+						<li>Billed on data ingest</li>
+						<li>Data has an automatic retention period, default, 90 days</li>
+					</ul>
+				</section>	
+				<section>
+					<h4>Azure Application Insights</h4>
+					<ul>
+						<li>Telemetry Types</li>
+						<li>Demos</li>						
+						<li>How to create</li>
+						<li>Configuring with ASP.NET Core</li>
+					</ul>
+				</section>							
+				<section>
+					<h4>App Insights - Telemetry Types</h4>
+					<ul>
+						<li>If we log objects, let's model the actual domain.</li>
+						<li>PageView - url, duration</li>
+						<li>Request - url, status code, duration</li>
+						<li>Trace - message, severity</li>
+						<li>Exception - type, stack trace</li>
+						<li>Dependency - data, type, duration</li>
+						<li>Metric - either single value or pre-aggregated</li>
+					</ul>
+				</section>
+				<section>
+					<h4>App Insights - Telemetry Types</h4>
+					<ul>
+						<li>A given operation includes multiple telemetry types</li>
+						<li>Each telemetry type has an operation id, to correlate them together</li>
+						<li>Each telemetry type supports custom key-value pairs, e.g. schema-less object</li>
+					</ul>
+				</section>	
+				<section>
+					<h4>App Insights - Telemetry</h4>
+					<ul>
+						<li>Send Telemetry from your VM or App to App Insights using their REST API</li>
+						<li>MS provides a large number of libraries and tools that wrap the REST API</li>
+						<li>Supports multiple languages, environments and platforms.</li>
+					</ul>
+				</section>
+				<section>
+					<h4>App Insights - DEMO</h4>
+					<ul>
+						<li>Demo Time!</li>
+					</ul>
+				</section>				
+				<section>
+					<h4>App Insights - Create</h4>
+					<ul>
+						<li>Use azure cli directly or from Cloud Shell</li>
+						<pre><code data-trim>
+							az monitor app-insights component create
+							  --app demoApp
+							  --location westus2
+							  --resource-group demo-rg
+						</code></pre>
+					</ul>
+				</section>									
+				<section>
+					<h4>Recap</h4>
+					<ul>
+						<li>??</li>
+					</ul>
+				</section>										
+																	
+				<section>
+					<h4>Thanks, questions?</h4>
+					<ul>
+						<li>Thanks for attending</li>
+						<li>Any Questions?</li>
+						<p></p>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

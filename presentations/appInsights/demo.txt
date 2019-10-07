@@ -1,0 +1,39 @@
+AppInsights Demos
+------------------
+
+- Demo the application using Postman
+- Show live metrics view
+	- Show live filtering of metrics
+	- Highlight CPU and memory usage
+- Show performance tab
+	- Show percentiles
+	- Show waterfall view
+	- Show dependencies tab
+	- Show filtering
+- Show failures tab
+	- Show Exceptions tab
+	- Show Dependencies tab
+	- Show waterfall view again
+	- Show filtering for certain kinds of failures
+- Show log analytics
+	- Percentile query
+	- Query on custom property
+	- Time-based query
+	- Query to generate a chart
+- Show Snapshots in failure window, show downloaded and opened in VS 2019 Enterprise
+- Show Snapshot debugger with Azure App Service in VS 2017, logpoint and snap-point with historical debugging
+- Show scrubbing of consumer id from the logs before it hits application insights
+- Show usage and estimated costs
+- Show creating App Insights resource
+	- Azure Portal
+	- az cli
+- Show configuring the application for Application Insights and ILogger.
+
+
+
+
+- Show the application map
+- Show workbooks?
+	- Create multiple sections with titles, etc.
+- Show putting stuff on the Azure Portal as a dashboard
+- Show alerts very briefly
