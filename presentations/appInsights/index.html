@@ -158,14 +158,136 @@
 							  --resource-group demo-rg
 						</code></pre>
 					</ul>
-				</section>									
+				</section>	
+				<section>
+					<h4>App Insights for ASP.Net Core</h4>
+					<ul>
+						<li>Add nuget to your .csproj</li>
+						<li>Use 2.7.1 or later or instructions won't be accurate</li>
+						<pre><code class="xml" data-trim> 
+							&lt;PackageReference
+							  Include="Microsoft.ApplicationInsights.AspNetCore"
+							  Version="2.8.0" /&gt;
+						</code></pre>
+					</ul>
+				</section>	
+				<section>
+					<h4>App Insights for ASP.Net Core (cont.)</h4>
+					<ul>
+						<li>Update Startup.cs</li>
+						<pre><code class="csharp" data-trim> 
+							void ConfigureServices(IServiceCollection services)
+							{
+							  services.AddApplicationInsightsTelemetry(options =>
+							  {
+							    config.Bind("ApplicationInsights", options);
+							  });
+							}
+						</code></pre>
+					</ul>
+				</section>	
+				<section>
+					<h4>App Insights for ASP.Net Core (cont.)</h4>
+					<ul>
+						<li>Update appsettings.json</li>
+						<pre><code class="json" data-trim> 
+						{
+						  "ApplicationInsights": {
+						    "InstrumentationKey": "KEY-GOES-HERE",
+						    "EnableAdaptiveSampling": true
+						  },
+						}
+						</code></pre>
+					</ul>
+				</section>	
+				<section>
+					<h4>App Insights for ASP.Net Core (cont.)</h4>
+					<ul>
+						<li>ILogger will only log warnings and errors to App Insights</li>
+						<li>To fix, you have to remove hard-coded rule, put in Startup.cs</li>
+						<pre><code class="csharp" data-trim> 
+							services.PostConfigureAll&lt;LoggerFilterOptions&gt;(action =>
+							  {
+							    var matchingRule = action.Rules.SingleOrDefault(
+								  x => x.ProviderName ==
+							        typeof(ApplicationInsightsLoggerProvider).FullName);
+							    if (matchingRule != null)
+							    {
+							      action.Rules.Remove(matchingRule);
+							    }
+							  });
+						</code></pre>
+					</ul>
+				</section>
+				<section>
+					<h4>App Insights for ASP.Net Core (cont.)</h4>
+					<ul>
+						<li>If ILogger is logging everything to App Insights</li>
+						<li>May want to turn down ASP.NET Core internal logging</li>
+						<li>Edit appsettings.json</li>
+						<pre><code class="json" data-trim> 
+							"Logging": {
+							  "LogLevel": {
+							    "Default": "Debug",
+							    "System": "Warning",
+							    "Microsoft": "Warning"
+							  }
+							},
+						</code></pre>
+					</ul>
+				</section>	
+				<section>
+					<h4>Customize App Insights Telemetry</h4>
+					<ul>
+						<li>Subclass TelemetryInitializerBase</li>
+						<li>Used to initialize telemetry</li>
+						<li>Register into DI</li>
+						<li>services.AddSingleton&lt;ITelemetryInitializer, T&gt;();</li>
+					</ul>
+				</section>	
+				<section>
+					<h4>Customize App Insights Telemetry (cont.)</h4>
+					<ul>
+						<li>Implement ITelemetryProcessor</li>
+						<li>Processes telemetry in a chain, last in chain sends to App Insights REST API</li>
+						<li>Don't call next processor to prevent telemetry from going up</li>
+						<li>Register into DI</li>
+						<li>services.
+							AddApplicationInsightsTelemetryProcessor&lt;T&gt;();</li>
+					</ul>
+				</section>																											
 				<section>
 					<h4>Recap</h4>
 					<ul>
-						<li>??</li>
+						<li>Use structured logging syntax, always</li>
+						<li>LogInformation("Did not expect {field} to have {value}", key, dict[key]);</li>
 					</ul>
-				</section>										
-																	
+				</section>
+				<section>
+					<h4>Recap (cont.)</h4>
+					<ul>
+						<li>App Insights billed on data ingest, configurable retention</li>
+						<li>Live Metrics - with live filtering</li>
+						<li>Waterfall view per operation</li>
+						<li>Built-in dashboards</li>
+						<li>Snapshot debugging a live application</li>
+						<li>Telemetry customization</li>
+					</ul>
+				</section>	
+				<section>
+					<h4>Recap (cont.)</h4>
+					<ul>
+						<li>Features we did not see</li>
+						<ul>
+							<li>Alerts</li>
+							<li>Notebooks and custom dashboards</li>
+							<li>Front-end JS telemetry</li>
+							<li>Application Map</li>
+							<li>Smart detection</li>
+							<li>Availability tests</li>
+						</ul>
+					</ul>
+				</section>																								
 				<section>
 					<h4>Thanks, questions?</h4>
 					<ul>
