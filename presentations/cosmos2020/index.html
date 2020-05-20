@@ -75,13 +75,411 @@
         </p>
       </section>
       <section>
-        <h3>High Level Goals</h3>
+        <h3>Overview</h3>
         <ul>
-          <li>Write your HTML, JS, CSS</li>
-          <li>Buy a domain and host at https://[myowndomain].com/</li>
+          <li>Overview</li>
+          <li>Demo application</li>
+          <li>Live polls for the audience</li>
+          <li>Deep dive</li>          
         </ul>
       </section>
-
+      <section>
+        <h3>Questions</h3>
+        <ul>
+          <li>Ask questions, please</li>
+          <li>If I just wanted to record a video, I would have.</li>
+          <li>This is better than video, you can ask questions.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What is Cosmos?</h3>
+        <ul>
+          <li>Globally available, replicated, high-performance NoSQL storage solution</li>
+          <li>Store schema-less documents</li>
+          <li>Turn-key global replication</li>
+          <li>Supports cloud scale by automatically scaling horizontally (both storage and throughput)</li>
+          <li>Billed via RUs</li>
+          <li>SLAs for read and write performance</li>
+        </ul>
+      </section>      
+      <section>
+        <h3>Poll Time</h3>
+        <ul>
+          <li>Do have experience with NoSQL solutions that are Document or Key-Value Stores?</li>
+          <li><a href="https://poll-app.azurewebsites.net/?poll=nosql">https://poll-app.azurewebsites.net/?poll=nosql</a></li>
+          <li>Go to the link and answer the question</li>
+        </ul>
+      </section>    
+      <section>
+        <h3>What is NoSQL?</h3>
+        <ul>
+          <li>Store a document, think JSON payload
+            <pre>
+{
+  "FirstName": "Jane",
+  "LastName": "Doe"
+}
+            </pre>
+          </li>          
+          <li>Schema-less, each document can be completely different from every other document.</li>
+        </ul>
+      </section>  
+      <section>
+        <h3>What is NoSQL?</h3>
+        <ul>
+          <li>A document can contain complex structured data, think
+            <pre>
+{
+  "FirstName": "Jane",
+  "LastName": "Doe",
+  "Children": [
+    {
+      "FirstName": "Bobby",
+      "LastName": "Doe"
+      "Age": "14"
+      "Hobbies": ["Video Games"]
+    }
+  ]
+}
+            </pre>
+          </li>          
+          <li>Data duplication is normal</li>
+          <li>Enforcement of data constraints happens up a layer (at application-level)</li>
+        </ul>
+      </section>  
+      <section>
+        <h3>CosmosDb</h3>
+        <ul>
+          <li>Now, let's get into Cosmos specifics</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Document Overview</h3>
+        <ul>
+          <li>Every document is required to have two fields set, Id and PartitionKey</li>
+          <li>A document is located using (Id and PartitionKey)</li>
+          <li>Id can be a string of any kind up to 255 characters</li>
+          <li>PartitionKey will be explained more later</li>
+          <li>Some built-in fields are provided
+            <ul>
+              <li>_ts - timestamp of last update</li>
+              <li>_etag - used to tell if document has been changed</li>
+              <li>_rid, _self - internal fields</li>
+              <li>_attachments - have not used myself</li>
+              <li>_ttl - preferred method to delete documents</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>SLAs and Performance</h3>
+        <ul>
+          <li>Read Document
+            <ul>
+              <li>10ms SLA</li>
+              <li>Cost is 1 Request Unit (RU) to read 1 KB document</li>
+            </ul>
+          </li>
+          <li>Write Document
+            <ul>
+              <li>10ms SLA</li>
+              <li>This could insert, upsert, delete, overwrite</li>
+              <li>Cost depends on the operation, size of document and which properties are indexed</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>SLAs and Performance</h3>
+        <ul>
+          <li>Query documents
+            <ul>
+              <li>No performance SLA</li>
+              <li>Cost depends greatly if query is single partition or cross partition, what properties are indexed</li>
+              <li>Generally 100x-1000x or more costly and slower than either reading or writing a document</li>
+              <li>Avoid it all costs</li>
+            </ul>
+          </li>
+          <li>You pre-provision request units per second (RU/s). If you exceed, Cosmos will throttle (e.g. HTTP 429 Server Busy)</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Physical Partitions</h3>
+        <ul>
+          <li>A new Cosmos database starts with 1 Physical Partition (e.g. server)
+            <ul>
+              <li>Max of 10,000 RU/s</li>
+              <li>Min of 400 RU/s</li>
+              <li>Max of 20 GB of storage (previously was 10 GB limit)</li>
+            </ul>
+          </li>
+          <li>Details of physical partition are hidden and auto-managed by the service</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Physical Partitions</h3>
+        <ul>
+          <li>If you provision your account to more than 10,000 RU/s or load more than 20 GB of data, then at some point (e.g. secret sauce), the service will split your single partition into two physical partitions (e.g. servers). This results in two new physical partitions and retirement of the old parent partition.</li>
+          <li>A document will only live in 1 physical partition, regardless of how many there are.</li>
+          <li>Each physical partition maintains an index for only those documents stored on that partition.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Physical Partitions</h3>
+        <ul>
+          <li>When reading or writing a document, you must provide both the PartitionKey and the Id
+            <ul>
+              <li>The SDK will directly contact the physical partition (e.g. server) responsible for holding those documents. Any other partitions (e.g. servers) have ZERO load requested from them.</li>
+            </ul>
+          </li>
+          <li>var cosmosDb = new Dictionary&lt;string, Dictionary&lt;string, object&gt;&gt;();</li>
+          <li>Write is cosmosDb[partitionKey][id] = new { Name = "Jane Doe" };</li>
+          <li>Read is cosmosDb[partitionKey][id]</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Physical Partitions</h3>
+        <ul>
+          <li>When query a document, you can provide a PartitionKey
+            <ul>
+              <li>The SDK will directly contact the physical partition (e.g. server) to execute the query. Any other partitions (e.g. servers) will have ZERO load requested from them.</li>
+            </ul>
+          </li>
+          <li>When querying a document, you can specify you want a cross-partition query
+            <ul>
+              <li>The SDK will simultaneously query multiple physical partitions (e.g. servers). Each will execute the query against their stored data and return relevant results (may be zero for a given partition). The SDK will then stitch the results back together as the simultaneous results are returned.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>Poll Time</h3>
+        <ul>
+          <li>Did you have any questions about Cosmos documents or physical partitions?</li>
+          <li><a href="https://poll-app.azurewebsites.net/?poll=checkin">https://poll-app.azurewebsites.net/?poll=checkin</a></li>
+          <li>Go to the link and answer the question</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Logical Partitions</h3>
+        <table>
+          <tr>
+            <td>Partition Key</td>
+            <td>Documents</td>
+          </tr>
+          <tr>
+            <td>North Carolina</td>
+            <td>1,500</td>
+          </tr>
+          <tr>
+            <td>Ohio</td>
+            <td>4,500</td>
+          </tr>
+          <tr>
+            <td>Texas</td>
+            <td>2,500</td>
+          </tr>
+        </table>
+        <ul>
+          <li>Currently everything lives on 1 physical partition</li>
+          <li>Now, increase load but keep only these 3 partition keys. Cosmos at most could create 1 physical partition to match each logical partition, so you end up with 3 physical partitions. So, you have an upper limit of 20 GB * 3 = 60 GB and 10,000 RU/s * 3 = 30,000 RU/s</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Logical Partitions</h3>
+        <table>
+          <tr>
+            <td>Partition Key</td>
+            <td>Documents</td>
+          </tr>
+          <tr>
+            <td>North Carolina</td>
+            <td>1,500</td>
+          </tr>
+          <tr>
+            <td>Ohio</td>
+            <td>4,500</td>
+          </tr>
+          <tr>
+            <td>Texas</td>
+            <td>2,500</td>
+          </tr>
+        </table>
+        <ul>
+          <li>Let's add 47 more states, while increasing load.</li>
+          <li>We could now have 50 physical partitions, e.g. 20 GB * 50 = 1 TB and 500,000 RU/s. Each state though can only hold 20 GB of data and have 10,000 RU/s a second of traffic. Might California and New York exceed capacity?</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Logical Partitions</h3>
+        <ul>
+          <li>What if we changed PartitionKey to City? Might some cities exceed 20 GB and 10,000 RU/s? Maybe a different PartitionKey?</li>
+          <li>Remember though you need both the PartitionKey and Id to read or write a document</li>
+          <li>Choosing a PartitionKey can be very difficult and will directly correlate to how well CosmosDb will work as a solution for you.</li>
+          <li>A good PartitionKey and the system is basically limitless.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Logical Partitions</h3>
+        <ul>
+          <li>Cosmos decides whn and how to split physical partitions. In general, I have NEVER seen it rejoin partitions.</li>
+          <li>It will never split a logical partition into two (e.g. all documents belonging to a single state will always reside on a single physical partition or server).</li>
+          <li>Hot partitions result from a bad PartitionKey (e.g. all requests go to the same physical server and Cosmos can't split a single logical partition). Since it can't split the partition, traffic will be throttled.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Consistency</h3>
+        <ul>
+          <li>Writing a single document is atomic, the write will fully succeed or fully fail. This goes for creating a document as well.</li>
+          <li>When mutating a document, you must provide the entire document contents.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Consistency</h3>
+        <ul>
+          <li>When using the SDKs, by default it operates in last-write wins.</li>
+          <li>However, each document maintains an _etag property. You can provide that _etag back with a write operation and Cosmos will only permit the write operation if the provided _etag value matches the value in the current document. This gives you optimistic concurrency to ensure two users don't overwrite each other's changes.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Consistency</h3>
+        <ul>
+          <li>What if you want to update multiple documents atomically?</li>
+          <li>You must use Cosmos Stored Procedures. They are written in Javascript and execute on a physical partition.</li>
+          <li>To execute, you must provide a PartitionKey value and the entire logical partition is locked during the stored procedure execution.</li>
+          <li>Many documents belonging to the same logical partition can then be updated in an ACID compliant manner.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Demo Code</h3>
+        <ul>
+          <li>Let's look at code for the Polling Application</li>
+          <li>https://github.com/kstreith/poll-app/</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Cosmos Change Feed</h3>
+        <ul>
+          <li><a href="https://docs.microsoft.com/en-us/azure/cosmos-db/change-feed">Native feature of Cosmos</a></li>
+          <li>Provides a feed of each change to a document in a collection</li>
+          <li>Provides changes in order by modification time within each logical partition.</li>
+          <li>Changes can be synchronized from any point-in-time or all changes from the beginning.</li>
+          <li>Only guaranteed to have the latest version of a document (intermediate changes may be dropped over time).</li>
+          <li>Document deletes do NOT appear. Instead update document with a Time To Live (e.g. _ttl property)</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Cosmos Change Feed</h3>
+        <ul>
+          <li>Check-pointing must be done in your code, Cosmos server doesn't handle.</li>
+          <li>The Cosmos v3 SDK provides check-pointing logic.</li>
+          <li>Can be used to replicate data to other systems in real-time.</li>
+          <li>Can be used to implement <a href="https://www.martinfowler.com/bliki/CQRS.html">CQRS</a> or Event Sourcing patterns.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Poll App - Change Feed</h3>
+        <ul>
+          <li>A WebJob runs continuously against Cosmos Change Feed.</li>
+          <li>For any PollResponse documents, accumulates the value into the PollResult document.</li>
+          <li>Demo</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Poll App - Metrics</h3>
+        <ul>
+          <li>Let's look at metrics for the CosmosDb instance.</li>
+          <li>The free tier of CosmosDb is 400 RU/s and 5 GB of storage</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Pricing</h3>
+        <ul>
+          <li>You pay for storage</li>
+          <li>You pay for RU/s</li>
+          <li>The standard model was to pre-provision RU/s and pay for that amount regardless of the amount being used.</li>
+          <li>You can buy RUs in bulk ahead to get a discount (15% to 65% discount)</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Pricing</h3>
+        <ul>
+          <li>Just announced <a href="https://devblogs.microsoft.com/cosmosdb/autoscale-serverless-offers/">Autoscale pricing</a></li>
+          <li>Set a maximum RU/s, system will autoscale from 10% of max - up to max</li>
+          <li>You pay whatever is being consumed as the max in a given hour.</li>
+          <li>Cost is 1.5 the cost of pre-provisioned RU/s</li>
+          <li>In next few months, a fully pay-per-request model (e.g. serverless) will be in public preview.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Queries</h3>
+        <ul>
+          <li>If we shouldn't query, why does Cosmos provide a SQL query API?</li>
+          <li>You can use queries, just be aware your RU consumption will be much more unpredictable.</li>
+          <li>What is Cosmos? Is it your transactional store?</li>
+          <li>Or is it your query store?</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Queries</h3>
+        <ul>
+          <li>In preview is the <a href="https://docs.microsoft.com/en-us/azure/cosmos-db/analytical-store-introduction">Analytical data store</a></li>
+          <li>A decoupled columnar storage is allocated</li>
+          <li>The data is auto synchronized from your Cosmos collection to the analytical data storage</li>
+          <li>Query using Apache Spark or SQL using Azure Synapse</li>
+          <li>Queries have no impact on your transactional performance</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Key Take-Aways</h3>
+        <ul>
+          <li>Treat Cosmos as a Dictionary&lt;string, id&gt; - combine id and partitionKey together in app code</li>
+          <li>Avoid Querying Cosmos</li>
+          <li>Allocate RUs at the Database level, not the collection level</li>
+          <li>Store multiple document types in a collection</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Things We Skipped</h3>
+        <ul>
+          <li>Multiple <a href="https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels">consistency</a> models
+            <ul>
+              <li>Strong</li>
+              <li>Bounded Staleness</li>
+              <li>Session</li>
+              <li>Consistent Prefix</li>
+              <li>Eventual</li>
+            </ul>
+          </li>
+          <li>Multi-region support</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Things We Skipped</h3>
+        <ul>
+          <li>There are multiple API front-ends for Cosmos
+            <ul>
+              <li>Gremlin</li>
+              <li>MongoDb</li>
+              <li>Cassandra</li>
+              <li>Table</li>
+              <li>Etcd</li>
+            </ul>
+          </li>
+          <li>I only showed the SQL API</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Things We Skipped</h3>
+        <ul>
+          <li>Stored procedures</li>
+          <li>Triggers</li>
+          <li>User-defined functions</li>
+          <li>Security</li>
+          <li>Backup</li>
+          <li>Index Configuration</li>
+        </ul>
+      </section>
       <section>
         <h3>Thanks, Any Questions?</h3>
         <ul>
